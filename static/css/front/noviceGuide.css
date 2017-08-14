@@ -1,0 +1,317 @@
+.p_safepage>li { position: relative; overflow: hidden; }
+.p_sfmain { width: 1000px; position: absolute; left: 50%; margin-left: -500px; top: 50%; }
+.page01 { background-color: #FF5256; }
+.page02 { background-color: #E8E8E8; }
+.page03 { background-color: #F3F3F3; }
+.page04 { background-color: #E8E8E8; }
+.page05 { background-color: #D33C42; }
+.p_sfmain img { position: absolute; }
+.p_safex1 { height: 472px; margin-top: -236px; }
+.p_safex2 { height: 442px; margin-top: -221px; }
+.p_safex3 { height: 404px; margin-top: -202px; }
+.p_safex4 { height: 446px; margin-top: -223px; }
+.p_safex5 { height: 552px; margin-top: -276px; top: 55%; }
+.p_x1title { width: 525px; height: 152px; top: 0; left: 265px; }
+.p_x1coin1 { width: 44px; height: 44px; top: 187px; left: 306px; }
+.p_x1coin11 { width: 44px; height: 44px; top: 178px; right: 234px; }
+.p_x1coin2 { width: 56px; height: 56px; bottom: 83px; left: 240px; }
+.p_x1coin3 { width: 58px; height: 34px; bottom: 6px; right: 319px; }
+.p_x1man { width: 254px; height: 409px; bottom: 0; left: 29px; }
+.p_x1computer { width: 306px; height: 272px; bottom: 20px; left: 371px; }
+.p_x1frog { width: 118px; height: 155px; bottom: 4px; right: 13px; }
+.p_x1bubble { width: 116px; height: 89px; bottom: 115px; right: 145px; }
+.p_x1word { width: 75px; height: 24px; bottom: 147px; right: 162px; }
+.p_x1coin31 { width: 58px; height: 34px; bottom: 3px; right: 213px; }
+.p_x1coin32 { width: 58px; height: 34px; bottom: 11px; right: 210px; }
+.p_x1coin33 { width: 58px; height: 34px; bottom: 20px; right: 215px; }
+.p_x1coin34 { width: 58px; height: 34px; bottom: 29px; right: 210px; }
+.p_x1coin35 { width: 58px; height: 34px; bottom: 38px; right: 210px; }
+.p_x2title { width: 431px; height: 112px; top: 63px; right: 125px; }
+.p_x2frog { width: 137px; height: 180px; bottom: 0; left: 403px; }
+.p_x2bubble { width: 223px; height: 83px; bottom: 107px; right: 209px; }
+.p_x2word { width: 159px; height: 24px; bottom: 133px; right: 238px; }
+.p_x2round { width: 342px; height: 342px; top: 0; left: 16px; }
+.p_x2cloud1 { width: 60px; height: 37px; top: 56px; left: 9px; }
+.p_x2cloud2 { width: auto; height: auto; top: 121px; left: 63px; }
+.p_x2cloud3 { width: 173px; height: 103px; top: 36px; left: 215px; }
+.p_x2wheel1 { width: 49px; height: 49px; top: 58px; left: 264px; }
+.p_x2wheel2 { width: 23px; height: 23px; top: 82px; left: 333px; }
+.p_x2computer { width: 337px; height: 160px; bottom: 136px; left: 15px; }
+.p_x3title { width: 431px; height: 115px; top: 24px; left: 0; }
+.p_x3round { width: 223px; height: 223px; top: 13px; left: 504px; }
+.p_x3man { width: 158px; height: 177px; top: 60px; left: 536px; }
+.p_x3notebook { width: 190px; height: 277px; top: 0; right: 64px; }
+.p_x3pencil { width: 14px; height: 173px; top: 87px; right: 5px; }
+.p_x3frog { width: 137px; height: 180px; bottom: 0; left: 359px; }
+.p_x3bubble { width: 206px; height: 83px; bottom: 85px; left: 126px; }
+.p_x3word { width: 164px; height: 24px; bottom: 115px; left: 145px; }
+.p_x4title { width: 475px; height: 115px; top: 74px; right: 34px; }
+.p_x4frog { width: 137px; height: 180px; bottom: 0; left: 436px; }
+.p_x4bubble { width: 206px; height: 83px; bottom: 90px; right: 197px; }
+.p_x4word { width: 136px; height: 23px; bottom: 120px; right: 231px; }
+.p_x4round { width: 342px; height: 342px; top: 33px; left: 60px; }
+.p_x4computer { width: 244px; height: 207px; top: 107px; left: 109px; }
+.p_x4bankcard { width: 149px; height: 103px; top: 210px; left: 281px; }
+.p_x4coin1 { width: 33px; height: 33px; top: 0; left: 80px; }
+.p_x4coin2 { width: 46px; height: 46px; top: 52px; left: 14px; }
+.p_x4coin3 { width: 49px; height: 49px; top: 97px; left: 75px; }
+.p_x4coin4 { width: 45px; height: 27px; bottom: 96px; left: 33px; }
+.p_x4coin5 { width: 45px; height: 26px; bottom: 107px; left: 23px; }
+.p_x4coin6 { width: 47px; height: 28px; bottom: 121px; left: 34px; }
+.p_x4coin7 { width: 47px; height: 28px; bottom: 100px; left: 80px; }
+.p_x4coin8 { width: 47px; height: 28px; bottom: 108px; left: 79px; }
+.p_x4coin9 { width: 47px; height: 28px; bottom: 116px; left: 79px; }
+.p_x4coina { width: 47px; height: 28px; bottom: 123px; left: 79px; }
+.p_x5title { width: 433px; height: 115px; top: 27px; left: 46px; }
+.p_x5frog { width: 139px; height: 180px; top: 189px; left: 430px; }
+.p_x5bubble { width: 248px; height: 83px; top: 217px; left: 148px; }
+.p_x5word { width: 185px; height: 24px; top: 250px; left: 176px; }
+.p_x5coin1 { width: 50px; height: 50px; top: 93px; right: 379px; }
+.p_x5coin2 { width: 50px; height: 50px; top: 1px; right: 297px; }
+.p_x5coin3 { width: 50px; height: 50px; top: 20px; right: 98px; }
+.p_x5coin4 { width: 50px; height: 50px; top: 151px; right: 47px; }
+.p_x5purse { width: 271px; height: 274px; top: 127px; right: 104px; }
+.p_x5star1 { width: 19px; height: 23px; top: 83px; right: 299px; }
+.p_x5star2 { width: 14px; height: 16px; top: 52px; right: 237px; }
+.p_x5star3 { width: 19px; height: 23px; top: 67px; right: 173px; }
+.p_x5star4 { width: 14px; height: 16px; top: 109px; right: 251px; }
+.p_x5star5 { width: 24px; height: 28px; top: 95px; right: 216px; }
+.p_xsbutton { position: absolute; width: 363px; height: 83px; left: 319px; bottom: 0; }
+.p_xsbutton img { width: 100%; height: 100%; top: 0; left: 0; }
+.p_xsbutton:hover { opacity: .8; filter: alpha(opacity=80); }
+.p_xscontrol { position: fixed; right: 1.8%; top: 50%; margin-top: -90px; }
+.p_xscontrol li { width: 16px; height: 16px; border-radius: 8px; background-color: #FFB2B4; margin-bottom: 20px; cursor: pointer; }
+.p_xscontrol li.cur { background-color: #C80900; }
+/* novice guide animate */
+/*　齿轮旋转　*/
+@-moz-keyframes xuanzhuan{
+	0%{transform:rotate(0);}
+	100%{transform:rotate(360deg);}
+}
+@-o-keyframes xuanzhuan{
+	0%{transform:rotate(0);}
+	100%{transform:rotate(360deg);}
+}
+
+@-webkit-keyframes xuanzhuan{
+	0%{transform:rotate(0);}
+	100%{transform:rotate(360deg);}
+}
+@keyframes xuanzhuan{
+	0%{transform:rotate(0);}
+	100%{transform:rotate(360deg);}
+}
+
+.pageon .p_x2wheel1,.pageon .p_x2wheel2{
+	animation:xuanzhuan 2.5s linear infinite;
+}
+/*　金币旋转　*/
+@keyframes yxuanzhuan{
+	0%{transform:rotatey(0);}
+	100%{transform:rotatey(360deg);}
+}
+@-moz-keyframes yxuanzhuan{
+	0%{transform:rotatey(0);}
+	100%{transform:rotatey(360deg);}
+}
+@-o-keyframes yxuanzhuan{
+	0%{transform:rotatey(0);}
+	100%{transform:rotatey(360deg);}
+}
+
+@-webkit-keyframes yxuanzhuan{
+	0%{transform:rotatey(0);}
+	100%{transform:rotatey(360deg);}
+}
+.pageon .p_x1coin1,.pageon .p_x4coin1,.pageon .p_x5coin1,.pageon .p_x5coin4{
+	animation:yxuanzhuan 3s linear infinite;
+}
+.pageon .p_x1coin2,.pageon .p_x4coin2,.pageon .p_x5coin2{
+	animation:yxuanzhuan 3.5s linear infinite;
+}
+.pageon .p_x1coin11,.pageon .p_x4coin3,.pageon .p_x5coin3{
+	animation:yxuanzhuan 2.5s linear infinite;
+}
+/* 一闪一闪亮晶晶 */
+@keyframes fadetg{
+	0%{opacity: 1;}
+	50%{opacity: 0;}
+	100%{opacity: 1;}
+}
+@-webkit-keyframes fadetg{
+	0%{opacity: 1;}
+	50%{opacity: 0;}
+	100%{opacity: 1;}
+}
+@-o-keyframes fadetg{
+	0%{opacity: 1;}
+	50%{opacity: 0;}
+	100%{opacity: 1;}
+}
+@-moz-keyframes fadetg{
+	0%{opacity: 1;}
+	50%{opacity: 0;}
+	100%{opacity: 1;}
+}
+.pageon .fadetg1{
+	animation:fadetg 4s linear infinite;
+}
+.pageon .fadetg2{
+	animation:fadetg 2.5s linear infinite;
+}
+.pageon .fadetg3{
+	animation:fadetg 2s linear infinite;
+}
+.pageon .fadetg4{
+	animation:fadetg 3s linear infinite;
+}
+.pageon .fadetg5{
+	animation:fadetg 3.5s linear infinite;
+}
+/* 由上往下 */
+.p_safepage .pagetop{
+	transform:translateY(-800px);
+	transition:transform 1.5s .2s;
+	-ms-transform:translateY(-800px);
+	-ms-transition:-ms-transform 1.5s .2s;
+	-moz-transform:translateY(-800px);
+	-moz-transition:-moz-transform 1.5s .2s;
+	-webkit-transform:translateY(-800px);
+	-webkit-transition:-webkit-transform 1.5s .2s;
+}
+.p_safepage .pagecoin1{
+	transform:translateY(-1000px);
+	transition:transform 1.2s .2s;
+	-ms-transform:translateY(-1000px);
+	-ms-transition:-ms-transform 1.2s .2s;
+	-moz-transform:translateY(-1000px);
+	-moz-transition:-moz-transform 1.2s .2s;
+	-webkit-transform:translateY(-1000px);
+	-webkit-transition:-webkit-transform 1.2s .2s;
+}
+.p_safepage .pagecoin2{
+	transform:translateY(-1000px);
+	transition:transform 1.2s .4s;
+	-ms-transform:translateY(-1000px);
+	-ms-transition:-ms-transform 1.2s .4s;
+	-moz-transform:translateY(-1000px);
+	-moz-transition:-moz-transform 1.2s .4s;
+	-webkit-transform:translateY(-1000px);
+	-webkit-transition:-webkit-transform 1.2s .4s;
+}
+.p_safepage .pagecoin3{
+	transform:translateY(-1000px);
+	transition:transform 1.2s .6s;
+	-ms-transform:translateY(-1000px);
+	-ms-transition:-ms-transform 1.2s .6s;
+	-moz-transform:translateY(-1000px);
+	-moz-transition:-moz-transform 1.2s .6s;
+	-webkit-transform:translateY(-1000px);
+	-webkit-transition:-webkit-transform 1.2s .6s;
+}
+.p_safepage .pagecoin4{
+	transform:translateY(-1000px);
+	transition:transform 1.2s .8s;
+	-ms-transform:translateY(-1000px);
+	-ms-transition:-ms-transform 1.2s .8s;
+	-moz-transform:translateY(-1000px);
+	-moz-transition:-moz-transform 1.2s .8s;
+	-webkit-transform:translateY(-1000px);
+	-webkit-transition:-webkit-transform 1.2s .8s;
+}
+.p_safepage .pagecoin5{
+	transform:translateY(-1000px);
+	transition:transform 1.2s 1s;
+	-ms-transform:translateY(-1000px);
+	-ms-transition:-ms-transform 1.2s 1s;
+	-moz-transform:translateY(-1000px);
+	-moz-transition:-moz-transform 1.2s 1s;
+	-webkit-transform:translateY(-1000px);
+	-webkit-transition:-webkit-transform 1.2s 1s;
+}
+/* 由下往上 */
+.p_safepage .pagebot{
+	transform:translateY(800px);
+	transition:transform 1.5s .2s;
+	-ms-transform:translateY(800px);
+	-ms-transition:-ms-transform 1.5s .2s;
+	-moz-transform:translateY(800px);
+	-moz-transition:-moz-transform 1.5s .2s;
+	-webkit-transform:translateY(800px);
+	-webkit-transition:-webkit-transform 1.5s .2s;
+}
+.pageon .pagetop,.pageon .pagebot,.pageon .pagecoin1,.pageon .pagecoin2,.pageon .pagecoin3,.pageon .pagecoin4,.pageon .pagecoin5{
+	transform:translateY(0);
+	-ms-transform:translateY(0);
+	-moz-transform:translateY(0);
+	-webkit-transform:translateY(0);
+}
+
+/* 从左往右 */
+.p_safepage .pageleft{
+	transform:translateX(-1000px);
+	transition:transform 1.5s .2s;
+	-ms-transform:translateX(-1000px);
+	-ms-transition:-ms-transform 1.5s .2s;
+	-moz-transform:translateX(-1000px);
+	-moz-transition:-moz-transform 1.5s .2s;
+	-webkit-transform:translateX(-1000px);
+	-webkit-transition:-webkit-transform 1.5s .2s;
+}
+/* 从右往左 */
+.p_safepage .pageright{
+	transform:translateX(1000px);
+	transition:transform 1.5s .2s;
+	-ms-transform:translateX(1000px);
+	-ms-transition:-ms-transform 1.5s .2s;
+	-moz-transform:translateX(1000px);
+	-moz-transition:-moz-transform 1.5s .2s;
+	-webkit-transform:translateX(1000px);
+	-webkit-transition:-webkit-transform 1.5s .2s;
+}
+.pageon .pageleft,.pageon .pageright{
+	transform:translateX(0);
+	-ms-transform:translateX(0);
+	-moz-transform:translateX(0);
+	-webkit-transform:translateX(0);
+}
+
+.active .p_x2wheel1,.active .p_x2wheel2{
+    animation:xuanzhuan 2.5s linear infinite;
+}
+.active .p_x1coin1,.active .p_x4coin1,.active .p_x5coin1,.active .p_x5coin4{
+    animation:yxuanzhuan 3s linear infinite;
+}
+.active .p_x1coin2,.active .p_x4coin2,.active .p_x5coin2{
+    animation:yxuanzhuan 3.5s linear infinite;
+}
+.active .p_x1coin11,.active .p_x4coin3,.active .p_x5coin3{
+    animation:yxuanzhuan 2.5s linear infinite;
+}
+.active .fadetg1{
+    animation:fadetg 4s linear infinite;
+}
+.active .fadetg2{
+    animation:fadetg 2.5s linear infinite;
+}
+.active .fadetg3{
+    animation:fadetg 2s linear infinite;
+}
+.active .fadetg4{
+    animation:fadetg 3s linear infinite;
+}
+.active .fadetg5{
+    animation:fadetg 3.5s linear infinite;
+}
+.active .pagetop,.active .pagebot,.active .pagecoin1,.active .pagecoin2,.active .pagecoin3,.active .pagecoin4,.active .pagecoin5{
+    transform:translateY(0);
+    -ms-transform:translateY(0);
+    -moz-transform:translateY(0);
+    -webkit-transform:translateY(0);
+}
+.active .pageleft,.active .pageright{
+    transform:translateX(0);
+    -ms-transform:translateX(0);
+    -moz-transform:translateX(0);
+    -webkit-transform:translateX(0);
+}
