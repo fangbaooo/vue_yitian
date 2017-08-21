@@ -5,6 +5,9 @@ import noviceGuide from '@/page/noviceGuide/noviceGuide';
 import ylcHome from '@/page/ylcHome';
 import loan from '@/page/loan';
 
+import account from '@/page/account/account';  // 个人中心
+import home from '@/page/account/home';
+
 import help from '@/page/help';
 Vue.use(Router);
 
@@ -26,6 +29,17 @@ export default new Router({
     {
       path: '/noviceGuide',
       component: noviceGuide
+    },
+    {
+      path: '/account',
+      component: account,
+      redirect: '/account/home',
+      children: [
+        {
+          path: '/account/home',
+          component: home
+        }
+      ]
     },
     {
       path: '/help',

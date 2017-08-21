@@ -3452,7 +3452,7 @@ a:hover{color: #ff3329;}
 	top: 13px;
 	right: 140px;
 }
-.p_zhleft>li.selected h4, .p_zhleft>li h4:hover{
+.p_zhleft>li .selected h4, .p_zhleft>li h4:hover{
 	background-color: #FF5256;
 	border-color: #ff5256;
 	color: #fff;
@@ -3460,7 +3460,7 @@ a:hover{color: #ff3329;}
 .p_zhleft>li h4 .ico1{
 	background-position: -110px -80px;
 }
-.p_zhleft>li.selected h4 .ico1,.p_zhleft>li h4:hover .ico1{
+.p_zhleft>li .selected h4 .ico1, .p_zhleft>li h4:hover .ico1{
 	background-position: -132px -80px;
 }
 .p_zhleft>li h4 .ico2{
