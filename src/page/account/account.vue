@@ -1,19 +1,19 @@
 <template>
   <div class="s_center clr">
     <div class="s_bread">
-      <router-link to="/" class="s_breadindex"><i class="icon"></i>首页</router-link>
+      <a href="/" class="s_breadindex"><i class="icon"></i>首页</a>
       <i class="s_breadarrow">&gt;</i> 
-      <router-link to="/account"><span>我的账户</span></router-link>
+      <a href="/account"><span>我的账户</span></a>
       <i class="s_breadarrow">&gt;</i> 
       <span>账户总览</span>
     </div>
     <div class="clr">
       <ul class="p_zhleft">
         <li id="list_account">
-          <router-link to="/account/home" active-class="selected" exact><h4> <i class="icon ico1"></i>我的账户</h4></router-link>
+          <a href="/account/home" class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></a>
           <ul class="p_zhminav" style="display: block">
-            <router-link to="/account/home" active-class="clicked" exact tag="li" id="child_account_1"><a href="">账户总览</a></router-link>
-            <router-link to="/account/recharge" active-class="clicked" exact tag="li" id="child_account_2"><a href="javascript:doCheck(1);">充值</a></router-link>
+            <li id="child_account_1" class="clicked"><a href="/account/home">账户总览</a></li>
+            <li id="child_account_2"><a href="javascript:doCheck(1);">充值</a></li>
             <li id="child_account_3"><a href="javascript:doCheck(2);">提现</a></li>
             <li id="child_account_4"><a href="@{front.account.FundsManage.dealRecord()}">交易记录</a></li>
           </ul>

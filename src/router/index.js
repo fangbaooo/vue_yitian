@@ -6,7 +6,7 @@ import ylcHome from '@/page/ylcHome';
 import loan from '@/page/loan';
 
 import account from '@/page/account/account';  // 个人中心
-import home from '@/page/account/home';
+import home from '@/page/account/home/home';
 
 import help from '@/page/help';
 Vue.use(Router);

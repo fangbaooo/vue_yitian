@@ -51,7 +51,7 @@
           <li><h2><router-link :to="{path: '/ylcHome'}" active-class="selected" exact>我要理财</router-link></h2></li>
           <li><router-link :to="{path: '/loan'}" active-class="selected" exact>我要借款</router-link></li>
           <li><router-link :to="{path: '/noviceGuide'}" active-class="selected" exact>新手指南</router-link></li>
-          <router-link :to="{path: '/account'}" active-class="selected" exact id="usr" tag="li" class="s_accountnav"><i class="s_accounticon"></i><a>我的账户</a></router-link>
+          <router-link :to="{path: '/account/home'}" active-class="selected" exact id="usr" tag="li" class="s_accountnav"><i class="s_accounticon"></i><a>我的账户</a></router-link>
         </ul>
       </div>
     </div>
