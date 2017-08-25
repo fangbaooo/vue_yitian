@@ -10,12 +10,12 @@
     <div class="clr">
       <ul class="p_zhleft">
         <li id="list_account">
-          <a href="/account/home" class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></a>
+          <a href="/account/home" class="selected" exact><h4> <i class="icon ico1"></i>我的账户</h4></a>
           <ul class="p_zhminav" style="display: block">
-            <li id="child_account_1" class="clicked"><a href="/account/home">账户总览</a></li>
-            <li id="child_account_2"><a href="javascript:doCheck(1);">充值</a></li>
-            <li id="child_account_3"><a href="javascript:doCheck(2);">提现</a></li>
-            <li id="child_account_4"><a href="@{front.account.FundsManage.dealRecord()}">交易记录</a></li>
+            <router-link to="/account/home" tag="li" active-class="clicked" exact><a>账户总览</a></router-link>
+            <li><a href="javascript:doCheck(1);">充值</a></li>
+            <li><a href="javascript:doCheck(2);">提现</a></li>
+            <router-link to="/account/dealRecord" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
           </ul>
         </li>
         <li id="list_invest">
