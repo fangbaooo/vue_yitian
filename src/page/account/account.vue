@@ -5,17 +5,17 @@
       <i class="s_breadarrow">&gt;</i> 
       <a href="/account"><span>我的账户</span></a>
       <i class="s_breadarrow">&gt;</i> 
-      <span>账户总览</span>
+      <span>{{breadcrumbs}}</span>
     </div>
     <div class="clr">
       <ul class="p_zhleft">
         <li id="list_account">
-          <router-link to="/account/home" active-class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></router-link>
+          <router-link to="/account/home" @click.native="setBreadcrumbs('账户总览')" active-class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></router-link>
           <ul class="p_zhminav">
-            <router-link to="/account/home" tag="li" active-class="clicked" exact><a>账户总览</a></router-link>
+            <router-link to="/account/home" tag="li" @click.native="setBreadcrumbs('账户总览')" active-class="clicked" exact><a>账户总览</a></router-link>
             <li><a href="javascript:doCheck(1);">充值</a></li>
             <li><a href="javascript:doCheck(2);">提现</a></li>
-            <router-link to="/account/home/dealRecord" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
+            <router-link to="/account/home/dealRecord" @click.native="setBreadcrumbs('交易记录')" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
           </ul>
         </li>
         <li id="list_invest">
@@ -43,24 +43,22 @@
         </li>
         
         <li>
-          <router-link to="/account/reward" active-class="selected"><h4><i class="icon ico8"></i>我的奖励</h4></router-link>
+          <router-link to="/account/reward" @click.native="setBreadcrumbs('我的奖励')" active-class="selected"><h4><i class="icon ico8"></i>我的奖励</h4></router-link>
           <ul class="p_zhminav">
-            <router-link to="/account/reward/couponsList" tag="li" active-class="clicked" exact><a>优惠券</a></router-link>
-            <router-link to="/account/reward/cashRecord" tag="li" active-class="clicked" exact><a>现金奖</a></router-link>
-            <router-link to="/account/reward/rewardRecord" tag="li" active-class="clicked" exact><a>活动奖品</a></router-link>
+            <router-link to="/account/reward/couponsList" tag="li" @click.native="setBreadcrumbs('我的奖励')" active-class="clicked" exact><a>优惠券</a></router-link>
+            <router-link to="/account/reward/cashRecord" tag="li" @click.native="setBreadcrumbs('我的奖励')" active-class="clicked" exact><a>现金奖</a></router-link>
+            <router-link to="/account/reward/rewardRecord" tag="li" @click.native="setBreadcrumbs('我的奖励')" active-class="clicked" exact><a>活动奖品</a></router-link>
           </ul>
         </li>
         
-        <li id="list_safe">
-          <a href="@{front.account.basicInformation.safeCenter()}"><h4><i class="icon ico4"></i>安全中心</h4></a>
+        <li>
+          <router-link to="/account/safeCenter" @click.native="setBreadcrumbs('安全中心')" active-class="selected"><h4><i class="icon ico4"></i>安全中心</h4></router-link>
         </li>
-        <li id="list_spread">
-          <a href="@{front.account.spread.spreadLink()}">
-            <h4><i class="icon ico6"></i>推广管理</h4>
-          </a>
+        <li>
+          <router-link to="/account/spread" @click.native="setBreadcrumbs('推广管理')" active-class="selected"><h4><i class="icon ico6"></i>推广管理</h4></router-link>
           <ul class="p_zhminav">
-            <li id="child_spread_1"><a href="@{front.account.spread.spreadLink()}">我的推广</a></li>
-            <li id="child_spread_2"><a href="@{front.account.spread.spreadUser()}">邀请记录</a></li>
+            <router-link to="/account/spread/spreadLink" tag="li" @click.native="setBreadcrumbs('推广管理')" active-class="clicked" exact><a>我的推广</a></router-link>
+            <router-link to="/account/spread/spreadUser" tag="li" @click.native="setBreadcrumbs('推广管理')" active-class="clicked" exact><a>邀请记录</a></router-link>
           </ul>
         </li>
       </ul>
@@ -74,6 +72,7 @@
 export default {
   data () {
     return {
+      breadcrumbs: '账户总览',
       listData: [],
       listTitle: "",
       sidebar: [
@@ -110,6 +109,11 @@ export default {
           id: '49'
         },
       ]
+    }
+  },
+  methods: {
+    setBreadcrumbs (name) {
+      this.breadcrumbs = name
     }
   }
 

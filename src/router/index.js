@@ -16,6 +16,10 @@ import rewardRecord from '@/page/account/reward/rewardRecord';
 
 import safeCenter from '@/page/account/safeCenter/safeCenter';  // 安全中心
 
+ /* 我的推广 */ 
+import spreadLink from '@/page/account/spread/spreadLink';
+import spreadUser from '@/page/account/spread/spreadUser';
+
 import help from '@/page/help';
 Vue.use(Router);
 
@@ -66,6 +70,22 @@ export default new Router({
         {
           path: '/account/reward/rewardRecord',
           component: rewardRecord
+        },
+        {
+          path: '/account/safeCenter',
+          component: safeCenter
+        },
+        {
+          path: '/account/spread',
+          redirect: '/account/spread/spreadLink'
+        },
+        {
+          path: '/account/spread/spreadLink',
+          component: spreadLink
+        },
+        {
+          path: '/account/spread/spreadUser',
+          component: spreadUser
         }
       ]
     },
