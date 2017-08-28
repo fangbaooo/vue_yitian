@@ -43,7 +43,7 @@
                 <th width="200">明细</th>
             </tr>
             <tr v-for="(item, index) in dealRecord.page">
-              <td align="center">{{index}}</td>
+              <td align="center">{{index+1}}</td>
               <td align="center">{{item.time}}</td>
               
               <td align="center" v-if="item.type == 1">{{item.amount}}</td>
@@ -69,7 +69,7 @@
         </table>
         <!-- 分页器 -->
       </div>
-      <div class="xf_wylc_page xf_cfzx_page s_biaopage" title="$route.params">
+      <div class="xf_wylc_page xf_cfzx_page s_biaopage">
         <pagination :page-no="pageNo" :current-index.sync="currentPage" @pagechange="requestData()"></pagination>
       </div>
     </div>
@@ -122,7 +122,8 @@ var dataList = {
       operation: 308,
       summary: '冻结提现金额(包含手续费0.0元)'
     }
-  ]
+  ],
+  pageNo: 10
 }
 export default {
   components: {
@@ -145,6 +146,7 @@ export default {
     requestData () {
       // 在这里使用ajax或者fetch将对应页传过去获取数据即可
       this.dealRecord = dataList
+      this.pageNo = dataList.pageNo
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="s_center clr">
+  <div class="s_center clr pb40">
     <div class="s_bread">
       <a href="/" class="s_breadindex"><i class="icon"></i>首页</a>
       <i class="s_breadarrow">&gt;</i> 
@@ -10,12 +10,12 @@
     <div class="clr">
       <ul class="p_zhleft">
         <li id="list_account">
-          <a href="/account/home" class="selected" exact><h4> <i class="icon ico1"></i>我的账户</h4></a>
-          <ul class="p_zhminav" style="display: block">
+          <router-link to="/account/home" active-class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></router-link>
+          <ul class="p_zhminav">
             <router-link to="/account/home" tag="li" active-class="clicked" exact><a>账户总览</a></router-link>
             <li><a href="javascript:doCheck(1);">充值</a></li>
             <li><a href="javascript:doCheck(2);">提现</a></li>
-            <router-link to="/account/dealRecord" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
+            <router-link to="/account/home/dealRecord" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
           </ul>
         </li>
         <li id="list_invest">
@@ -42,15 +42,12 @@
           </a>
         </li>
         
-        <li id="list_reward">
-          <a href="@{front.account.RateAwardController.couponsList(0)}">
-            <h4><i class="icon ico8"></i>我的奖励</h4>
-          </a>
-            <ul class="p_zhminav">
-            <!-- <li id="child81"><a href="@{front.account.Voucher.voucherRecord()}">代金券</a></li> -->
-            <li id="child_reward_1"><a href="@{front.account.RateAwardController.couponsList()}">优惠券</a></li>
-            <li id="child_reward_2"><a href="@{front.account.CashRecord.cashRecord()}">现金奖</a></li>
-            <li id="child_reward_3"><a href="@{front.activity.RewardRecordController.rewardRecord()}">活动奖品</a></li>
+        <li>
+          <router-link to="/account/reward" active-class="selected"><h4><i class="icon ico8"></i>我的奖励</h4></router-link>
+          <ul class="p_zhminav">
+            <router-link to="/account/reward/couponsList" tag="li" active-class="clicked" exact><a>优惠券</a></router-link>
+            <router-link to="/account/reward/cashRecord" tag="li" active-class="clicked" exact><a>现金奖</a></router-link>
+            <router-link to="/account/reward/rewardRecord" tag="li" active-class="clicked" exact><a>活动奖品</a></router-link>
           </ul>
         </li>
         
