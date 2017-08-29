@@ -8,6 +8,8 @@ import loan from '@/page/loan';
 import account from '@/page/account/account';  // 个人中心
 /* 我的账户 */ 
 import home from '@/page/account/home/home';
+import recharge from '@/page/account/home/recharge';
+import withdrawal from '@/page/account/home/withdrawal';
 import dealRecord from '@/page/account/dealRecord/dealRecord';
 
 import bankCard from '@/page/account/bankCard/bankCard';  // 安全中心
@@ -55,6 +57,14 @@ export default new Router({
         {
           path: '/account/home',  // 账户总览
           component: home
+        },
+        {
+          path: '/account/home/recharge',  // 充值
+          component: recharge
+        },
+        {
+          path: '/account/home/withdrawal',  // 提现
+          component: withdrawal
         },
         {
           path: '/account/home/dealRecord',  // 交易记录
