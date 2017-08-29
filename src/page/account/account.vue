@@ -18,28 +18,15 @@
             <router-link to="/account/home/dealRecord" @click.native="setBreadcrumbs('交易记录')" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
           </ul>
         </li>
-        <li id="list_invest">
-          <a href="@{front.account.FundsManage.investAccountRecord()}">
-            <h4><i class="icon ico2"></i>我的投资</h4>
-          </a>
+        <li>
+          <router-link to="/account/myInvest" @click.native="setBreadcrumbs('我的投资')" active-class="selected"><h4> <i class="icon ico2"></i>我的投资</h4></router-link>
           <ul class="p_zhminav">
-            <li id="child_invest_1"><a href="@{front.account.FundsManage.investAccountRecord()}">投资记录</a></li>
-            <li id="child_invest_2"><a href="@{front.account.FundsManage.investAccountBill()}">理财账单</a></li>
+            <router-link to="/account/myInvest/investRecord" @click.native="setBreadcrumbs('我的投资')" tag="li" active-class="clicked" exact><a>投资记录</a></router-link>
+            <router-link to="/account/myInvest/investBill" @click.native="setBreadcrumbs('我的投资')" tag="li" active-class="clicked" exact><a>理财账单</a></router-link>
           </ul>
         </li>
-        <li id="list_loan" style="display:none"> 
-          <a href="@{front.account.LoanManage.loanAccountRecord()}">
-            <h4><i class="icon ico9"></i>我的借款</h4>
-          </a>
-          <ul class="p_zhminav">
-            <li id="child_loan_1"><a href="@{front.account.LoanManage.loanAccountRecord()}">借款记录</a></li>
-            <li id="child_loan_2"><a href="@{front.account.LoanManage.loanAccountBill()}">借款统计</a></li>
-          </ul>
-        </li>
-        <li id="list_bankcard">
-          <a href="javascript:doCheck(3);">
-            <h4><i class="icon ico3"></i>银行卡</h4>
-          </a>
+        <li>
+          <router-link to="/account/bankCard" @click.native="setBreadcrumbs('银行卡')" active-class="selected"><h4><i class="icon ico3"></i>银行卡</h4></router-link>
         </li>
         
         <li>

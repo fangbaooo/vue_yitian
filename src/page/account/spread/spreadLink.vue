@@ -8,10 +8,7 @@
         <div class="fz18">一、我的推广链接</div>
         <div class="ml40">
           <p class="mt15 mb15">我的邀请码为：{{code}}或注册手机号码，邀请好友在注册时输入或直接复制链接</p>
-          <div class="tg_link">
-          <input class="tg_link_input" readonly v-model="spreadLink" id="spread_link">
-          <a id="copy_link_a" class="copy_link f16">复制链接</a>
-        </div>
+          <copy-link :spread-link="spreadLink"></copy-link>
         </div>
       </div>
       <div class="mb40 relative">
@@ -23,7 +20,7 @@
         <p class="lh24 c_gray">2、点击右上角菜单分享至朋友圈或者发送给朋友</p>
         </div>
         <div class="tg_link_ma">
-        <img src="${user?.qrcode}" alt="" width="116" height="116" class="block">
+        <img :src="qrCode" alt="" width="116" height="116" class="block">
         <p class="f16 mt10 ta_c">打开手机，扫一扫</p>
       </div>
       </div>
@@ -42,32 +39,17 @@
 </div>
 </template>
 <script>
-import ZeroClipboard from "@/assets/js/zeroClipboard/ZeroClipboard";
+import copyLink from "@/components/base/copyLink/copyLink";
 export default {
   components: {
-
+    copyLink
   },
   data () {
     return {
       ruleText: 1,
       spreadLink: "https://www.yitianlicai.com/registerMobile?un=10000143",
       code: 10000143, 
-    }
-  },
-  mounted () {
-    this.copyLink();
-  },
-  methods: {
-    copyLink () {
-      
-      ZeroClipboard.setMoviePath("../../../assets/js/zeroClipboard/ZeroClipboard.swf");
-      var clip = new ZeroClipboard.Client();
-      clip.setHandCursor(true);
-      clip.addEventListener("mouseUp", function(client) {
-        alert("复制链接成功！");
-      });
-      clip.setText(this.spreadLink);
-      clip.glue('copy_link_a');
+      qrCode: "https://www.yitianlicai.com/data/attachments/c080bedc-0284-44dc-bf7d-716bb16f2847",
     }
   }
 }

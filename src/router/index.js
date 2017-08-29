@@ -9,6 +9,11 @@ import account from '@/page/account/account';  // 个人中心
 /* 我的账户 */ 
 import home from '@/page/account/home/home';
 import dealRecord from '@/page/account/dealRecord/dealRecord';
+
+import bankCard from '@/page/account/bankCard/bankCard';  // 安全中心
+ /* 我的投资 */ 
+import investRecord from '@/page/account/myInvest/investRecord';
+import investBill from '@/page/account/myInvest/investBill';
  /* 我的奖励 */ 
 import couponsList from '@/page/account/reward/couponsList';
 import cashRecord from '@/page/account/reward/cashRecord';
@@ -31,36 +36,52 @@ export default new Router({
       component: Index
     },
     {
-      path: '/ylcHome',
+      path: '/ylcHome',  // 益理财
       component: ylcHome
     },
     {
-      path: '/loan',
+      path: '/loan', // 我要借款
       component: loan
     },
     {
-      path: '/noviceGuide',
+      path: '/noviceGuide',  // 新手指南
       component: noviceGuide
     },
     {
-      path: '/account',
+      path: '/account',    // 个人中心
       component: account,
       redirect: '/account/home',
       children: [
         {
-          path: '/account/home',
+          path: '/account/home',  // 账户总览
           component: home
         },
         {
-          path: '/account/home/dealRecord',
+          path: '/account/home/dealRecord',  // 交易记录
           component: dealRecord
         },
         {
-          path: '/account/reward',
+          path: '/account/myInvest',           // 我的投资
+          redirect: '/account/myInvest/investRecord',
+        },
+        {
+          path: '/account/myInvest/investRecord',  
+          component: investRecord
+        },
+        {
+          path: '/account/myInvest/investBill',  
+          component: investBill
+        },
+        {
+          path: '/account/bankCard',    // 银行卡
+          component: bankCard
+        },
+        {
+          path: '/account/reward',           // 我的奖励
           redirect: '/account/reward/couponsList',
         },
         {
-          path: '/account/reward/couponsList',
+          path: '/account/reward/couponsList',  
           component: couponsList
         },
         {
@@ -72,11 +93,11 @@ export default new Router({
           component: rewardRecord
         },
         {
-          path: '/account/safeCenter',
+          path: '/account/safeCenter',    // 安全中心
           component: safeCenter
         },
         {
-          path: '/account/spread',
+          path: '/account/spread',        // 我的推广
           redirect: '/account/spread/spreadLink'
         },
         {
