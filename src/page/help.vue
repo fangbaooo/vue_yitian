@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+import Vue from "Vue"
 import sizzle from "sizzle"
 export default {
   data () {
@@ -79,7 +80,7 @@ export default {
         42: [
           { title: "益田理财账户的密码有哪些？", 
             des: "1）登录密码：用于登录账户；<br>2）交易密码：用于提现。"},
-            { title: "如何修改登录密码？", 
+          { title: "如何修改登录密码？", 
             des: "登录后进入【安全中心】，点击【登录密码】，即可修改。"}
         ],
         43: [
@@ -113,7 +114,6 @@ export default {
     toggleDes (event) {
       var nextElement = event.currentTarget.nextSibling;
       var h6 = sizzle("#desUl h6");
-      console.log(h6)
       for (var i = 0; i < h6.length; i++) {
         
         if(h6[i] == event.currentTarget){

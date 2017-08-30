@@ -6,7 +6,7 @@
         <a href="/account/home/dealRecord" class="fr"><span class="p-vm">充值记录</span></a>
       </h4>
       <!-- <ul class="p_czxxkul tab-menu clr">
-        <li onclick="showRzDiv();" id="rzli">认证支付</li>
+        <li @click="showRzDiv();" id="rzli">认证支付</li>
         <li id="wyli">网银支付</li>
       </ul> -->
       <dl class="p_czitem mt30 clr">
@@ -43,7 +43,7 @@
           <dd>
             <div class="p_czincon">
               <input type="text" id="smsCode" name="smsCode" maxlength="4" onkeydown="Util.enter(event, function(){recharge(1)})" />
-              <a href="javascript:void(0);" id="sendSmsCode" onclick="sendCode();">发送验证码</a>
+              <a href="javascript:void(0);" id="sendSmsCode" @click="sendCode();">发送验证码</a>
               <span class="p_zcerror" id="s_code"></span>
             </div>
           </dd>
@@ -63,37 +63,37 @@
           <dt>选择银行</dt>
           <dd>
             <ul class="p_czbanklist clr">
-                <li onclick="selectBank(0)" class="cur" id="bank_0"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_01.png" alt="工商银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(1)" id="bank_1"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_03.png" alt="建设银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(0)" :class="{'cur': bankNum === 0}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_01.png" alt="工商银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(1)" :class="{'cur': bankNum === 1}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_03.png" alt="建设银行" height="100%"><i class="icon"></i></div></li>
                 
-                <li onclick="selectBank(3)" id="bank_3"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_02.png" alt="招商银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(4)" id="bank_4"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_11.png" alt="交通银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(5)" id="bank_5"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_05.png" alt="中国银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(6)" id="bank_6"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_10.png" alt="光大银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(7)" id="bank_7"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_12.png" alt="民生银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(3)" :class="{'cur': bankNum === 3}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_02.png" alt="招商银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(4)" :class="{'cur': bankNum === 4}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_11.png" alt="交通银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(5)" :class="{'cur': bankNum === 5}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_05.png" alt="中国银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(6)" :class="{'cur': bankNum === 6}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_10.png" alt="光大银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(7)" :class="{'cur': bankNum === 7}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_12.png" alt="民生银行" height="100%"><i class="icon"></i></div></li>
                 
-                <li onclick="selectBank(9)" id="bank_9"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_13.png" alt="中信银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(10)" id="bank_10"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_14.png" alt="广发银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(11)" id="bank_11"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_06.png" alt="上海浦东发展银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(12)" id="bank_12"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_15.png" alt="平安银行" height="100%"><i class="icon"></i></div></li>
-                <!-- <li onclick="selectBank(13)" id="bank_13"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_20.png" alt="华夏银行" height="100%" /><i class="icon"></i></div></li> -->
-                <li onclick="selectBank(14)" id="bank_14"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_24.png" alt="宁波银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(15)" id="bank_15"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_21.png" alt="BEA东亚银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(9)" :class="{'cur': bankNum === 9}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_13.png" alt="中信银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(10)" :class="{'cur': bankNum === 10}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_14.png" alt="广发银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(11)" :class="{'cur': bankNum === 11}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_06.png" alt="上海浦东发展银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(12)" :class="{'cur': bankNum === 12}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_15.png" alt="平安银行" height="100%"><i class="icon"></i></div></li>
+                <!-- <li @click="selectBank(13)" :class="{'cur': bankNum === 13}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_20.png" alt="华夏银行" height="100%" /><i class="icon"></i></div></li> -->
+                <li @click="selectBank(14)" :class="{'cur': bankNum === 14}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_24.png" alt="宁波银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(15)" :class="{'cur': bankNum === 15}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_21.png" alt="BEA东亚银行" height="100%"><i class="icon"></i></div></li>
                 
-                <li onclick="selectBank(17)" id="bank_17"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_16.png" alt="邮政银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(18)" id="bank_18"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_23.png" alt="南京银行" height="100%"><i class="icon"></i></div></li>
-                <!--li onclick="selectBank(19)" id="bank_19"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_18.png" alt="上海农商银行" height="100%" /><i class="icon"></i></div></li> -->
-                <li onclick="selectBank(20)" id="bank_20"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_25.png" alt="渤海银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(21)" id="bank_21"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_09.png" alt="北京银行" height="100%"><i class="icon"></i></div></li>
-                <!-- li onclick="selectBank(22)" id="bank_22"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_31.png" alt="鄂尔多斯银行" height="100%" /><i class="icon"></i></div></li> -->
-                <!-- <li onclick="selectBank(23)" id="bank_23"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_31.png" alt="成都银行" height="100%" /><i class="icon"></i></div></li> -->
-                <li onclick="selectBank(2)" id="bank_2"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_04.png" alt="农业银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(8)" id="bank_8"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_08.png" alt="兴业银行" height="100%"><i class="icon"></i></div></li> 
-                <li onclick="selectBank(16)" id="bank_16"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_19.png" alt="上海银行" height="100%"><i class="icon"></i></div></li>
-                <li onclick="selectBank(23)" id="bank_23"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_32.png" alt="杭州银行" height="100%"><i class="icon"></i></div></li>
-              <li onclick="selectBank(24)" id="bank_24"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_33.png" alt="浙商银行" height="100%"><i class="icon"></i></div></li>
-              <!--<li onClick="selectBank(25)" id="bank_25"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_34.png" alt="深圳发展银行" height="100%" /><i class="icon"></i></div></li>-->
-              <li onclick="selectBank(26)" id="bank_26"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_35.png" alt="微商银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(17)" :class="{'cur': bankNum === 17}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_16.png" alt="邮政银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(18)" :class="{'cur': bankNum === 18}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_23.png" alt="南京银行" height="100%"><i class="icon"></i></div></li>
+                <!--li @click="selectBank(19)" id="bank_19"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_18.png" alt="上海农商银行" height="100%" /><i class="icon"></i></div></li> -->
+                <li @click="selectBank(20)" :class="{'cur': bankNum === 20}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_25.png" alt="渤海银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(21)" :class="{'cur': bankNum === 21}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_09.png" alt="北京银行" height="100%"><i class="icon"></i></div></li>
+                <!-- li @click="selectBank(22)" id="bank_22"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_31.png" alt="鄂尔多斯银行" height="100%" /><i class="icon"></i></div></li> -->
+                <!-- <li @click="selectBank(23)" id="bank_23"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_31.png" alt="成都银行" height="100%" /><i class="icon"></i></div></li> -->
+                <li @click="selectBank(2)" :class="{'cur': bankNum === 2}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_04.png" alt="农业银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(8)" :class="{'cur': bankNum === 8}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_08.png" alt="兴业银行" height="100%"><i class="icon"></i></div></li> 
+                <li @click="selectBank(16)" :class="{'cur': bankNum === 16}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_19.png" alt="上海银行" height="100%"><i class="icon"></i></div></li>
+                <li @click="selectBank(23)" :class="{'cur': bankNum === 23}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_32.png" alt="杭州银行" height="100%"><i class="icon"></i></div></li>
+              <li @click="selectBank(24)" :class="{'cur': bankNum === 24}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_33.png" alt="浙商银行" height="100%"><i class="icon"></i></div></li>
+              <!--<li @click="selectBank(25)" :class="{'cur': bankNum === 25}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_34.png" alt="深圳发展银行" height="100%" /><i class="icon"></i></div></li>-->
+              <li @click="selectBank(26)" :class="{'cur': bankNum === 26}"><div class="p_czimgbox"><img src="../../../assets/images/banks/bank_35.png" alt="微商银行" height="100%"><i class="icon"></i></div></li>
             </ul>
           </dd>
         </dl>
@@ -130,25 +130,29 @@ export default {
   data () {
     return {
       isPayRZ: true,      // 是否为认证支付
-      rechargeMoney: ''
+      rechargeMoney: '',
+      bankNum: 0
     }
   },
   mounted () {
   },
   methods: {
     checkMoney(e) {
-      let obj = e.currentTarget
+      let obj = e.currentTarget;
       obj.value = obj.value.replace(/[^\d\.]/g, '').replace(/^\.+/, '').replace(/^(\d{1,18}(\.\d{0,2})?).*/, '$1').replace(/^0\d+/, '');
     },
     toggle(str) {
       this.isPayRZ = str === "isPayRZ" ? true : false;
     },
-    recharge(bool) {
+    recharge() {
       if (this.rechargeMoney == '') {
-        alert("充输入充值金额")
+        alert("充输入充值金额");
       } else {
-        this.$http.post()
+        //this.$http.post()
       }
+    },
+    selectBank(num) {
+      this.bankNum = num;
     }
   }
 }
