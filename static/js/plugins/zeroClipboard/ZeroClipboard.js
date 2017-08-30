@@ -113,7 +113,7 @@ ZeroClipboard.Client.prototype = {
 			appendElem = ZeroClipboard.$(appendElem);
 		}
 		else if (typeof(appendElem) == 'undefined') {
-			appendElem = document.getElementsByTagName('body')[0];
+			appendElem = document.getElementById('accountRight').childNodes[0];
 		}
 		
 		// find X/Y position of domElement
@@ -122,7 +122,7 @@ ZeroClipboard.Client.prototype = {
 		// create floating DIV above element
 		this.div = document.createElement('div');
 		var style = this.div.style;
-		style.position = 'absolute';
+		style.position = 'fixed';
 		style.left = '' + box.left + 'px';
 		style.top = '' + box.top + 'px';
 		style.width = '' + box.width + 'px';

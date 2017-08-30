@@ -10,48 +10,50 @@
     <div class="clr">
       <ul class="p_zhleft">
         <li id="list_account">
-          <router-link to="/account/home" @click.native="setBreadcrumbs('账户总览')" active-class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></router-link>
+          <router-link to="/account/home" @click.native="navEvent('账户总览')" active-class="selected"><h4> <i class="icon ico1"></i>我的账户</h4></router-link>
           <ul class="p_zhminav">
-            <router-link to="/account/home" tag="li" @click.native="setBreadcrumbs('账户总览')" active-class="clicked" exact><a>账户总览</a></router-link>
-            <router-link to="/account/home/recharge" tag="li" @click="doCheck(1, $event)" active-class="clicked" exact><a>充值</a></router-link>
-            <router-link to="/account/home/withdrawal" tag="li" @click="doCheck(2, $event)" active-class="clicked" exact><a>提现</a></router-link>
-            <router-link to="/account/home/dealRecord" @click.native="setBreadcrumbs('交易记录')" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
+            <router-link to="/account/home" tag="li" @click.native="navEvent('账户总览')" active-class="clicked" exact><a>账户总览</a></router-link>
+            <li @click="doCheck(1, $event)" id="recharge"><a>充值</a></li>
+            <li @click="doCheck(2, $event)" id="withdrawal"><a>提现</a></li>
+            <router-link to="/account/home/dealRecord" @click.native="navEvent('交易记录')" tag="li" active-class="clicked" exact><a>交易记录</a></router-link>
           </ul>
         </li>
         <li>
-          <router-link to="/account/myInvest" @click.native="setBreadcrumbs('我的投资')" active-class="selected"><h4> <i class="icon ico2"></i>我的投资</h4></router-link>
+          <router-link to="/account/myInvest" @click.native="navEvent('我的投资')" active-class="selected"><h4> <i class="icon ico2"></i>我的投资</h4></router-link>
           <ul class="p_zhminav">
-            <router-link to="/account/myInvest/investRecord" @click.native="setBreadcrumbs('我的投资')" tag="li" active-class="clicked" exact><a>投资记录</a></router-link>
-            <router-link to="/account/myInvest/investBill" @click.native="setBreadcrumbs('我的投资')" tag="li" active-class="clicked" exact><a>理财账单</a></router-link>
+            <router-link to="/account/myInvest/investRecord" @click.native="navEvent('我的投资')" tag="li" active-class="clicked" exact><a>投资记录</a></router-link>
+            <router-link to="/account/myInvest/investBill" @click.native="navEvent('我的投资')" tag="li" active-class="clicked" exact><a>理财账单</a></router-link>
           </ul>
         </li>
         <li>
-          <router-link to="/account/bankCard" @click.native="setBreadcrumbs('银行卡')" active-class="selected"><h4><i class="icon ico3"></i>银行卡</h4></router-link>
+          <router-link to="/account/bankCard" @click.native="navEvent('银行卡')" active-class="selected"><h4><i class="icon ico3"></i>银行卡</h4></router-link>
         </li>
         
         <li>
-          <router-link to="/account/reward" @click.native="setBreadcrumbs('我的奖励')" active-class="selected"><h4><i class="icon ico8"></i>我的奖励</h4></router-link>
+          <router-link to="/account/reward" @click.native="navEvent('我的奖励')" active-class="selected"><h4><i class="icon ico8"></i>我的奖励</h4></router-link>
           <ul class="p_zhminav">
-            <router-link to="/account/reward/couponsList" tag="li" @click.native="setBreadcrumbs('我的奖励')" active-class="clicked" exact><a>优惠券</a></router-link>
-            <router-link to="/account/reward/cashRecord" tag="li" @click.native="setBreadcrumbs('我的奖励')" active-class="clicked" exact><a>现金奖</a></router-link>
-            <router-link to="/account/reward/rewardRecord" tag="li" @click.native="setBreadcrumbs('我的奖励')" active-class="clicked" exact><a>活动奖品</a></router-link>
+            <router-link to="/account/reward/couponsList" tag="li" @click.native="navEvent('我的奖励')" active-class="clicked" exact><a>优惠券</a></router-link>
+            <router-link to="/account/reward/cashRecord" tag="li" @click.native="navEvent('我的奖励')" active-class="clicked" exact><a>现金奖</a></router-link>
+            <router-link to="/account/reward/rewardRecord" tag="li" @click.native="navEvent('我的奖励')" active-class="clicked" exact><a>活动奖品</a></router-link>
           </ul>
         </li>
         
         <li>
-          <router-link to="/account/safeCenter" @click.native="setBreadcrumbs('安全中心')" active-class="selected"><h4><i class="icon ico4"></i>安全中心</h4></router-link>
+          <router-link to="/account/safeCenter" @click.native="navEvent('安全中心')" active-class="selected"><h4><i class="icon ico4"></i>安全中心</h4></router-link>
         </li>
         <li>
-          <router-link to="/account/spread" @click.native="setBreadcrumbs('推广管理')" active-class="selected"><h4><i class="icon ico6"></i>推广管理</h4></router-link>
+          <router-link to="/account/spread" @click.native="navEvent('推广管理')" active-class="selected"><h4><i class="icon ico6"></i>推广管理</h4></router-link>
           <ul class="p_zhminav">
-            <router-link to="/account/spread/spreadLink" tag="li" @click.native="setBreadcrumbs('推广管理')" active-class="clicked" exact><a>我的推广</a></router-link>
-            <router-link to="/account/spread/spreadUser" tag="li" @click.native="setBreadcrumbs('推广管理')" active-class="clicked" exact><a>邀请记录</a></router-link>
+            <router-link to="/account/spread/spreadLink" tag="li" @click.native="navEvent('推广管理')" active-class="clicked" exact><a>我的推广</a></router-link>
+            <router-link to="/account/spread/spreadUser" tag="li" @click.native="navEvent('推广管理')" active-class="clicked" exact><a>邀请记录</a></router-link>
           </ul>
         </li>
       </ul>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <div id="accountRight">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </div>
     </div>
   </div>
 </template>
@@ -60,71 +62,58 @@ export default {
   data () {
     return {
       breadcrumbs: '账户总览',
-      listData: [],
-      listTitle: "",
-      sidebar: [
-        {
-          name: '登录注册',
-          id: '41'
-        },
-        {
-          name: '账户安全',
-          id: '42'
-        },
-        {
-          name: '实名认证',
-          id: '43'
-        },
-        {
-          name: '银行卡管理',
-          id: '44'
-        },
-        {
-          name: '充值',
-          id: '45'
-        },
-        {
-          name: '提现',
-          id: '46'
-        },
-        {
-          name: '常见问题',
-          id: '47'
-        },
-        {
-          name: '代金券',
-          id: '49'
-        }
-      ]
     }
   },
-    watch: {
-    // 如果路由有变化，会再次执行该方法
-    '$route': 'aaa'
+  mounted () {
+    this.setRouter();
   },
   methods: {
+    // 设置面包导航文字
     setBreadcrumbs (name) {
-      this.breadcrumbs = name
+      this.breadcrumbs = name;
     },
-    aaa () {
-      console.log(this.$route.path)
+    // 绑定导航点击事件
+    navEvent (name) {
+      this.setBreadcrumbs(name);
+      this.removeRechargeNav();
     },
+    // 去掉充值和提现的样式
+    removeRechargeNav () {
+      if(this.$route.path.indexOf("home/recharge") < 0){
+        document.getElementById("recharge").className = '';
+      }
+      if(this.$route.path.indexOf("home/withdrawal") < 0){
+        document.getElementById("withdrawal").className = '';
+      }
+    },
+    // 判断当前是否充值和提现页面
+    setRouter () {
+      if(this.$route.path.indexOf("home/recharge") > 0){
+        this.setBreadcrumbs("充值");
+        document.getElementById("recharge").className = 'clicked';
+      } else {
+        document.getElementById("recharge").className = '';
+      }
+      if(this.$route.path.indexOf("home/withdrawal") > 0){
+        this.setBreadcrumbs("提现");
+        document.getElementById("withdrawal").className = 'clicked';
+      } else {
+        document.getElementById("withdrawal").className = '';
+      }
+    },
+    // 充值和提现前的判断
     doCheck(type, e) {
       if (type === 1) {
-        this.setBreadcrumbs("账户总览");
-        console.log(type)
-        //e.currentTarget.className = "clicked";
-        //window.location.href = '/account/home/recharge';
-        //this.$router.push({ path: '/account/home/recharge' })
+        this.setBreadcrumbs("充值");
+        e.currentTarget.className = "clicked";
+        this.$router.push({ path: '/account/home/recharge'});
+        this.removeRechargeNav();
       }
       if (type === 2) {
-        window.location.href = '/account/home/withdrawal';
-      }
-      if (type === 3) {
-        window.location.href = '@{front.account.FundsManage.userBankRecord()}';
-      }
-      if (type === 4) {
-        window.location.href = '@{front.account.basicInformation.modifyMobile()}';
+        this.setBreadcrumbs("提现");
+        e.currentTarget.className = "clicked";
+        this.$router.push({ path: '/account/home/withdrawal'});
+        this.removeRechargeNav();
       }
     }
   }

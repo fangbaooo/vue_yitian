@@ -3,7 +3,7 @@
     <div class="p_zhinvelist mt0">
       <h4 class="p_zhtitle">
         <span class="fl">充值</span>
-        <a href="/front/account/dealRecord?type=1" class="fr"><span class="p-vm">充值记录</span></a>
+        <a href="/account/home/dealRecord" class="fr"><span class="p-vm">充值记录</span></a>
       </h4>
       <!-- <ul class="p_czxxkul tab-menu clr">
         <li onclick="showRzDiv();" id="rzli">认证支付</li>
@@ -16,68 +16,49 @@
       <dl class="p_czitem mt30 clr">
         <dt>充值金额</dt>
         <dd>
-          <input type="text" class="p_czyhkinp min" id="moneyRecharge" name="moneyRecharge" placeholder="" autocomplete="off" onkeyup="checkMoney(this)">
-          
+          <input type="text" class="p_czyhkinp min" name="" placeholder="" autocomplete="off" v-model="rechargeMoney" @keyup="checkMoney($event)">
         </dd>
       </dl>
-      
-
       <dl class="p_czitem mt30 clr">
         <dt>支付方式</dt>
         <dd class="tab-menu pay_type fz16">
-          <div class="selected" id="payRZ"><span>认证支付</span><i class="icon icon_ok"></i></div>
-          <div id="payWY"><span>网银支付</span><i class="icon icon_ok"></i></div>
+          <div @click="toggle('isPayRZ', $event)" :class="{'selected': isPayRZ === true}"><span>认证支付</span><i class="icon icon_ok"></i></div>
+          <div @click="toggle('', $event)" :class="{'selected': isPayRZ === false}"><span>网银支付</span><i class="icon icon_ok"></i></div>
         </dd>
       </dl>
       <!-- 认证支付区域 -->
+      <div id="rzDiv" v-show="isPayRZ">
+        <dl class="p_czitem mt30 clr">
+          <dt>我的银行卡<input type="hidden" id="card_no" name="card_no" value="6217852000010988239"></dt>
+          <dd>
+            <div class="p_bankcard fl">
+              <img src="../../../assets/images/banks/bank_05.png" alt="" width="142" class="p-vm">
+              <span class="co333 ml20">尾号：8239</span>
+            </div>
+            <p class="p_czxtips ml20 fl">限额：50000元/笔、300000元/日<!-- 、单月2000000元 --></p>
+          </dd>
+        </dl>
+        <!-- <dl class="p_czitem mt30 clr">
+          <dt>短信验证</dt>
+          <dd>
+            <div class="p_czincon">
+              <input type="text" id="smsCode" name="smsCode" maxlength="4" onkeydown="Util.enter(event, function(){recharge(1)})" />
+              <a href="javascript:void(0);" id="sendSmsCode" onclick="sendCode();">发送验证码</a>
+              <span class="p_zcerror" id="s_code"></span>
+            </div>
+          </dd>
+        </dl> -->
+        <dl class="p_czitem mt40 clr">
+          <dt>&nbsp;</dt>
+          <dd>
+            <div id="recharge1_submit">
+              <input type="button" class="btn p_cznowbtn" id="rechargeRZ" value="立即充值" @click="recharge(isPayRZ)">
+            </div>
+          </dd>
+        </dl>
+      </div>
       
-      <form action="/front/account/submitRecharge" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="paySubmit" target="_blank"><input type="hidden" name="authenticityToken" value="91230f70dc8acf074c16ff62a7422e3536439557">
-
-            <input type="hidden" name="uuidRepeat" value="61daac1b-5a29-445a-94fd-6171a4c12b54">
-            <input type="hidden" id="type" name="type" value="3">
-            <input type="hidden" id="bankType" name="bankType" value="01040000">
-            <input type="hidden" id="payType" name="payType">
-            <input type="hidden" id="money" name="money">
-            
-        <div class="tab-cont" id="rzDiv" style="display: block;">
-    
-      <dl class="p_czitem mt30 clr">
-        <dt>我的银行卡<input type="hidden" id="card_no" name="card_no" value="6217852000010988239"></dt>
-        <dd>
-          <div class="p_bankcard fl">
-            <img src="../../../assets/images/banks/bank_05.png" alt="" width="142" class="p-vm">
-            <span class="co333 ml20">尾号：8239</span>
-          </div>
-          <p class="p_czxtips ml20 fl">限额：50000元/笔、300000元/日<!-- 、单月2000000元 --></p>
-        </dd>
-      </dl>
-    
-    
-
-    <!--
-    <dl class="p_czitem mt30 clr">
-      <dt>短信验证</dt>
-      <dd>
-        <div class="p_czincon">
-          <input type="text" id="smsCode" name="smsCode" maxlength="4" onkeydown="Util.enter(event, function(){recharge(1)})" />
-          <a href="javascript:void(0);" id="sendSmsCode" onclick="sendCode();">发送验证码</a>
-          <span class="p_zcerror" id="s_code"></span>
-        </div>
-      </dd>
-    </dl>
-    -->
-    <dl class="p_czitem mt40 clr">
-      <dt>&nbsp;</dt>
-      <dd>
-        <div id="recharge1_submit">
-          <!-- <a href="javascript:recharge(1)" class="p_cznowbtn btn">立即充值</a> -->
-          <input type="button" class="btn p_cznowbtn" id="rechargeRZ" value="立即充值" onclick="recharge(1)">
-        </div>
-      </dd>
-    </dl>
-  </div>
-      
-      <div class="tab-cont" id="wyDiv" style="display: none">
+      <div id="wyDiv"v-show="!isPayRZ">
         <dl class="p_czitem mt20 clr">
           <dt>选择银行</dt>
           <dd>
@@ -127,7 +108,7 @@
           <dd>
             <div id="recharge2_submit">
               <!-- <a href="javascript:recharge(2)" class="p_cznowbtn btn" id="rechargeWY">立即充值</a> -->
-              <input type="button" class="btn p_cznowbtn" id="rechargeWY" value="立即充值" onclick="recharge(2)">
+              <input type="button" class="btn p_cznowbtn" id="rechargeWY" value="立即充值" @click="recharge(isPayRZ)">
             </div>
           </dd>
         </dl>
@@ -148,18 +129,26 @@
 export default {
   data () {
     return {
-      currentPage: 1,
-      pageNo: 10,
-      dealRecord: {}
+      isPayRZ: true,      // 是否为认证支付
+      rechargeMoney: ''
     }
   },
   mounted () {
   },
   methods: {
-    requestData () {
-      // 在这里使用ajax或者fetch将对应页传过去获取数据即可
-      this.dealRecord = dataList
-      this.pageNo = dataList.pageNo
+    checkMoney(e) {
+      let obj = e.currentTarget
+      obj.value = obj.value.replace(/[^\d\.]/g, '').replace(/^\.+/, '').replace(/^(\d{1,18}(\.\d{0,2})?).*/, '$1').replace(/^0\d+/, '');
+    },
+    toggle(str) {
+      this.isPayRZ = str === "isPayRZ" ? true : false;
+    },
+    recharge(bool) {
+      if (this.rechargeMoney == '') {
+        alert("充输入充值金额")
+      } else {
+        this.$http.post()
+      }
     }
   }
 }
