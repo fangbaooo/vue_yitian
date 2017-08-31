@@ -139,11 +139,6 @@ export default {
     }
   },
   methods: {
-    copyArr (newArr, oldArr) {
-      for (var i = 0; i < oldArr.length; i++) {
-        newArr[i] = oldArr[i];
-      }
-    },
     getList (id, title) {
       this.showCon = -1;
       this.listData = this.list[id];

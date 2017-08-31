@@ -3,7 +3,7 @@
 		<h3>官方公告</h3>
 		<div class="p_abwordbox">
 			<ul class="p_mtlist clr">
-				<router-link v-for="item in list.page" tag="li" key="item.id" :to="{ path: 'newsDetail', params: { id: item.id }}" class="clr">
+				<router-link v-for="item in list.page" tag="li" key="item.id" :to="{ name: 'newsDetail', params: { id: item.id }}" class="clr">
 					<a><i class="ico"></i>{{item.text}}</a><span>{{item.date}}</span>
 				</router-link>
 			</ul>	

@@ -67,17 +67,17 @@
       <div class="s_center s_footerup clr">
         <div class="left s_footerleft" style="padding-top:18px">
           <p class="s_footerlink">
-            <router-link :to="{path: '/aboutUs'}">关于我们</router-link>
+            <router-link to="/aboutUs">关于我们</router-link>
             <i>|</i>
             <router-link to="/safeguard">安全保障</router-link>
             <i>|</i>
             <router-link :to="{path: '/help', query: { typeId: 41 }}">帮助中心</router-link>
             <i>|</i>
-            <a href="/front/home/aboutUs?id=48" target="_blank">加入我们</a>
+            <router-link to="/aboutUs/recruit">加入我们</router-link>
             <i>|</i>
             <router-link to="/noviceGuide">新手指南</router-link>
             <i>|</i>
-            <a href="/front/home/aboutUs?id=34" target="_self">联系我们</a>
+            <router-link to="/aboutUs/contact">联系我们</router-link>
             <i>|</i>
             <a href="http://www.yitiangroup.com" target="_blank">益田集团</a>
           </p>

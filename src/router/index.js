@@ -85,10 +85,10 @@ export default new Router({
         
       ]
     },
-    { path: '/newsDetail/:id', component: newsDetail}  // 新闻详情页
-    // {
-    //   path: '*',
-    //   redirect: '/'
-    // }
+    { path: '/newsDetail/:id', name:'newsDetail', component: newsDetail},  // 新闻详情页
+    {
+      path: '*',
+      redirect: '/'
+    }
   ]
 });
