@@ -99,7 +99,7 @@
         </div>
         <div class="loan-error" id="error_deadline"><span class="p_zcerror" id="error_deadline_text">{{ deadlineErrors.errorText }}</span></div>
         <a href="javascript:void(0)" class="loan-btn" @click="applyLoan()">立即申请</a>
-        <p>{{errorText}}</p>
+        <!-- <p>{{errorText}}</p> -->
       </form>
     </div>
   </div>
