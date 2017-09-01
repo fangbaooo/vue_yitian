@@ -72,9 +72,9 @@
           <input type="text" id="phone" v-model="phone">
         </div>
         <div class="loan-error" id="error_phone"><span class="p_zcerror" id="error_phone_text">{{ phoneErrors.errorText }}</span></div>
-        <!-- <div class="clr loan-label">
+        <div class="clr loan-label">
           <span class="loan-label-text">借贷类型</span>
-          <div class="fl select select-big fz12" style="width:195px">
+          <!-- <div class="fl select select-big fz12" style="width:195px">
             <span class="select-border js-select">
                 <span class="select-text" id="loanTypeText" data-value="">请选择借贷类型</span>
                 <span class="select-icon"><i class="select-icon-arrow"></i></span>
@@ -85,9 +85,11 @@
               <a href="javascript:;" data-value="房产抵押贷" data-id="" title="房产抵押贷">房产抵押贷</a>
               <a href="javascript:;" data-value="车辆抵押贷" data-id="" title="车辆抵押贷">车辆抵押贷</a>
             </div>
-          </div>
+          </div> -->
+          <selector :options="options" @on-change="changeType"></selector>
         </div>
-        <div class="loan-error" id="error_type"><span class="p_zcerror" id="error_type_text"></span></div> -->
+        <div class="loan-error" id="error_type"><span class="p_zcerror" id="error_type_text"></span></div>
+        
         <div class="clr loan-label">
           <span class="loan-label-text">借款金额</span>
           <input type="text" id="money" @keyup="checkMoney('money')" v-model="money">
@@ -181,17 +183,52 @@
 </div>
 </template>
 <script>
+import selector  from '@/components/base/selector'
 export default {
+  components: {
+    selector
+  },
   data () {
     return {
       name:'',
       identification:'',
       phone:'',
       money:'',
-      deadline:''
+      deadline:'',
+
+      options: [
+        {
+          label: '工商贷',
+          value: 0
+        },
+        {
+          label: '工薪贷',
+          value: 1
+        },
+        {
+          label: '房产抵押贷',
+          value: 2
+        },
+        {
+          label: '车辆抵押贷',
+          value: 3
+        }
+      ]
     }
   },
   computed: {
+    // nameErrors :{
+    //   get () {
+    //     console.log(344444)
+    //     return this.checkFlied('name', '请输入姓名/企业名称')
+    //   },
+    //   set (newValue) {
+    //     console.log(newValue, this.nameErrors)
+    //     this.nameErrors.errorText = newValue
+    //     console.log(this.nameErrors)
+    //   }
+     
+    // },
     nameErrors () {
       return this.checkFlied('name', '请输入姓名/企业名称')
     },
@@ -254,8 +291,9 @@ export default {
       //     return false;
       //   } 
       // };
-      if(!this.nameErrors.status || !this.identificationErrors.status || !this.phoneErrors.status || !this.moneyErrors.status || !this.deadlineErrors.status){
-        //this.nameErrors.errorText = "请先填写信息"
+      //if(!this.nameErrors.status || !this.identificationErrors.status || !this.phoneErrors.status || !this.moneyErrors.status || !this.deadlineErrors.status){
+      if(!this.nameErrors.status){
+        this.nameErrors = '888888888'
         //console.log(!this.nameErrors.status, !this.nameErrors.status, !this.nameErrors.status, !this.nameErrors.status, !this.nameErrors.status)
         return false;
       } else {
@@ -268,11 +306,8 @@ export default {
         //   })
       }
     },
-    aaa () {
-      var bb = {a: 1, b: 10}
-      var cc = bb;
-      bb.a = 2;
-      console.log(cc.a)
+    changeType (data) {
+      console.log(data)
     }
   },
 }
