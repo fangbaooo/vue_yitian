@@ -59,48 +59,47 @@
       <form action="" class="mt15">
         <div class="clr loan-label">
           <span class="loan-label-text">姓名/企业名称</span>
-          <input type="text" id="name" v-model="name" @keyup="nameFlag = true">
+          <input type="text" id="name" v-model="name">
         </div>
-        <div class="loan-error">
-          <span class="p_zcerror" v-if="name == '' && nameFlag"><i class="icon"></i>请输入姓名/企业名称</span>
-        </div>
+        <div class="loan-error" id="error_name"><span class="p_zcerror" id="error_name_text">{{ nameErrors.errorText }}</span></div>
         <div class="clr loan-label">
           <span class="loan-label-text">身份证/营业执照号</span>
-          <input type="text" id="identification" v-model="identification" @keyup="identificationFlag = true">
+          <input type="text" id="identification" v-model="identification">
         </div>
-        <div class="loan-error">
-          <span class="p_zcerror" v-if="identification == '' && identificationFlag"><i class="icon"></i>请输入身份证/营业执照号</span>
-        </div>
+        <div class="loan-error" id="error_identification"><span class="p_zcerror" id="error_identification_text">{{ identificationErrors.errorText }}</span></div>
         <div class="clr loan-label">
           <span class="loan-label-text">联系方式</span>
-          <input type="text" id="phone" v-model="phone" @keyup="phoneFlag = true" maxlength="11">
+          <input type="text" id="phone" v-model="phone">
         </div>
-        <div class="loan-error">
-          <span class="p_zcerror" v-if="phone == '' && phoneFlag"><i class="icon"></i>请输入联系方式</span>
-          <span class="p_zcerror" v-if="!isPhone && phoneFlag"><i class="icon"></i>手机号格式有误，请重新输入！</span>
-        </div>
+        <div class="loan-error" id="error_phone"><span class="p_zcerror" id="error_phone_text">{{ phoneErrors.errorText }}</span></div>
         <div class="clr loan-label">
           <span class="loan-label-text">借贷类型</span>
+          <!-- <div class="fl select select-big fz12" style="width:195px">
+            <span class="select-border js-select">
+                <span class="select-text" id="loanTypeText" data-value="">请选择借贷类型</span>
+                <span class="select-icon"><i class="select-icon-arrow"></i></span>
+            </span>
+            <div class="select-sub js-select-sub">
+              <a href="javascript:;" data-value="工商贷" data-id="" title="工商贷">工商贷</a>
+              <a href="javascript:;" data-value="工薪贷" data-id="" title="工薪贷">工薪贷</a>
+              <a href="javascript:;" data-value="房产抵押贷" data-id="" title="房产抵押贷">房产抵押贷</a>
+              <a href="javascript:;" data-value="车辆抵押贷" data-id="" title="车辆抵押贷">车辆抵押贷</a>
+            </div>
+          </div> -->
           <selector :options="options" @on-change="changeType"></selector>
         </div>
-        <div class="loan-error">
-          <span class="p_zcerror" v-if="!isSelect && isSelectFlag"><i class="icon"></i>请选择借贷类型</span>
-        </div>
+        <div class="loan-error" id="error_type"><span class="p_zcerror" id="error_type_text"></span></div>
         
         <div class="clr loan-label">
           <span class="loan-label-text">借款金额</span>
-          <input type="text" id="money" @keyup="checkMoney('money'); moneyFlag = true" v-model="money">
+          <input type="text" id="money" @keyup="checkMoney('money')" v-model="money">
         </div>
-        <div class="loan-error">
-          <span class="p_zcerror" v-if="money == '' && moneyFlag"><i class="icon"></i>请输入借款金额</span>
-        </div>
+        <div class="loan-error" id="error_money"><span class="p_zcerror" id="error_money_text">{{ moneyErrors.errorText }}</span></div>
         <div class="clr loan-label">
           <span class="loan-label-text">借款期限</span>
-          <input type="text" id="deadline" v-model="deadline" @keyup="deadlineFlag = true">
+          <input type="text" id="deadline" v-model="deadline">
         </div>
-        <div class="loan-error">
-          <span class="p_zcerror" v-if="deadline == '' && deadlineFlag"><i class="icon"></i>请输入借款期限</span>
-        </div>
+        <div class="loan-error" id="error_deadline"><span class="p_zcerror" id="error_deadline_text">{{ deadlineErrors.errorText }}</span></div>
         <a href="javascript:void(0)" class="loan-btn" @click="applyLoan()">立即申请</a>
         <!-- <p>{{errorText}}</p> -->
       </form>
@@ -197,18 +196,8 @@ export default {
       phone:'',
       money:'',
       deadline:'',
-      nameFlag: false,
-      identificationFlag: false,
-      phoneFlag: false,
-      moneyFlag: false,
-      deadlineFlag: false,
-      isSelect: false,
-      isSelectFlag: false,
+
       options: [
-        {
-          label: '请选择',
-          value: -1
-        },
         {
           label: '工商贷',
           value: 0
@@ -229,11 +218,164 @@ export default {
     }
   },
   computed: {
-    isPhone () {
-      return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(this.phone));
-    }
+    nameErrors: {
+      get: function () {
+        return this.checkFlied(this.name, 'name', '请输入姓名/企业名称')
+      },
+      set: function (newValue) {
+        this.setValue(this.name, newValue)
+        // if(newValue ==''){
+        //   this.name = false
+        //   this.name = ''
+        // } else {
+        //   this.name = newValue
+        // }
+      }
+    },
+    //nameErrors: this.methods.getObj(this.name, 'name', '请输入姓名/企业名称'),
+
+    identificationErrors: {
+      get: function () {
+        return this.checkFlied(this.identification, 'identification', '请输入身份证/营业执照号')
+      },
+      set: function (newValue) {
+        this.setValue(this.identification, newValue)
+      }
+    },
+    phoneErrors: {
+      get: function () {
+        return this.checkFlied(this.phone, 'phone', '请输入联系方式')
+      },
+      set: function (newValue) {
+        this.setValue(this.phone, newValue)
+      }
+    },
+    moneyErrors: {
+      get: function () {
+        return this.checkFlied(this.money, 'money', '请输入借款金额')
+      },
+      set: function (newValue) {
+        this.setValue(this.money, newValue)
+      }
+    },    
+    deadlineErrors: {
+      get: function () {
+        return this.checkFlied(this.deadline, 'deadline', '请输入借款期限')
+      },
+      set: function (newValue) {
+        this.setValue(this.deadline, newValue)
+      }
+    },
+    // nameErrors () {
+    //   return this.checkFlied(this.name, 'name', '请输入姓名/企业名称')
+    // },
+    // identificationErrors () {
+    //   return this.checkFlied(this.identification, 'identification', '请输入身份证/营业执照号')
+    // },
+    // phoneErrors () {
+    //   return this.checkFlied(this.phone, 'phone', '请输入联系方式')
+    // },
+    // moneyErrors () {
+    //   return this.checkFlied(this.money, 'money', '请输入借款金额')
+    // },
+    // deadlineErrors () {
+    //   return this.checkFlied(this.deadline, 'deadline', '请输入借款期限')
+    // },
+    // fullName: {
+    //   // getter
+    //   get: function () {
+    //     console.log(44444)
+    //     return this.firstName + ' ' + this.lastName
+    //   },
+    //   // setter
+    //   set: function (newValue) {
+    //     var names = newValue.split(' ')
+    //     this.firstName = names[0]
+    //     this.lastName = names[names.length - 1]
+    //   }
+    // }
+
   },
   methods: {
+    setValue (input, newValue) {
+      
+      let obj = input;
+      if(newValue ==''){
+
+        obj = false
+        console.log(obj)
+        obj = ''
+      } else {
+        obj = newValue
+      }
+    },
+    getObj () {
+      return {
+        get: function (input, inputName, errorText) {
+          return this.checkFlied(input, inputName, errorText)
+        },
+        set: function (newValue) {
+          if(newValue ==''){
+            input = false
+            input = ''
+          } else {
+            input = newValue
+          }
+        }
+      }
+    },
+    checkFlied (inputId, text, msg) {
+      let errorText, status = false
+      if (inputId === '') {
+        status = false
+        errorText = msg
+      } else if (text === "phone") {
+        if (!this.isMobileNum(inputId)) {
+          status = false
+          errorText = '手机号格式有误，请重新输入！'
+        } else {
+          status = true
+          errorText = ''
+        }
+      } else {
+        status = true
+        errorText = ''
+      }
+      if (!this[text+"Flag"]) {
+        errorText = ''
+        this[text+"Flag"] = true
+      }
+      return {
+        errorText,
+        status
+      }
+    },
+    // checkFlied2 (inputId, msg) {
+    //   let errorText, status = false
+    //   if (this[inputId] === '') {
+    //     status = false
+    //     errorText = msg
+    //   } else if (inputId === "phone") {
+    //     if (!this.isMobileNum(this.phone)) {
+    //       status = false
+    //       errorText = '手机号格式有误，请重新输入！'
+    //     } else {
+    //       status = true
+    //       errorText = ''
+    //     }
+    //   } else {
+    //     status = true
+    //     errorText = ''
+    //   }
+    //   if (!this[inputId+"Flag"]) {
+    //     errorText = ''
+    //     this[inputId+"Flag"] = true
+    //   }
+    //   return {
+    //     errorText,
+    //     status
+    //   }
+    // },
     isMobileNum (phone) {
       return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(phone));
     },
@@ -241,26 +383,36 @@ export default {
       this[obj] = this[obj].replace(/[^\d\.]/g, '').replace(/^\.+/, '').replace(/^(\d{1,18}(\.\d{0,2})?).*/, '$1').replace(/^0\d+/, '');
     },
     applyLoan () {
-      if(this.name === ''){
-        this.nameFlag = true;
+
+      // var idArr = ["name", 'identification', "phone", "type", "money", "deadline"],
+      //     idMsg = ["请输入姓名/企业名称", "请输入身份证/营业执照号", "请输入联系方式", "请输入借款金额", "请输入借款期限"]
+      // for (var i = 0; i < idArr.length; i++) {
+      //   var result = this.checkFlied (idArr[i], idMsg[i]);
+      //   if(!result.status){
+      //     console.log(this[idArr[i]+"Errors"])
+      //     this[idArr[i]+"Errors"].errorText = result.errorText
+      //     console.log(this[idArr[i]+"Errors"])
+      //     return false;
+      //   } 
+      // };
+      //if(!this.nameErrors.status || !this.identificationErrors.status || !this.phoneErrors.status || !this.moneyErrors.status || !this.deadlineErrors.status){
+      if(!this.nameErrors.status){
+        this.nameErrors = false;
         return false;
-      } else if (this.identification === '') {
-        this.identificationFlag = true;
+      } else if (!this.identificationErrors.status) {
+        this.identificationErrors = false;
         return false;
-      } else if (this.phone === ''){
-        this.phoneFlag = true;
+      } if(!this.phoneErrors.status){
+        this.phoneErrors = this.phone;
         return false;
-      } else if (!this.isPhone){
-        this.phoneFlag = true;
+      } else if (!this.typeErrors.status) {
+        this.typeErrors = false;
         return false;
-      } else if (!this.isSelect) {
-        this.isSelectFlag = true;
+      }  if(!this.moneyErrors.status){
+        this.moneyErrors = false;
         return false;
-      } else if (this.money === '') {
-        this.moneyFlag = true;
-        return false;
-      } else if (this.deadline === ''){
-        this.deadlineFlag = true;
+      } else if (!this.deadlineErrors.status) {
+        this.deadlineErrors = false;
         return false;
       } else {
         alert("ok")
@@ -273,12 +425,6 @@ export default {
       }
     },
     changeType (data) {
-      if (data.value == -1) {
-        this.isSelect = false;
-      } else {
-        this.isSelect = true;
-      }
-      this.isSelectFlag = true;
       console.log(data)
     }
   },
