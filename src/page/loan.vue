@@ -105,6 +105,7 @@
       </form>
     </div>
   </div>
+
   <div class="loan-type clr">
     <div class="loan-type-left">
       <img src="../../static/images/loan/ad1.jpg"><span>工商贷</span>
@@ -217,42 +218,102 @@ export default {
     }
   },
   computed: {
-    // nameErrors :{
-    //   get () {
-    //     console.log(344444)
-    //     return this.checkFlied('name', '请输入姓名/企业名称')
-    //   },
-    //   set (newValue) {
-    //     console.log(newValue, this.nameErrors)
-    //     this.nameErrors.errorText = newValue
-    //     console.log(this.nameErrors)
-    //   }
-     
+    nameErrors: {
+      get: function () {
+        return this.checkFlied(this.name, 'name', '请输入姓名/企业名称')
+      },
+      set: function (newValue) {
+        //this.setValue(this.name, newValue)
+        if(newValue ==''){
+          this.name = false
+          this.name = ''
+        } else {
+          this.name = newValue
+        }
+      }
+    },
+
+    identificationErrors: {
+      get: function () {
+        return this.checkFlied(this.identification, 'identification', '请输入身份证/营业执照号')
+      },
+      set: function (newValue) {
+        this.setValue(this.identification, newValue)
+      }
+    },
+    phoneErrors: {
+      get: function () {
+        return this.checkFlied(this.phone, 'phone', '请输入联系方式')
+      },
+      set: function (newValue) {
+        this.setValue(this.phone, newValue)
+      }
+    },
+    moneyErrors: {
+      get: function () {
+        return this.checkFlied(this.money, 'money', '请输入借款金额')
+      },
+      set: function (newValue) {
+        this.setValue(this.money, newValue)
+      }
+    },    
+    deadlineErrors: {
+      get: function () {
+        return this.checkFlied(this.deadline, 'deadline', '请输入借款期限')
+      },
+      set: function (newValue) {
+        this.setValue(this.deadline, newValue)
+      }
+    },
+    // nameErrors () {
+    //   return this.checkFlied(this.name, 'name', '请输入姓名/企业名称')
     // },
-    nameErrors () {
-      return this.checkFlied('name', '请输入姓名/企业名称')
-    },
-    identificationErrors () {
-      return this.checkFlied('identification', '请输入身份证/营业执照号')
-    },
-    phoneErrors () {
-      return this.checkFlied('phone', '请输入联系方式')
-    },
-    moneyErrors () {
-      return this.checkFlied('money', '请输入借款金额')
-    },
-    deadlineErrors () {
-      return this.checkFlied('deadline', '请输入借款期限')
-    }
+    // identificationErrors () {
+    //   return this.checkFlied(this.identification, 'identification', '请输入身份证/营业执照号')
+    // },
+    // phoneErrors () {
+    //   return this.checkFlied(this.phone, 'phone', '请输入联系方式')
+    // },
+    // moneyErrors () {
+    //   return this.checkFlied(this.money, 'money', '请输入借款金额')
+    // },
+    // deadlineErrors () {
+    //   return this.checkFlied(this.deadline, 'deadline', '请输入借款期限')
+    // },
+    // fullName: {
+    //   // getter
+    //   get: function () {
+    //     console.log(44444)
+    //     return this.firstName + ' ' + this.lastName
+    //   },
+    //   // setter
+    //   set: function (newValue) {
+    //     var names = newValue.split(' ')
+    //     this.firstName = names[0]
+    //     this.lastName = names[names.length - 1]
+    //   }
+    // }
+
   },
   methods: {
-    checkFlied (inputId, msg) {
+    setValue (obj, newValue) {
+      
+      if(newValue ==''){
+
+        obj = false
+        console.log(obj)
+        obj = ''
+      } else {
+        obj = newValue
+      }
+    },
+    checkFlied (inputId, text, msg) {
       let errorText, status = false
-      if (this[inputId] === '') {
+      if (inputId === '') {
         status = false
         errorText = msg
-      } else if (inputId === "phone") {
-        if (!this.isMobileNum(this.phone)) {
+      } else if (text === "phone") {
+        if (!this.isMobileNum(inputId)) {
           status = false
           errorText = '手机号格式有误，请重新输入！'
         } else {
@@ -263,15 +324,41 @@ export default {
         status = true
         errorText = ''
       }
-      if (!this[inputId+"Flag"]) {
+      if (!this[text+"Flag"]) {
         errorText = ''
-        this[inputId+"Flag"] = true
+        this[text+"Flag"] = true
       }
       return {
         errorText,
         status
       }
     },
+    // checkFlied2 (inputId, msg) {
+    //   let errorText, status = false
+    //   if (this[inputId] === '') {
+    //     status = false
+    //     errorText = msg
+    //   } else if (inputId === "phone") {
+    //     if (!this.isMobileNum(this.phone)) {
+    //       status = false
+    //       errorText = '手机号格式有误，请重新输入！'
+    //     } else {
+    //       status = true
+    //       errorText = ''
+    //     }
+    //   } else {
+    //     status = true
+    //     errorText = ''
+    //   }
+    //   if (!this[inputId+"Flag"]) {
+    //     errorText = ''
+    //     this[inputId+"Flag"] = true
+    //   }
+    //   return {
+    //     errorText,
+    //     status
+    //   }
+    // },
     isMobileNum (phone) {
       return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(phone));
     },
@@ -293,8 +380,22 @@ export default {
       // };
       //if(!this.nameErrors.status || !this.identificationErrors.status || !this.phoneErrors.status || !this.moneyErrors.status || !this.deadlineErrors.status){
       if(!this.nameErrors.status){
-        this.nameErrors = '888888888'
-        //console.log(!this.nameErrors.status, !this.nameErrors.status, !this.nameErrors.status, !this.nameErrors.status, !this.nameErrors.status)
+        this.nameErrors = false;
+        return false;
+      } else if (!this.identificationErrors.status) {
+        this.identificationErrors = false;
+        return false;
+      } if(!this.phoneErrors.status){
+        this.phoneErrors = this.phone;
+        return false;
+      } else if (!this.typeErrors.status) {
+        this.typeErrors = false;
+        return false;
+      }  if(!this.moneyErrors.status){
+        this.moneyErrors = false;
+        return false;
+      } else if (!this.deadlineErrors.status) {
+        this.deadlineErrors = false;
         return false;
       } else {
         alert("ok")
