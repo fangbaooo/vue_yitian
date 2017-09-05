@@ -46,7 +46,7 @@
               <i class="icon_safe icon_safe_jiaoyi icon_seted"></i>
               <span class="safe_name fz16 fl">交易密码</span>
               <span class="safe_statu fl">已设置</span>
-              <span class="safe_operate fl" id="modifyPayPWBtn">修改</span><span class="fl c_gray">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+              <span class="safe_operate fl" @click="modifyPayPW">修改</span><span class="fl c_gray">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <span class="safe_operate fl" onclick="dealPass()">找回</span>
             </div>
           </li>
@@ -60,15 +60,18 @@
         </ul>
       </div>
     </div>
-    <login-pw id="LoginPWPop" @submit="modifyPW" ref="modifyPassword"></login-pw>
+    <login-pw id="loginPWPop" @submit="modifyPW" ref="modifyPassword"></login-pw>
+    <pay-pw id="payPWPop" @submit="closePayPW" ref="modifyPayPassword"></pay-pw>
   </div>
 </template>
 <script>
 import Dailog from "Dailog";
 import loginPw from "./dialog/loginPw";
+import payPw from "./dialog/payPw";
 export default {
   components: {
-    loginPw
+    loginPw,
+    payPw
   },
   data () {
     return {
@@ -80,25 +83,37 @@ export default {
         payPassword: 1,
         mobile: '15999511509'
       },
-      modPWPOP: null,
+      modPWPop: null,
+      modPayPop: null,
     }
-  },
-  mounted () {
-    
   },
   methods: {
     modifyLoginPW () {
       this.$refs.modifyPassword.setEmpty(); // 调用子组件方法，清空输入框内容
-      var id = document.getElementById("LoginPWPop");
-      this.modPWPOP = dialog({
+      let id = document.getElementById("loginPWPop");
+      this.modPWPop = dialog({
         title: "修改登录密码",
         content: id,
         width: 600,
       });
-      this.modPWPOP.showModal();
+      this.modPWPop.showModal();
     },
     modifyPW () {
-      this.modPWPOP.close().remove();
+      this.modPWPop.close().remove();
+    },
+
+    modifyPayPW () {
+      this.$refs.modifyPayPassword.setEmpty(); // 调用子组件方法，清空输入框内容
+      let id = document.getElementById("payPWPop");
+      this.modPayPop = dialog({
+        title: "修改交易密码",
+        content: id,
+        width: 600,
+      });
+      this.modPayPop.showModal();
+    },
+    closePayPW () {
+      this.modPayPop.close().remove();
     }
   }
 }

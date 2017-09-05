@@ -1,9 +1,9 @@
 <template>
 <div class="p_zcgtcmain" style="display: none">
   <dl class="p_zclist h40 clr">
-      <dt>原登录密码</dt>
+      <dt>原交易密码</dt>
         <dd><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
-            <input type="password" id="oldPassword" class="p_zcinput" maxlength="20" autocomplete="off" v-model="oldPassword" @keyup="oldPasswordFlag = true"><div class="capital" style="display:none;">大写锁定已打开</div>
+            <input type="password" class="p_zcinput" maxlength="20" autocomplete="off" v-model="oldPassword" @keyup="oldPasswordFlag = true"><div class="capital" style="display:none;">大写锁定已打开</div>
         </dd>
     </dl>
     <dl class="p_zclist h30 clr">
@@ -13,23 +13,23 @@
         </dd>
     </dl>
     <dl class="p_zclist h40 clr">
-        <dt>新登录密码</dt>
+        <dt>新交易密码</dt>
         <dd>
-            <input type="password" id="newPassword1" placeholder="6~20位字母、数字、符号组成" @blur="checkLoginPwd" class="p_zcinput" maxlength="20" autocomplete="off" v-model="newPassword" @keyup="newPasswordFlag = true"><div class="capital" style="display:none;">大写锁定已打开</div>
+            <input type="password" placeholder="6~20位字母、数字、符号组成" @blur="checkLoginPwd" class="p_zcinput" maxlength="20" autocomplete="off" v-model="newPassword" @keyup="newPasswordFlag = true"><div class="capital" style="display:none;">大写锁定已打开</div>
         </dd>
     </dl>
     <dl class="p_zclist h30 clr">
         <dt>&nbsp;</dt>
         <dd>
             <span class="p_zcerror" v-if="newPassword == '' && newPasswordFlag"><i class="icon"></i>请输入新密码</span>
-            <span class="p_zcerror" v-if="(newPassword.length < 6 || newPassword.length > 20) && newPassword != '' && newPasswordFlag"><i class="icon"></i>登录密码须由6~20位字母、数字、符号组成</span>
-            <span class="p_zcerror" v-if="isSamePw && newPasswordFlag"><i class="icon"></i>登录密码不能与交易密码相同</span>
+            <span class="p_zcerror" v-if="(newPassword.length < 6 || newPassword.length > 20) && newPassword != '' && newPasswordFlag"><i class="icon"></i>交易密码须由6~20位字母、数字、符号组成</span>
+            <span class="p_zcerror" v-if="isSamePw && newPasswordFlag"><i class="icon"></i>交易密码不能与登录密码相同</span>
         </dd>
     </dl>
     <dl class="p_zclist h40 clr">
         <dt>确认新密码</dt>
         <dd>
-            <input type="password" id="newPassword2" class="p_zcinput" maxlength="20" autocomplete="off" v-model="newPasswordSure" @keyup="newPasswordSureFlag = true"><div class="capital" style="display:none;">大写锁定已打开</div>
+            <input type="password" class="p_zcinput" maxlength="20" autocomplete="off" v-model="newPasswordSure" @keyup="newPasswordSureFlag = true"><div class="capital" style="display:none;">大写锁定已打开</div>
         </dd>
     </dl>
     <dl class="p_zclist h30 clr">
@@ -58,7 +58,7 @@ export default {
       newPasswordFlag: false,
       newPasswordSureFlag: false,
       isSamePw: false,
-      payPassword: 'ab123456' // 判断是否和交易密码一致
+      payPassword: 'ab123456' // 判断是否和登录密码一致
     }
   },
   methods: {
