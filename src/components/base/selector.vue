@@ -1,6 +1,6 @@
 <template>
   <div class="fl select select-big fz12" style="width:195px">
-    <span class="select-border js-select" @click="showSelector">
+    <span class="select-border js-select" @click="showSelector($event)">
       <span class="select-text" data-value="">{{options[nowIndex].label}}</span>
       <span class="select-icon"><i class="select-icon-arrow"></i></span>
     </span>
@@ -26,9 +26,16 @@ export default {
       nowIndex: 0
     }
   },
+  mounted () {
+    document.addEventListener('click', this.hiddenSelecter)
+  },
   methods: {
-    showSelector () {
+    hiddenSelecter () {
+      this.isShow = false;
+    },
+    showSelector (e) {
       this.isShow = !this.isShow;
+      e.stopPropagation();
     },
     choose(index) {
       this.nowIndex = index;

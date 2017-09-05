@@ -27,7 +27,8 @@ module.exports = {
       'mousewheel': path.join(__dirname, '..', 'static/js/plugins/jquery.mousewheel.min'),
       'sizzle': path.join(__dirname, '..', 'static/js/plugins/sizzle.min'),
       'laydate': path.join(__dirname, '..', 'static/js/plugins/laydate/laydate'),
-      'ZeroClipboard': path.join(__dirname, '..', 'static/js/plugins/zeroClipboard/ZeroClipboard')
+      'ZeroClipboard': path.join(__dirname, '..', 'static/js/plugins/zeroClipboard/ZeroClipboard'),
+      'Dailog': path.join(__dirname, '..', 'static/js/plugins/artDialog/dialog-plus-min.js')
     }
   },
   module: {
