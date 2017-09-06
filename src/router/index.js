@@ -5,6 +5,8 @@ import noviceGuide from '@/page/noviceGuide/noviceGuide';
 import ylcHome from '@/page/ylcHome';
 import loan from '@/page/loan';
 import safeguard from '@/page/safeguard';
+import login from '@/page/register/login';
+import register from '@/page/register/register';
 
 import account from '@/page/account/account';  // 个人中心
 /* 我的账户 */ 
@@ -28,8 +30,8 @@ import safeCenter from '@/page/account/safeCenter/safeCenter';  // 安全中心
 import spreadLink from '@/page/account/spread/spreadLink';
 import spreadUser from '@/page/account/spread/spreadUser';
 
-import help from '@/page/help';  // 帮助中心
-
+ /* 帮助中心 */ 
+import help from '@/page/help'; 
 import aboutUs from '@/page/aboutUs/aboutUs';
 import aboutCompany from '@/page/aboutUs/aboutCompany';
 import partner from '@/page/aboutUs/partner';
@@ -47,10 +49,12 @@ export default new Router({
 	mode: "history",
   routes: [
     { path: '/', component: Index},
-    { path: '/ylcHome', component: ylcHome},  // 益理财
-    { path: '/loan', component: loan},        // 我要借款
-    { path: '/noviceGuide', component: noviceGuide}, // 新手指南
-    { path: '/safeguard', component: safeguard},     // 新手指南
+    { path: '/ylcHome', component: ylcHome},          // 益理财
+    { path: '/loan', component: loan},                // 我要借款
+    { path: '/noviceGuide', component: noviceGuide},  // 新手指南
+    { path: '/safeguard', component: safeguard},      // 安全保障
+    { path: '/login', component: login},              // 登录
+    { path: '/register', component: register},        // 注册
     { path: '/account',  component: account, redirect: '/account/home',// 个人中心
       children: [
         { path: '/account/home', component: home},  // 账户总览

@@ -47,7 +47,7 @@
               <span class="safe_name fz16 fl">交易密码</span>
               <span class="safe_statu fl">已设置</span>
               <span class="safe_operate fl" @click="modifyPayPW">修改</span><span class="fl c_gray">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-              <span class="safe_operate fl" onclick="dealPass()">找回</span>
+              <span class="safe_operate fl" @click="findPayPW">找回</span>
             </div>
           </li>
 
@@ -55,23 +55,30 @@
             <i class="icon_safe icon_safe_mobile"></i>
             <span class="safe_name fz16 fl">绑定手机</span>
             <span class="safe_statu fl">{{user.mobile.substring(0,3)}}****{{user.mobile.substring(7)}}</span>
-            <span class="safe_operate fl" id="modifyMobileBtn">修改</span>
+            <span class="safe_operate fl" @click="modifyMobileNumber">修改</span>
           </li>
         </ul>
       </div>
     </div>
     <login-pw id="loginPWPop" @submit="modifyPW" ref="modifyPassword"></login-pw>
     <pay-pw id="payPWPop" @submit="closePayPW" ref="modifyPayPassword"></pay-pw>
+    <find-pay-pw id="findPayPWPop" @submit="closeFindPayPW" ref="findPayPassword"></find-pay-pw>
+    <modify-mobile id="modifyMobileNum" @submit="closeMobile" ref="modifyMobileModal"></modify-mobile>
   </div>
 </template>
 <script>
 import Dailog from "Dailog";
 import loginPw from "./dialog/loginPw";
 import payPw from "./dialog/payPw";
+import findPayPw from "./dialog/findPayPw";
+import modifyMobile from "./dialog/modifyMobile";
+
 export default {
   components: {
     loginPw,
-    payPw
+    payPw,
+    findPayPw,
+    modifyMobile
   },
   data () {
     return {
@@ -85,6 +92,8 @@ export default {
       },
       modPWPop: null,
       modPayPop: null,
+      findPayPop: null,
+      modifyMobilePop: null
     }
   },
   methods: {
@@ -102,6 +111,7 @@ export default {
       this.modPWPop.close().remove();
     },
 
+    // 修改交易密码
     modifyPayPW () {
       this.$refs.modifyPayPassword.setEmpty(); // 调用子组件方法，清空输入框内容
       let id = document.getElementById("payPWPop");
@@ -114,7 +124,51 @@ export default {
     },
     closePayPW () {
       this.modPayPop.close().remove();
-    }
+    },
+
+    // 找回交易密码
+    findPayPW () {
+      this.$refs.findPayPassword.setEmpty(); // 调用子组件方法，清空输入框内容
+      let _this = this;
+      let id = document.getElementById("findPayPWPop");
+      this.findPayPop = dialog({
+        title: "短信验证",
+        content: id,
+        width: 600,
+        ok: function () {
+          return _this.$refs.findPayPassword.next();
+        },
+        okValue: '下一步',
+        cancelValue: '取消',
+        cancel: function () {}
+      });
+      this.findPayPop.showModal();
+    },
+    closeFindPayPW () {
+      this.findPayPop.close().remove();
+    },
+
+    // 修改手机号
+    modifyMobileNumber () {
+      this.$refs.modifyMobileModal.setEmpty(); // 调用子组件方法，清空输入框内容
+      let _this = this;
+      let id = document.getElementById("modifyMobileNum");
+      this.modifyMobilePop = dialog({
+        title: "修改手机号",
+        content: id,
+        width: 600,
+        ok: function () {
+          return _this.$refs.modifyMobileModal.next();
+        },
+        okValue: '下一步',
+        cancelValue: '取消',
+        cancel: function () {}
+      });
+      this.modifyMobilePop.showModal();
+    },
+    closeMobile () {
+      this.modifyMobilePop.close().remove();
+    },
   }
 }
 </script>

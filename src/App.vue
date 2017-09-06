@@ -32,26 +32,26 @@
               </div>
             </div>
             
-              <a href="@{front.account.loginAndRegisterAction.login()}" title="" target="">登录</a>
-              <i>|</i>
-              <a href="@{front.account.LoginAndRegisterAction.registerMobile()}" title="" target="">注册</a>
+            <router-link to="/login">登录</router-link>
+            <i>|</i>
+            <router-link to="/register">注册</router-link>
             
               <!-- <i>|</i>
               <a href="@{front.account.loginAndRegisterAction.logout()}" title="" target="">安全退出</a> -->
             
-              <i>|</i>
+            <i>|</i>
             <router-link :to="{path: '/help', query: { typeId: 41 }}">帮助中心</router-link>
           </div>
         </div>
       </div>
       <div class="s_center s_nav clr">
-        <router-link :to="{path: '/'}" class="s_logo">益田理财</router-link>
+        <router-link to="/" class="s_logo">益田理财</router-link>
         <ul class="s_navlist right">
-          <li><router-link :to="{path: '/'}" active-class="selected" exact>首页</router-link></li>
-          <li><h2><router-link :to="{path: '/ylcHome'}" active-class="selected" exact>我要理财</router-link></h2></li>
-          <li><router-link :to="{path: '/loan'}" active-class="selected" exact>我要借款</router-link></li>
-          <li><router-link :to="{path: '/noviceGuide'}" active-class="selected" exact>新手指南</router-link></li>
-          <router-link :to="{path: '/account'}" active-class="selected" id="usr" tag="li" class="s_accountnav"><i class="s_accounticon"></i><a>我的账户</a></router-link>
+          <li><router-link to="/" active-class="selected" exact>首页</router-link></li>
+          <li><h2><router-link to="/ylcHome" active-class="selected" exact>我要理财</router-link></h2></li>
+          <li><router-link to="/loan" active-class="selected" exact>我要借款</router-link></li>
+          <li><router-link to="/noviceGuide" active-class="selected" exact>新手指南</router-link></li>
+          <router-link to="/account" active-class="selected" id="usr" tag="li" class="s_accountnav"><i class="s_accounticon"></i><a>我的账户</a></router-link>
         </ul>
       </div>
     </div>

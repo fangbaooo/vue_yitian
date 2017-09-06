@@ -16,7 +16,7 @@
         <div class="p_abwordbox">
           <ul class="p_hplist" id="desUl">
             <li v-for="(item, index) in listData">
-              <h6 @click="toggleDes($event, index)" :class="{'cur': showCon === index}"><span class="fl"><i class="icon"></i>{{item.title}}</span></h6>
+              <h6 @click="toggleDes(index)" :class="{'cur': showCon === index}"><span class="fl"><i class="icon"></i>{{item.title}}</span></h6>
               <div v-html="item.des" :class="{'block': showCon === index}"></div>
             </li>
           </ul>
@@ -160,8 +160,8 @@ export default {
         }
       };
     },
-    toggleDes (event, index) {
-      this.showCon = index;
+    toggleDes (index) {
+      this.showCon = this.showCon === index ? -1 : index;
     }
   },
   mounted () {
