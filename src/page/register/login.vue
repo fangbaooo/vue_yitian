@@ -6,7 +6,7 @@
       <dl class="p_zclist h40 clr">
         <dt><span class="p_zcred">*</span> 手机号码</dt>
         <dd>
-          <input type="text" name="name" placeholder="请输入手机号码" class="p_zcinput" @keyup="phone=phone.replace(/[^\d]/g,'');phoneFlag = true" maxlength="11" value="" autocomplete="off" v-model="phone"></dd>
+          <input type="text" placeholder="请输入手机号码" class="p_zcinput" maxlength="11" value="" autocomplete="off" v-model="phone" @keypress="phoneFlag = true" v-focus></dd>
       </dl>
       <dl class="p_zclist h30 clr">
         <dt>&nbsp;</dt>
@@ -15,12 +15,13 @@
       </dl>
       <dl class="p_zclist h40 clr">
         <dt><span class="p_zcred">*</span> 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
-        <dd><input style="display:none" type="text"><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
-          <input type="password" name="password" id="password" class="p_zcinput" autocomplete="off"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
+        <dd><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
+          <input type="password" class="p_zcinput" autocomplete="off" @keyup="passwordFlag = true;isPassword = true" v-model="password" @keypress="detectCapsLock($event)"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
       </dl>
       <dl class="p_zclist h30 clr">
         <dt>&nbsp;</dt>
-        <dd><span class="p_zcerror" id="s_password">&nbsp;</span></dd>
+        <dd><span class="p_zcerror" v-if="password == '' && passwordFlag"><i class="icon"></i>请输入密码</span></dd>
+        <dd><span class="p_zcerror" v-if="!isPassword && password != ''"><i class="icon"></i>您输入的账号或密码有误，请重新输入!</span></dd>
       </dl>
       <div id="codeDiv" style="display:none">
       <dl class="p_zclist h40 clr">
@@ -40,7 +41,7 @@
       <dl class="p_zclist clr">
         <dt>&nbsp;</dt>
         <dd class="clr">
-          <label class="p_zclabel fl"><input type="checkbox" checked="checked" id="ck_rmbUser"> 记住用户名</label>
+          <label class="p_zclabel fl"><input type="checkbox" checked="checked" v-model="rmbUser"> 记住用户名</label>
           <span class="fr">
             <a href="/front/account/resetPasswordByMobile" class="cozhuse p-un">忘记密码？</a>
           </span>
@@ -49,9 +50,7 @@
       <dl class="p_zclist clr">
         <dt>&nbsp;</dt>
         <dd>
-          <!-- 添加登入页面标示，用于登入状态无效时返回页面的判断 -->
-          <input type="hidden" value="SDBGIOH24HFQ94HT2HSDAF89Q2P">
-          <a href="javascript:void(0)" class="p_zcbtn btn" onclick="sublogin()">登&nbsp;&nbsp;录</a>
+          <a href="javascript:void(0)" class="p_zcbtn btn" @click="login">登&nbsp;&nbsp;录</a>
         </dd>
       </dl>
       <br>
@@ -59,7 +58,7 @@
         <dt>&nbsp;</dt>
         <dd class="clr">
           <span class="fr">
-            没有账号？| <a href="/registerMobile" class="cozhuse p-un">立即注册</a>
+            没有账号？| <a href="/register" class="cozhuse p-un">立即注册</a>
           </span>
         </dd>
       </dl>
@@ -78,38 +77,74 @@ export default {
     return {
       phone: '',
       phoneFlag: false,
+      password: '',
+      passwordFlag: false,
+      isPassword: true,
+      realPw: '123456',
+
+      rmbUser: false
     }
   },
   computed: {
     isPhone () {
-      return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(this.phone));
+      return this.isMobileNum(this.phone);
     }
   },
+
   methods: {
-    scrollNews (scrollArea, scrollUl, speed) {
-        var timeId,
-        height = scrollUl.children("li").height();
-        scrollArea.hover(function() {
-          clearInterval(timeId);
-        }, function() {
-          if (scrollUl.children("li").length > 1) {
-            timeId = setInterval(function() {
-              scrollUl.animate({
-                "margin-top": -height + "px"
-              }, 600, function() {
-                scrollUl.css("margin-top", "0").find("li:first").appendTo(scrollUl);
-              });
-            }, speed);
-          }
-        }).trigger("mouseleave");
+    isMobileNum (phone) {
+      return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(phone));
     },
-    runScroll () {
-      this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+    login () {
+      if(this.phone === ''){
+        this.phoneFlag = true;
+        return false;
+      } else if (!this.isPhone) {
+        this.phoneFlag = true;
+        return false;
+      } else if (this.password === ''){
+        this.passwordFlag = true;
+        return false;
+      } else {
+        if (this.password === this.realPw) {
+          console.log(this.rmbUser)
+          if (this.rmbUser == true) {
+            localStorage.rmbUser = this.phone;
+          }
+          location.href = '/account';
+        } else {
+          this.isPassword = false;
+        }
+        // this.$http.post('api/login')
+        //   .then((res) => {
+
+        //   }, (error) => {
+
+        //   })
+      }
+    },
+    // 记住用户名
+    setUser () {
+      if(localStorage.rmbUser) {
+        this.rmbUser = true;
+        this.phone = localStorage.rmbUser
+      }
+    },
+    detectCapsLock (event) {
+      var e = event || window.event;  
+      var o = e.target || e.srcElement;
+      var oTip = o.nextElementSibling || o.nextSibling;
+      var keycode = e.keyCode ? e.keyCode: (e.which ? e.which : e.charCode);  
+      var realkey = String.fromCharCode(keycode);  
+      if (/^[A-Z]+$/.test(realkey)) {
+        oTip.style.display = "block";
+      } else {
+        oTip.style.display = "none";
+      }
     }
   },
   mounted () {
-    //this.runScroll();
-    //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+    this.setUser();
   }
 }
 </script>

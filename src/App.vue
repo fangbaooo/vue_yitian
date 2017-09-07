@@ -31,11 +31,9 @@
                 </div>
               </div>
             </div>
-            
-            <router-link to="/login">登录</router-link>
+            <a href="/login">登录</a>
             <i>|</i>
-            <router-link to="/register">注册</router-link>
-            
+            <a href="/register">注册</a>
               <!-- <i>|</i>
               <a href="@{front.account.loginAndRegisterAction.logout()}" title="" target="">安全退出</a> -->
             

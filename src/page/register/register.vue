@@ -1,208 +1,196 @@
 <template>
-  <div class="p_sylistbox">
-    <h2 class="p_sytitle">
-        <span class="fl"><em>益理财</em></span>
-        <a href="/ylcHome" class="fr ylc-more"><i>+</i> <span class="p-vm">更多</span></a>
-    </h2>
-    <ul class="p_syinlist">
-      <li>
-        <table class="p_zhintable">
-          <tbody>
-            <tr height="48">
-              <td colspan="6">
-                <a class="p_zhintit" href="/front/invest/ylcDetail?ylcId=1685">益理财YS2017070012</a>
-                <span class="p_zhsubtit">发布时间：2017-07-07</span>
-              </td>
-            </tr>
-            <tr height="48">
-              <td width="15%">
-                <span class="p_zhlilv"><em>8.00</em>%</span>
-              </td>
-              <td width="15%">
-                <span class="fz24 co333">3</span>个月
-              </td>
-              <td width="20%">
-                <span class="fz24 co333">1000,000</span> 元
-              </td>
-              <td width="20%">
-                <span class="fz24 co333">800,000</span> 元
-              </td>
-              <td width="20%">
-                <span class="s_progress left">
-                  <span class="s_progress-bar" id="ylcLoanSchedule1" style="width:80%;"></span>
-                </span>
-                <span class="s_progress-value left">80.0%</span>
-              </td>
-              <td rowspan="2" style="vertical-align: top">
-                <input type="button" value="立即投资" class="p_biaobtn btn" onclick="window.location.href='/front/invest/ylcDetail?ylcId=1685'"> 
-              </td>
-            </tr>
-            <tr height="26">
-              <td>预期年化收益</td>
-              <td>投资期限</td>
-              <td>募资总额</td>
-              <td>可投金额</td>
-              <td>投资进度</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table class="p_zhintable">
-          <tbody>
-            <tr height="48">
-              <td colspan="6">
-                <a class="p_zhintit" href="/front/invest/ylcDetail?ylcId=1685">益理财YS2017070011</a>
-                <span class="p_zhsubtit">发布时间：2017-07-07</span>
-              </td>
-            </tr>
-            <tr height="48">
-              <td width="15%">
-                <span class="p_zhlilv"><em>7.00</em>%</span>
-              </td>
-              <td width="15%">
-                <span class="fz24 co333">1</span>个月
-              </td>
-              <td width="20%">
-                <span class="fz24 co333">500,000</span> 元
-              </td>
-              <td width="20%">
-                <span class="fz24 co333">0</span> 元
-              </td>
-              <td width="20%">
-                <span class="s_progress left">
-                  <span class="s_progress-bar" id="ylcLoanSchedule1" style="width: 100%;"></span>
-                </span>
-                <span class="s_progress-value left">100.0%</span>
-              </td>
-              <td rowspan="2" style="vertical-align: top">
-                <input type="button" value="已售罄" class="p_biaobtn btn cur" onclick="window.location.href='/front/invest/ylcDetail?ylcId=1685'"> 
-              </td>
-            </tr>
-            <tr height="26">
-              <td>预期年化收益</td>
-              <td>投资期限</td>
-              <td>募资总额</td>
-              <td>可投金额</td>
-              <td>投资进度</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table class="p_zhintable">
-          <tbody>
-            <tr height="48">
-              <td colspan="6">
-                <a class="p_zhintit" href="/front/invest/ylcDetail?ylcId=1685">益理财YS2017070010</a>
-                <span class="p_zhsubtit">发布时间：2017-07-07</span>
-              </td>
-            </tr>
-            <tr height="48">
-              <td width="15%">
-                <span class="p_zhlilv"><em>9.00</em>%</span>
-              </td>
-              <td width="15%">
-                <span class="fz24 co333">6</span>个月
-              </td>
-              <td width="20%">
-                <span class="fz24 co333">500,000</span> 元
-              </td>
-              <td width="20%">
-                <span class="fz24 co333">0</span> 元
-              </td>
-              <td width="20%">
-                <span class="s_progress left">
-                  <span class="s_progress-bar" id="ylcLoanSchedule1" style="width: 100%;"></span>
-                </span>
-                <span class="s_progress-value left">100.0%</span>
-              </td>
-              <td rowspan="2" style="vertical-align: top">
-                <input type="button" value="已售罄" class="p_biaobtn btn cur" onclick="window.location.href='/front/invest/ylcDetail?ylcId=1685'"> 
-              </td>
-            </tr>
-            <tr height="26">
-              <td>预期年化收益</td>
-              <td>投资期限</td>
-              <td>募资总额</td>
-              <td>可投金额</td>
-              <td>投资进度</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-    </ul>
-  </div>
+  <div class="s_center mt48 mb60">
+    <div class="p_zcmain clr">
+      <h4 class="p_zctitle mb55"><i class="ico"></i>用户注册</h4>
+      <div class="p_zcleft">
+        <dl class="p_zclist h40 clr">
+          <dt><span class="p_zcred">*</span> 手机号码</dt>
+          <dd>
+            <input type="text" class="p_zcinput" maxlength="11" value="" autocomplete="off" v-model="phone" @keypress="phoneFlag = true" v-focus></dd>
+        </dl>
+        <dl class="p_zclist h30 clr">
+          <dt>&nbsp;</dt>
+          <dd><span class="p_zcerror" v-if="phone == '' && phoneFlag"><i class="icon"></i>请输入手机号码</span></dd>
+          <dd><span class="p_zcerror" v-if="!isPhone && phone != '' && phoneFlag"><i class="icon"></i>手机号格式有误，请重新输入！</span></dd>
+          <dd><span class="p_zcerror" v-if="isRegister"><i class="icon"></i>该手机号已注册，请登录</span></dd>
+        </dl>
+        <dl class="p_zclist h40 clr" style="height: auto">
+          <dt><span class="p_zcred">*</span> 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
+          <dd><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
+            <input type="password" class="p_zcinput" maxlength="20" placeholder="6~20位字母、数字、符号组成" value="" autocomplete="off" @keyup="passwordFlag = true;" v-model="password" @keypress="detectCapsLock($event)"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
+          </dl>
+          <dl class="p_zclist h30 clr">
+            <dt>&nbsp;</dt>
+            <dd>
+              <!-- 20160122以下两个div判断后取其中一个显示，给需要隐藏的div添加class="none" 即可 -->
+              <div class="none" id="levelDd" style="display: none;"><span id="levelInfo">低</span><span class="p_zcsafe"><span id="levelWidth" style="width: 33%;"></span></span></div>
+              <div class="p_zcerror" v-if="password == '' && passwordFlag"><i class="icon"></i>请输入密码</div>
+            </dd>
+          </dl>
+          <dl class="p_zclist h40 clr">
+            <dt><span class="p_zcred">*</span> 确认密码</dt>
+            <dd><input type="password" class="p_zcinput" maxlength="20" value="" autocomplete="off" @keyup="passwordSureFlag = true;" v-model="passwordSure" @keypress="detectCapsLock($event)"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
+          </dl>
+          <dl class="p_zclist h30 clr">
+            <dt>&nbsp;</dt>
+            <dd><span class="p_zcerror" v-if="passwordSure == '' && passwordSureFlag"><i class="icon"></i>请再次输入密码</span></dd>
+            <dd><span class="p_zcerror" v-if="password !== passwordSure && passwordSure !==''"><i class="icon"></i>两次输入的密码不一致</span></dd>
+          </dl>
+          <dl class="p_zclist h40 clr">
+            <dt><span class="p_zcred">*</span> 验&nbsp;&nbsp;证&nbsp;&nbsp;码</dt>
+            <dd>
+              <input type="text" class="p_zcinput" v-model="code" @keyup="codeFlag = true;">
+              <a href="javascript:void(0);" class="p_zcsetyzm"><img src="https://www.yitianlicai.com/front/account/getImg?id=5a192a8a-6f0a-4c8f-bcc8-8fd8509a2973" class="" id="img" width="98px" height="38px"></a>
+              <a href="javascript:void(0);" class="p-dlyzm">换一张？</a>
+            </dd>
+          </dl>
+          <dl class="p_zclist h30 clr">
+            <dt>&nbsp;</dt>
+            <dd><span class="p_zcerror" v-if="code == '' && codeFlag"><i class="icon"></i>请输入验证码</span></dd>
+          </dl>
+          <dl class="p_zclist h40 clr">
+            <dt><span class="p_zcred">*</span> 短信验证码</dt>
+            <dd>
+              <input type="text" class="p_zcinput" maxlength="6" autocomplete="off" v-model="smsCode" @keyup="smsCodeFlag = true">
+              <span href="javascript:void(0);" @click="sendCode" class="p_zcsetyzm cursor" v-if="remain == 59">免费获取</span>
+              <span class="p_zcsetyzm" v-if="timer != null">{{remain}}秒后重发</span>
+            </dd>
+          </dl>
+          <dl class="p_zclist h30 clr">
+            <dt>&nbsp;</dt>
+            <dd><span class="p_zcerror_pay" v-if="smsCode === '' && smsCodeFlag === true"><i class="icon"></i>请输入短信验证码</span></dd>
+          </dl>
+          <dl class="p_zclist h40 clr">
+            <dt><span class="p_zcred"> &nbsp;</span> 邀&nbsp;&nbsp;请&nbsp;&nbsp;码</dt>
+            <dd>
+              <input class="p_zcinput" type="text" v-model="recommendCode" placeholder="邀请码/推荐人手机号">
+            </dd>
+          </dl>
+          <dl class="p_zclist h30 clr">
+            <dt>&nbsp;</dt>
+            <dd><span class="p_zcerror" v-if="realRecommendCode != recommendCode && recommendCode != '' && recommendCodeFlag == true && xieyi"><i class="icon"></i>该邀请码不存在</span></dd>
+            <dd><span class="p_zcerror" v-if="!xieyi"><i class="icon"></i>请勾选我已阅读并同意《益田理财注册协议》</span></dd>
+            
+          </dl> 
+          <dl class="p_zclist clr">
+            <dt>&nbsp;</dt>
+            <dd>
+              <label class="p_zclabel"><input type="checkbox" checked="checked" v-model="xieyi"> 我已阅读并同意</label>
+              <a href="/front/invest/registerProtocolDetails?id=-1010" class="cozhuse p-un" target="_blank">《益田理财注册协议》</a>
+            </dd>
+          </dl>
+          <dl class="p_zclist clr">
+            <dt>&nbsp;</dt>
+            <dd>
+              <input type="button" @click="register" class="p_zcbtn btn" value="提 交">
+            </dd>
+          </dl>
+          <dl class="p_zclist clr pt15">
+            <dt>&nbsp;</dt>
+            <dd>已注册？现在就 <a href="/login" class="cozhuse p-un">登录</a></dd>
+          </dl>
+        </div>
+        <div class="p_zcright">
+          <img src="../../assets/images/ad/ad02.jpg" alt="" width="328">
+        </div>
+      </div>
+    </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      products: [
-        {
-          name: '关于IOS系统充值恢复的通知',
-          date: '2017-05-16',
-          path: 'newDetails?id=571',
-          active: false
-        },
-        {
-          name: '关于IOS系统充值维护的通知',
-          date: '2017-05-11',
-          path: 'newDetails?id=566',
-          active: false
-        },
-        {
-          name: '关于“邂逅春天礼”活动获奖名单公布',
-          date: '2017-05-08',
-          path: 'newDetails?id=561',
-          active: false
-        },
-        {
-          name: '关于益田理财2017年劳动节放假公告',
-          date: '2017-04-25',
-          path: 'newDetails?id=542',
-          active: false
-        }
-      ],
-      // imgMap: {
-      //   '/detail/count': require("../assets/images/1.png"),
-      //   '/detail/forecast': require("../assets/images/2.png"),
-      //   '/detail/analysis': require("../assets/images/3.png"),
-      //   '/detail/publish': require("../assets/images/4.png")
-      // }
-      scrollArea: $("#scrollNews"),//document.getElementById("scrollNews"),
-      scrollUl: "ddddd",//this.scrollArea,//getElementsByTagName('ul')[0],
+      phone: '',
+      phoneFlag: false,
+      password: '',
+      passwordFlag: false,
+      passwordSure: '',
+      passwordSureFlag: false,
+      code: '',
+      codeFlag: false,
+      smsCode: '',
+      smsCodeFlag: false,
+      recommendCode: '',
+      recommendCodeFlag: false,
+      realRecommendCode: 'abc',
+      registerNum: '13188888888',
+      xieyi: true,
+      smsCode:'',
+      smsCodeFlag: false,
+      remain: 59,
       timer: null
     }
   },
-  methods: {
-    scrollNews (scrollArea, scrollUl, speed) {
-        var timeId,
-        height = scrollUl.children("li").height();
-        scrollArea.hover(function() {
-          clearInterval(timeId);
-        }, function() {
-          if (scrollUl.children("li").length > 1) {
-            timeId = setInterval(function() {
-              scrollUl.animate({
-                "margin-top": -height + "px"
-              }, 600, function() {
-                scrollUl.css("margin-top", "0").find("li:first").appendTo(scrollUl);
-              });
-            }, speed);
-          }
-        }).trigger("mouseleave");
+  computed: {
+    isPhone () {
+      return this.isMobileNum(this.phone);
     },
-    runScroll () {
-      this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+    isRegister () {
+      return this.phone === this.registerNum
+    }
+  },
+  methods: {
+    isMobileNum (phone) {
+      return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(phone));
+    },
+    register () {
+      if(this.phone === '' || !this.isPhone || this.isRegister){
+        this.phoneFlag = true;
+        return false;
+      } else if (this.password === ''){
+        this.passwordFlag = true;
+        return false;
+      } else if (!this.passwordSure) {
+        this.passwordSureFlag = true;
+        return false;
+      } else if (this.code === ''){
+        this.codeFlag = true;
+        return false;
+      } else if (this.smsCode === ''){
+        this.smsCodeFlag = true;
+        return false;
+      } else if (this.recommendCode !== ''){
+        if (this.recommendCode !== this.realRecommendCode) {
+          this.recommendCodeFlag = true;
+          return false;
+        }
+      } else {
+        location.href = '/account';
+        // this.$http.post('api/login')
+        //   .then((res) => {
+
+        //   }, (error) => {
+
+        //   })
+      }
+    },
+    // 短信验证码
+    sendCode () {
+      this.timer = setInterval(() => {
+        if (this.remain === 1) {
+          this.remain = 59;
+          clearInterval(this.timer);
+          this.timer = null
+        } else {
+          this.remain--;
+        }
+      }, 1000);
+    },
+    detectCapsLock (event) {
+      var e = event || window.event;  
+      var o = e.target || e.srcElement;
+      var oTip = o.nextElementSibling || o.nextSibling;
+      var keycode = e.keyCode ? e.keyCode: (e.which ? e.which : e.charCode);  
+      var realkey = String.fromCharCode(keycode);  
+      if (/^[A-Z]+$/.test(realkey)) {
+        oTip.style.display = "block";
+      } else {
+        oTip.style.display = "none";
+      }
     }
   },
   mounted () {
-    //this.runScroll();
-    //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+    
   }
 }
 </script>
-<style scoped>
-
-</style>

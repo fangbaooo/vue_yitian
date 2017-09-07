@@ -77,7 +77,7 @@
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="phone == '' && phoneFlag"><i class="icon"></i>请输入联系方式</span>
-          <span class="p_zcerror" v-if="!isPhone && phoneFlag"><i class="icon"></i>手机号格式有误，请重新输入！</span>
+          <span class="p_zcerror" v-if="!isPhone && phone != '' && phoneFlag"><i class="icon"></i>手机号格式有误，请重新输入！</span>
         </div>
         <div class="clr loan-label">
           <span class="loan-label-text">借贷类型</span>
@@ -89,7 +89,7 @@
         
         <div class="clr loan-label">
           <span class="loan-label-text">借款金额</span>
-          <input type="text" id="money" @keyup="checkMoney('money'); moneyFlag = true" v-model="money">
+          <input type="text" id="money" @keyup="moneyFlag = true" v-model="money" v-money="money">
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="money == '' && moneyFlag"><i class="icon"></i>请输入借款金额</span>
@@ -230,7 +230,7 @@ export default {
   },
   computed: {
     isPhone () {
-      return (new RegExp(/^((13[0-9])|(14[0-7])|(15[^4,\D])|(17[0-8])|(18[0-9]))(\d{8})$/).test(this.phone));
+      return this.isMobileNum(this.phone);
     }
   },
   methods: {
@@ -282,5 +282,18 @@ export default {
       console.log(data)
     }
   },
+  //directives: {
+    // focus: {
+    //   inserted: function (el) {
+    //     // 聚焦元素
+    //     el.focus()
+    //   }
+    // },
+    // money: {
+    //   update: function(el, value) {
+    //     el.value = el.value.replace(/[^\d\.]/g, '').replace(/^\.+/, '').replace(/^(\d{1,18}(\.\d{0,2})?).*/, '$1').replace(/^0\d+/, '');
+    //   }
+    // }
+  //}
 }
 </script>
