@@ -31,9 +31,16 @@
                 </div>
               </div>
             </div>
-            <a href="/login">登录</a>
-            <i>|</i>
-            <a href="/register">注册</a>
+            <div class="left" v-if="!$store.state.isLogin">
+              <a href="/login">登录</a>
+              <i>|</i>
+              <a href="/register">注册</a>
+            </div>
+            <div class="left" v-else>
+              <span v-text="$store.state.userInfo.nick"></span>
+              <i>|</i>
+              <a href="javascript:;" @click="logout"> 安全退出</a>
+            </div>
               <!-- <i>|</i>
               <a href="@{front.account.loginAndRegisterAction.logout()}" title="" target="">安全退出</a> -->
             
@@ -96,12 +103,76 @@
       </div>
     </div>
     <!--footer end-->
+  <Loading v-if="isLogouting"></Loading>
   </div>
 </template>
 
 <script>
+import Loading from '@/components/base/Loading.vue'
 export default {
-  
+  data(){
+    return {
+      isLogouting: false,
+      isLogin: false,
+      userInfo: { //保存用户信息
+        nick: null,
+        ulevel: null,
+        uid: null,
+        portrait: null
+      }
+    }
+  },
+  components:{
+    Loading
+  },
+  mounted(){
+    //组件开始挂载时获取用户信息
+    //this.getUserInfo();
+
+  },
+  methods: {
+    //请求用户的一些信息
+    // getUserInfo() {
+    //   if (this.getCookie('session')) {
+    //     this.isLogin = true;
+
+    //     //发送http请求获取，这里写死作演示
+    //     this.userInfo = {
+    //         nick: 'chenwei',
+    //         ulevel: 20,
+    //         uid: '10000'
+    //           //portrait: 'images/profile.png'
+    //       }
+    //       //实例开发中这里会向服务端请求数据
+    //       //如下(用了vue-resource):
+    //       /*ts.$http.get(url, {
+    //         //参数
+    //         "params":{}
+    //       }).then((response) => {
+    //         //Success
+    //       }, (response) => {
+    //         //Error
+    //       });*/
+    //       //提交mutation到Store
+    //     this.$store.commit('updateUserInfo', this.userInfo);
+    //   } else {
+    //     this.isLogin = false;
+    //   }
+    // },
+    //注销
+    logout(){
+      //删除cookie并跳到登录页
+      this.isLogouting = true;
+      this.delCookie('session');
+      //演示
+      setTimeout(()=>{
+        this.$store.commit('checkLogin', false);
+        location.href = '/login';
+        //this.$router.push('/login');
+        this.isLogouting = false;
+      }, 3000)
+    }
+  }
 }
 </script>
 

@@ -69,9 +69,11 @@
       <img src="../../assets/images/ad/ad02.jpg" alt="" width="328">
     </div>
   </div>
+  <Loading v-if="isLoging" marginTop="-30%"></Loading>
 </div>
 </template>
 <script>
+import Loading from '@/components/base/Loading.vue'
 export default {
   data () {
     return {
@@ -82,8 +84,12 @@ export default {
       isPassword: true,
       realPw: '123456',
 
-      rmbUser: false
+      rmbUser: false,
+      isLoging: false, // 用来显示loading
     }
+  },
+  components:{
+    Loading
   },
   computed: {
     isPhone () {
@@ -107,20 +113,36 @@ export default {
         return false;
       } else {
         if (this.password === this.realPw) {
-          console.log(this.rmbUser)
           if (this.rmbUser == true) {
             localStorage.rmbUser = this.phone;
           }
-          location.href = '/account';
+          this.isLoging = true;
+          //请求后端,比如:
+          /*this.$http.post( 'example.com/login.php', {
+          param: loginParam).then((res) => {
+            if(res.data.code == 1){
+              let expireDays = 1000 * 60 * 60 * 24 * 15;
+              this.setCookie('session', res.data.session, expireDays);
+              //登录成功后
+              this.$router.push('/account'); 
+            }
+          }, (res) => {
+              //Error
+          });
+          */
+           
+          //演示用
+          setTimeout(()=>{
+            //登录状态15天后过期
+            let expireDays = 1000 * 60 * 60 * 24 * 15;
+            this.setCookie('session','chenwei', expireDays);
+            this.isLoging = false;
+            //登录成功后
+            this.$router.push('/account');
+          },3000)
         } else {
           this.isPassword = false;
         }
-        // this.$http.post('api/login')
-        //   .then((res) => {
-
-        //   }, (error) => {
-
-        //   })
       }
     },
     // 记住用户名

@@ -6,7 +6,7 @@
         <ul class="p_syggscrul">
           <li class="clr" v-for="item in products"><router-link :to="{path: item.path }" class="text_hide">{{item.name}}</router-link><span>{{item.date}}</span></li>
         </ul>
-        <router-link :to="{path: 'aboutUs?id=19' }" class="p_syggmore">查看更多</router-link>
+        <router-link to="/aboutUs/notice" class="p_syggmore">查看更多</router-link>
       </div>
     </div>
 
