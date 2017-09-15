@@ -128,7 +128,6 @@ export default {
   mounted(){
     //组件开始挂载时获取用户信息
     //this.getUserInfo();
-
   },
   methods: {
     //请求用户的一些信息
@@ -170,7 +169,7 @@ export default {
         location.href = '/login';
         //this.$router.push('/login');
         this.isLogouting = false;
-      }, 3000)
+      }, 1000)
     }
   }
 }

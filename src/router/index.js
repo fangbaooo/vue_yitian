@@ -45,54 +45,78 @@ import newsDetail from '@/page/newsDetail';
 
 Vue.use(Router);
 
-export default new Router({
+const route =  new Router({
 	mode: "history",
   routes: [
-    { path: '/', component: Index},
-    { path: '/ylcHome', component: ylcHome},          // 益理财
-    { path: '/loan', component: loan},                // 我要借款
-    { path: '/noviceGuide', component: noviceGuide},  // 新手指南
-    { path: '/safeguard', component: safeguard},      // 安全保障
-    { path: '/login', component: login},              // 登录
-    { path: '/register', component: register},        // 注册
+    { path: '/', component: Index, meta: {title: '益田理财'}},
+    { path: '/ylcHome', component: ylcHome, meta: {title: '益理财'}},          // component: (reslove) => require([ylcHome], reslove)
+    { path: '/loan', component: loan, meta: {title: '我要借款'}},               
+    { path: '/noviceGuide', component: noviceGuide, meta: {title: '新手指南'}}, 
+    { path: '/safeguard', component: safeguard, meta: {title: '安全保障'}},    
+    { path: '/login', component: login, meta: {title: '登录'}},            
+    { path: '/register', component: register, meta: {title: '注册'}},        
     { path: '/account',  component: account, redirect: '/account/home',// 个人中心
       children: [
-        { path: '/account/home', component: home},  // 账户总览
-        { path: '/account/home/recharge', component: recharge},  // 充值
-        { path: '/account/home/withdrawal', component: withdrawal},  // 提现
-        { path: '/account/home/dealRecord', component: dealRecord},  // 交易记录
-        { path: '/account/myInvest', redirect: '/account/myInvest/investRecord'},   // 我的投资
-        { path: '/account/myInvest/investRecord', component: investRecord},
-        { path: '/account/myInvest/investBill', component: investBill},  //投资记录
-        { path: '/account/bankCard', component: bankCard},    // 银行卡
-        { path: '/account/reward', redirect: '/account/reward/couponsList'},  // 我的奖励
-        { path: '/account/reward/couponsList', component: couponsList},
-        { path: '/account/reward/cashRecord', component: cashRecord},
-        { path: '/account/reward/rewardRecord', component: rewardRecord},
-        { path: '/account/safeCenter', component: safeCenter},  // 安全中心
-        { path: '/account/spread', redirect: '/account/spread/spreadLink'},   // 我的推广
-        { path: '/account/spread/spreadLink', component: spreadLink},
-        { path: '/account/spread/spreadUser', component: spreadUser}
+        { path: '/account/home', component: home, meta: {title: '账户总览'}},
+        { path: '/account/home/recharge', component: recharge, meta: {title: '充值'}},
+        { path: '/account/home/withdrawal', component: withdrawal, meta: {title: '提现'}},
+        { path: '/account/home/dealRecord', component: dealRecord, meta: {title: '交易记录'}},
+        { path: '/account/myInvest', redirect: '/account/myInvest/investRecord'},
+        { path: '/account/myInvest/investRecord', component: investRecord, meta: {title: '我的投资'}},
+        { path: '/account/myInvest/investBill', component: investBill, meta: {title: '投资记录'}},
+        { path: '/account/bankCard', component: bankCard, meta: {title: '银行卡'}},
+        { path: '/account/reward', redirect: '/account/reward/couponsList'},
+        { path: '/account/reward/couponsList', component: couponsList, meta: {title: '我的奖励'}},
+        { path: '/account/reward/cashRecord', component: cashRecord, meta: {title: '我的奖励'}},
+        { path: '/account/reward/rewardRecord', component: rewardRecord, meta: {title: '我的奖励'}},
+        { path: '/account/safeCenter', component: safeCenter, meta: {title: '安全中心'}}, 
+        { path: '/account/spread', redirect: '/account/spread/spreadLink', meta: {title: '我的推广'}},
+        { path: '/account/spread/spreadLink', component: spreadLink, meta: {title: '我的推广'}},
+        { path: '/account/spread/spreadUser', component: spreadUser, meta: {title: '我的推广'}}
       ]
     },
     { path: '/help', component: help},
     { path: '/aboutUs', component: aboutUs, redirect: '/aboutUs/aboutCompany', // 关于我们
       children: [
-        { path: '/aboutUs/aboutCompany', component: aboutCompany},  // 公司简介
-        { path: '/aboutUs/partner', component: partner}, // 合作伙伴
-        { path: '/aboutUs/team', component: team}, // 公司简介
-        { path: '/aboutUs/notice', component: notice}, // 团队风采
-        { path: '/aboutUs/dynamic', component: dynamic}, // 平台动态
-        { path: '/aboutUs/news', component: news},  // 行业资讯
-        { path: '/aboutUs/recruit', component: recruit}, // 招聘
-        { path: '/aboutUs/contact', component: contact},  // 联系我们
-        
+        { path: '/aboutUs/aboutCompany', component: aboutCompany, meta: {title: '公司简介'}},
+        { path: '/aboutUs/partner', component: partner, meta: {title: '合作伙伴'}},
+        { path: '/aboutUs/team', component: team, meta: {title: '公司简介'}},
+        { path: '/aboutUs/notice', component: notice, meta: {title: '团队风采'}},
+        { path: '/aboutUs/dynamic', component: dynamic, meta: {title: '平台动态'}},
+        { path: '/aboutUs/news', component: news, meta: {title: '行业资讯'}}, 
+        { path: '/aboutUs/recruit', component: recruit, meta: {title: '招聘'}},
+        { path: '/aboutUs/contact', component: contact, meta: {title: '联系我们'}},
       ]
     },
-    { path: '/newsDetail/:id', name:'newsDetail', component: newsDetail},  // 新闻详情页
+    { path: '/newsDetail/:id', name:'newsDetail', component: newsDetail, meta: {title: '新闻详情页'}},
     {
       path: '*',
       redirect: '/'
     }
   ]
 });
+
+
+// 兼容微信设置页面的title
+let setDocumentTitle = function (title) {
+    document.title = title;
+    let ua = navigator.userAgent;
+    if (/\bMicroMessenger\/([\d\.]+)/.test(ua) && /ip(hone|od|ad)/i.test(ua)) {
+        var i = document.createElement('iframe');
+        i.src = '/favicon.ico';
+        i.style.display = 'none';
+        i.onload = function () {
+            setTimeout(function () {
+                i.remove();
+            }, 9);
+        };
+        document.body.appendChild(i);
+    }
+};
+
+route.beforeEach((to, from, next) => {
+  typeof to.meta.title !== undefined && setDocumentTitle(to.meta.title);
+  next();
+});
+
+export default route;

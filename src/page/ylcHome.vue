@@ -1,5 +1,5 @@
 <template>
-  <div class="s_center clr">
+  <div class="s_center clr mb30">
     <div class="s_bread">
       <router-link to="/" class="s_breadindex"><i class="icon"></i>首页</router-link>
       <i class="s_breadarrow">&gt;</i> <span>我要理财</span>

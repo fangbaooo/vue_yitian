@@ -1,5 +1,5 @@
 <template>
-  <div class="s_center mt48 mb60">
+  <div class="s_center mt48 mb60" v-title data-title="注册">
     <div class="p_zcmain clr">
       <h4 class="p_zctitle mb55"><i class="ico"></i>用户注册</h4>
       <div class="p_zcleft">
@@ -190,7 +190,6 @@ export default {
     }
   },
   mounted () {
-    
   }
 }
 </script>

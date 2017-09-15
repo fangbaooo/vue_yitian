@@ -58,6 +58,8 @@ Vue.prototype.delCookie = (name) => {
 	if (cval != null)
 		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
 }
+
+
 new Vue({
   el: '#app',
   router,

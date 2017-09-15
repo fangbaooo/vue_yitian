@@ -30,3 +30,11 @@ Vue.directive('capslock', {
     }
   }
 });
+
+// 设置页面标题  使用：<div v-title data-title="标题内容">
+Vue.directive('title', {
+  inserted: function (el, binding) {
+    console.log(el.dataset.title)
+    //document.title = el.dataset.title
+  }
+});

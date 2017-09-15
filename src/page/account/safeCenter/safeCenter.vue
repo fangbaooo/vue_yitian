@@ -1,5 +1,5 @@
 <template>
-  <div class="p_zhright">
+  <div class="p_zhright" v-title data-title="安全中心">
     <!-- 右侧内容 -->
     <div class="p_zhinvelist mt0">
       <h4 class="p_zhtitle">
