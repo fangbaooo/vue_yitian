@@ -4,7 +4,7 @@
         <div class="s_bread">
             <a href="/" title="" class="s_breadindex"><i class="icon"></i>首页</a>
             <i class="s_breadarrow">&gt;</i>关于我们<i class="s_breadarrow">&gt;</i>
-            <span>{{list.type}}</span>
+            <span>{{list.type}} </span>
         </div>
 		<div class="p_wenzhmain clr">
 			<h4>{{list.title}}</h4>

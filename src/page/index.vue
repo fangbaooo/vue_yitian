@@ -21,7 +21,7 @@
           <router-link :to="{path: '/ylcHome'}" class="p_syrbtn"><img src="../assets/images/ad/wjtz.jpg" width="495" height="150" alt=""></router-link>
         </div>
       </div>
-      <div class="mt20"><ylc-list></ylc-list></div>
+      <div class="mt20"><ylc-list :list="listData"></ylc-list></div>
     </div>
   </div>
 </template>
@@ -69,7 +69,42 @@ export default {
       // }
       scrollArea: $("#scrollNews"),//document.getElementById("scrollNews"),
       scrollUl: "ddddd",//this.scrollArea,//getElementsByTagName('ul')[0],
-      timer: null
+      timer: null,
+      listData: [
+        {
+          name: '益理财YS2017070010',
+          id: 11,
+          link: '/ylcDetail/11',
+          apr: '8.0',
+          period: '3',
+          totalAmount: '800,000.00',
+          ableAmount: '200,000.00',
+          date: '2017-09-09',
+          percent: '75'
+        },
+        {
+          name: '益理财YS2017070010',
+          id: 12,
+          link: '/ylcDetail/12',
+          apr: '8.0',
+          period: '3',
+          totalAmount: '800,000.00',
+          ableAmount: '200,000.00',
+          date: '2017-09-09',
+          percent: '75'
+        },
+        {
+          name: '益理财YS2017070010',
+          id: 13,
+          link: '/ylcDetail/13',
+          apr: '8.0',
+          period: '3',
+          totalAmount: '800,000.00',
+          ableAmount: '200,000.00',
+          date: '2017-09-09',
+          percent: '75'
+        },
+      ]
     }
   },
   methods: {

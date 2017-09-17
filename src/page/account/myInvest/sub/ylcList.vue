@@ -39,7 +39,7 @@
             <td>{{item.deadline}}</td>
             <td>{{item.interest}}</td>
             <td>{{item.nextPayments}}</td>
-            <td>{{item.status}}</td>
+            <td @click="edit(item, index)">{{item.status}}</td>
             <td>{{item.protocol}}</td>
           </tr>
         </tbody>
@@ -51,13 +51,16 @@
     <div class="p_nonejilu" v-else>
       <p>暂无数据</p>
     </div>
+    <edit-item id="editItemPop" @submit="editOK" :record="record"></edit-item>
   </div>
 </template>
 <script>
 import pagination from "@/components/base/pagination"
+import editItem from "./editItem"
 export default {
   components: {
-    pagination
+    pagination,
+    editItem
   },
   data () {
     return {
@@ -108,7 +111,20 @@ export default {
           }
         ],
         total: 4
-      }
+      },
+      record: {
+            investDate: '2017-04-20',
+            name: '益理财YLC2016040025',
+            investCapital: '30,200',
+            yieldRate: '8.00',
+            deadline: '1个月',
+            interest: '201.33',
+            nextPayments: '2017-05-20',
+            status: '已还款',
+            protocol: '241',
+          },
+      recordIndex: 0,
+      modifyItemPop: null
     }
   },
   mounted (){
@@ -119,6 +135,29 @@ export default {
       // 在这里使用ajax或者fetch将对应页传过去获取数据即可
       //this.list = list
       //this.pageNo = dataList.pageNo
+    },
+    edit(item, index) {
+      this.record = this.copy({},item);
+      this.recordIndex = index;
+      let id = document.getElementById("editItemPop");
+      this.modifyItemPop = dialog({
+        title: "修改记录",
+        content: id,
+        width: 600
+      });
+      this.modifyItemPop.showModal();
+    },
+    editOK () {
+      this.list.page.splice(this.recordIndex, 1, this.record)
+      this.modifyItemPop.close().remove();
+    },
+    copy (newObject, oldObject) {
+      for (var prop in oldObject) {
+        if (oldObject.hasOwnProperty(prop)) {
+          newObject[prop] = oldObject[prop];
+        }
+      };
+      return newObject
     }
   }
 }

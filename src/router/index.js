@@ -43,6 +43,7 @@ import recruit from '@/page/aboutUs/recruit';
 import contact from '@/page/aboutUs/contact';
 import newsDetail from '@/page/newsDetail';
 
+import ylcDetail from '@/page/detail/ylcDetail';
 Vue.use(Router);
 
 const route =  new Router({
@@ -89,6 +90,7 @@ const route =  new Router({
       ]
     },
     { path: '/newsDetail/:id', name:'newsDetail', component: newsDetail, meta: {title: '新闻详情页'}},
+    { path: '/ylcDetail/:id', name:'ylcDetail', component: ylcDetail, meta: {title: '益理财投资详情页'}},
     {
       path: '*',
       redirect: '/'

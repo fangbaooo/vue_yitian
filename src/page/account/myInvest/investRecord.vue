@@ -11,6 +11,7 @@
   </div>
 </template>
 <script>
+import Dailog from "Dailog";
 import ylcList from "./sub/ylcList"
 import hlcList from "./sub/hlcList"
 export default {
