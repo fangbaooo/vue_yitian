@@ -1,5 +1,5 @@
 <template>
-  <div class="s_center mt48 mb60" v-title data-title="注册">
+  <div class="s_center mt48 mb60">
     <div class="p_zcmain clr">
       <h4 class="p_zctitle mb55"><i class="ico"></i>用户注册</h4>
       <div class="p_zcleft">
@@ -51,7 +51,7 @@
           <dl class="p_zclist h40 clr">
             <dt><span class="p_zcred">*</span> 短信验证码</dt>
             <dd>
-              <input type="text" class="p_zcinput" maxlength="6" autocomplete="off" v-model="smsCode" @keyup="smsCodeFlag = true">
+              <input type="text" class="p_zcinput" maxlength="6" autocomplete="off" v-model="smsCode" @keyup="smsCodeFlag = true" @keyup.enter="register">
               <span href="javascript:void(0);" @click="sendCode" class="p_zcsetyzm cursor" v-if="remain == 59">免费获取</span>
               <span class="p_zcsetyzm" v-if="timer != null">{{remain}}秒后重发</span>
             </dd>
@@ -63,7 +63,7 @@
           <dl class="p_zclist h40 clr">
             <dt><span class="p_zcred"> &nbsp;</span> 邀&nbsp;&nbsp;请&nbsp;&nbsp;码</dt>
             <dd>
-              <input class="p_zcinput" type="text" v-model="recommendCode" placeholder="邀请码/推荐人手机号">
+              <input class="p_zcinput" type="text" v-model="recommendCode" placeholder="邀请码/推荐人手机号" @keyup.enter="register">
             </dd>
           </dl>
           <dl class="p_zclist h30 clr">

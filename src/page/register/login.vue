@@ -16,7 +16,7 @@
       <dl class="p_zclist h40 clr">
         <dt><span class="p_zcred">*</span> 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
         <dd><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
-          <input type="password" class="p_zcinput" autocomplete="off" @keyup="passwordFlag = true;isPassword = true" v-model="password" @keypress="detectCapsLock($event)"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
+          <input type="password" class="p_zcinput" autocomplete="off" @keyup="passwordFlag = true;isPassword = true" v-model="password" @keypress="detectCapsLock($event)" @keyup.enter="login"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
       </dl>
       <dl class="p_zclist h30 clr">
         <dt>&nbsp;</dt>

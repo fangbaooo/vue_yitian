@@ -70,7 +70,7 @@
           <tr height="68">
             <th>提现金额</th>
             <td>
-              <input type="text" class="p_zcinput" placeholder="提现金额(元)" name="amount" autocomplete="off" v-model="withdrawalMoney" @keyup="checkMoney($event)"></td>
+              <input type="text" class="p_zcinput" placeholder="提现金额(元)" name="amount" autocomplete="off" v-model="withdrawalMoney" @keyup="checkMoney($event)"v-focus></td>
           </tr>
           <tr height="" class="" id="t_amount" style="display:none;">
             <th>&nbsp;</th>
@@ -79,7 +79,7 @@
           <tr height="68">
             <th>交易密码</th>
             <td><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
-              <input type="password" class="p_zcinput" placeholder="交易密码" name="payPassword" autocomplete="off" maxlength="8" v-model="payPassword" @keyup="checkPayPW($event)"></td>
+              <input type="password" class="p_zcinput" placeholder="交易密码" name="payPassword" autocomplete="off" maxlength="8" v-model="payPassword" @keyup="checkPayPW($event)" @keyup.enter="withDrawSubmit"></td>
           </tr>
           <tr height="" class="" id="t_payPassword" style="display:none;">
             <th>&nbsp;</th>
@@ -101,7 +101,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="p-tl"><input @click="withDrawSubmits();" class="p_zcbtn btn" value="立即提现" type="button" style="text-align:center"></div>
+      <div class="p-tl"><input @click="withDrawSubmit" class="p_zcbtn btn" value="立即提现" type="button" style="text-align:center"></div>
     </div>
   </div>
 </template>
@@ -124,7 +124,7 @@ export default {
       let obj = e.currentTarget;
       obj.value=obj.value.replace(/[^A-Za-z0-9]/g,'')
     },
-    withDrawSubmits() {
+    withDrawSubmit() {
       if (this.withdrawalMoney == '') {
         alert("充输入提现金额");
       } else if(this.payPassword == ''){
