@@ -24,37 +24,37 @@ export default {
       pageNo: 1,
       listData: [
         {
-          name: '益理财YS2017070010',
+          name: '益理财YS2017070011',
           id: 11,
-          link: '/ylcDetail/11',
+          link: '/ylcHome/ylcDetail/11',
           apr: '8.0',
           period: '3',
-          totalAmount: '800,000.00',
-          ableAmount: '200,000.00',
+          totalAmount: '500,000.00',
+          ableAmount: '300,000.00',
           date: '2017-09-09',
-          percent: '75'
+          percent: '40'
         },
         {
-          name: '益理财YS2017070010',
+          name: '益理财YS2017070012',
           id: 12,
-          link: '/ylcDetail/12',
+          link: '/ylcHome/ylcDetail/12',
           apr: '8.0',
           period: '3',
-          totalAmount: '800,000.00',
-          ableAmount: '200,000.00',
+          totalAmount: '500,000.00',
+          ableAmount: '300,000.00',
           date: '2017-09-09',
-          percent: '75'
+          percent: '40'
         },
         {
-          name: '益理财YS2017070010',
+          name: '益理财YS2017070013',
           id: 13,
-          link: '/ylcDetail/13',
+          link: '/ylcHome/ylcDetail/13',
           apr: '8.0',
           period: '3',
-          totalAmount: '800,000.00',
-          ableAmount: '200,000.00',
+          totalAmount: '500,000.00',
+          ableAmount: '300,000.00',
           date: '2017-09-09',
-          percent: '75'
+          percent: '40'
         },
       ]
     }

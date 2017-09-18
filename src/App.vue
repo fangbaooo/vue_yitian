@@ -53,7 +53,7 @@
         <router-link to="/" class="s_logo">益田理财</router-link>
         <ul class="s_navlist right">
           <li><router-link to="/" active-class="selected" exact>首页</router-link></li>
-          <li><h2><router-link to="/ylcHome" active-class="selected" exact>我要理财</router-link></h2></li>
+          <li><h2><router-link to="/ylcHome" active-class="selected">我要理财</router-link></h2></li>
           <li><router-link to="/loan" active-class="selected" exact>我要借款</router-link></li>
           <li><router-link to="/noviceGuide" active-class="selected" exact>新手指南</router-link></li>
           <router-link to="/account" active-class="selected" id="usr" tag="li" class="s_accountnav"><i class="s_accounticon"></i><a>我的账户</a></router-link>

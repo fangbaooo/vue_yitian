@@ -90,7 +90,7 @@ const route =  new Router({
       ]
     },
     { path: '/newsDetail/:id', name:'newsDetail', component: newsDetail, meta: {title: '新闻详情页'}},
-    { path: '/ylcDetail/:id', name:'ylcDetail', component: ylcDetail, meta: {title: '益理财投资详情页'}},
+    { path: '/ylcHome/ylcDetail/:id', name:'ylcDetail', component: ylcDetail, meta: {title: '益理财投资详情页'}},
     {
       path: '*',
       redirect: '/'
