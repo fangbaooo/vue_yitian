@@ -1,12 +1,12 @@
 <template>
   <div class="pager">
-    <button class="btn btn-pager" :disabled="current == 1" @click="prePage">上一页</button>
+    <button class="btn" :class="[current == 1 ? 'btn-pager-disabled' : 'btn-pager']" :disabled="current == 1" @click="prePage">上一页</button>
     <span v-if="pageNo !== 1" class="page-index" :class="1 == current ? 'active':''" @click="goPage(1)">1</span>
     <span v-if="preClipped" class="page-index">...</span>
     <span v-for="index in pages" class="page-index" :class="index == current ? 'active':''" @click="goPage(index)">{{index}}</span>
     <span v-if="backClipped" class="page-index">...</span>
     <span class="page-index" :class="pageNo == current ? 'active':''" @click="goPage(pageNo)">{{pageNo}}</span>
-    <button type="b" class="btn btn-pager" :disabled="current == pageNo" @click="nextPage">下一页</button>
+    <button class="btn" :class="[current == pageNo ? 'btn-pager-disabled' : 'btn-pager']" :disabled="current == pageNo" @click="nextPage">下一页</button>
   </div>
 </template>
 
@@ -102,7 +102,7 @@ export default {
   text-align: center;
   display: inline-block;
 }
-.btn-pager {
+.btn-pager, .btn-pager-disabled {
   margin: 0 3px;
   padding: 0 10px;
   width: auto;
@@ -115,12 +115,6 @@ export default {
   border-radius: 0px;
   vertical-align: middle;
 }
-.btn-pager:hover {
-  background-color: #ff5256;
-}
-.btn-pager:disabled {
-  background-color: #ededed;
-}
 .page-index {
   display: inline-block;
   margin: 0 3px;
@@ -130,6 +124,11 @@ export default {
   background-color: #ededed;
   cursor: pointer;
   color: #000000;
+}
+.btn-pager-disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+  color: #bfcbd9;
 }
 .active, .page-index:hover, .btn-pager:hover {
   color: #ffffff;

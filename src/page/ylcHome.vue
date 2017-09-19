@@ -12,8 +12,9 @@
 </template>
 <script>
 import pagination from "@/components/base/pagination"
+import fetch from "@/utils/fetch"
 import ylcList from "./ylcList"
-var url = "http://www.easy-mock.com/mock/59bf2ba7e0dc663341ad7387/vue_yitian/ylcList"
+//var url = "http://www.easy-mock.com/mock/59bf2ba7e0dc663341ad7387/vue_yitian/ylcList"
 export default {
   components: {
     pagination,
@@ -23,6 +24,7 @@ export default {
     return {
       currentPage: 1,
       pageNo: 1,
+      maxRecord: 10,
       listData: null
       // listData: [
       //   {
@@ -41,17 +43,33 @@ export default {
   },
   methods: {
     requestData (pageIndex) {
-      this.$http.get(url, {pageIndex: pageIndex}).then((res) => {
-          let json = res.data;
-          if(json.code === 0){
-            this.listData = json.data;
-            this.pageNo = parseInt(json.data.length/10) + 1
-          } else {
-            alert("数据获取有误!")
-          }
-        }, (res) => {
-          alert(res.msg)
-        });
+      fetch({
+        url: '/ylcList',
+        method: 'get',
+        params: {
+          pageIndex
+        }
+      }).then(res => {
+        this.pageNo = parseInt(res.data.length/10) + 1
+        this.listData = this.limitList(res.data);
+      })
+      // axios.get(url, {pageIndex: pageIndex}).then((res) => {
+      //     let json = res.data;
+      //     if(json.code === 0){
+      //       this.listData = json.data;
+      //       this.pageNo = parseInt(json.data.length/10) + 1
+      //     } else {
+      //       alert("数据获取有误!")
+      //     }
+      //   }, (res) => {
+      //     alert(res.msg)
+      //   });
+    },
+    limitList (data) {
+      if (data.length > this.maxRecord ) {
+        data.splice(this.maxRecord)
+      }
+      return data;
     },
     pagechange (pageIndex) {
       this.requestData(pageIndex);

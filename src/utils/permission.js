@@ -25,29 +25,35 @@ let setDocumentTitle = function (title) {
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  if (getToken()) {
-    if (to.path === '/login') {
-      next({ path: '/' })
-    } else {
-      if (store.getters.roles.length === 0) {
-        store.dispatch('GetInfo').then(res => {
-          const roles = res.data.role
-          store.dispatch('GenerateRoutes', { roles }).then(() => {
-            router.addRoutes(store.getters.addRouters)
-            next({ ...to })
-          })
-        })
+  if (to.path.indexOf('/account') > -1) {
+    if (getToken()) {
+      if (to.path === '/login') {
+        next({ path: '/' })
       } else {
+        if (store.getters.roles.length === 0) {
+          store.dispatch('GetInfo').then(res => {
+            // const roles = res.data.role
+            // store.dispatch('GenerateRoutes', { roles }).then(() => {
+            //   router.addRoutes(store.getters.addRouters)
+            //   next({ ...to })
+            // })
+            next()
+          })
+        } else {
+          next()
+        }
+      }
+    } else {
+      if (whiteList.indexOf(to.path) !== -1) {
         next()
+      } else {
+        next('/login')
+        //NProgress.done()
       }
     }
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
-      next()
-    } else {
-      next('/login')
-      NProgress.done()
-    }
+    next()
+    //NProgress.done()
   }
 })
 

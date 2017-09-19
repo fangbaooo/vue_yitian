@@ -1,5 +1,5 @@
 <template>
-  <div v-title data-title="新手指南">
+  <div>
     <ul class="p_safepage" id="scrollPage">
     <li class="section page01 pageon">
       <div class="p_sfmain p_safex1">

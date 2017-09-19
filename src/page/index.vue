@@ -27,6 +27,7 @@
 </template>
 <script>
 import ensure from './index/ensure'
+import fetch from "@/utils/fetch"
 import ylcList from './ylcList'
 export default {
   components: {
@@ -70,44 +71,30 @@ export default {
       scrollArea: $("#scrollNews"),//document.getElementById("scrollNews"),
       scrollUl: "ddddd",//this.scrollArea,//getElementsByTagName('ul')[0],
       timer: null,
-      listData: [
-        {
-          name: '益理财YS2017070010',
-          id: 11,
-          link: '/ylcDetail/11',
-          apr: '8.0',
-          period: '3',
-          totalAmount: '800,000.00',
-          ableAmount: '200,000.00',
-          date: '2017-09-09',
-          percent: '75'
-        },
-        {
-          name: '益理财YS2017070010',
-          id: 12,
-          link: '/ylcDetail/12',
-          apr: '8.0',
-          period: '3',
-          totalAmount: '800,000.00',
-          ableAmount: '200,000.00',
-          date: '2017-09-09',
-          percent: '75'
-        },
-        {
-          name: '益理财YS2017070010',
-          id: 13,
-          link: '/ylcDetail/13',
-          apr: '8.0',
-          period: '3',
-          totalAmount: '800,000.00',
-          ableAmount: '200,000.00',
-          date: '2017-09-09',
-          percent: '75'
-        },
-      ]
+
+      pageIndex: 1,
+      maxRecord: 6,
+      listData: null
     }
   },
   methods: {
+    requestData (pageIndex) {
+      fetch({
+        url: '/ylcList',
+        method: 'get',
+        params: {
+          pageIndex
+        }
+      }).then(res => {
+        this.listData = this.limitList(res.data);
+      })
+    },
+    limitList (data) {
+      if (data.length > this.maxRecord ) {
+        data.splice(this.maxRecord)
+      }
+      return data;
+    },
     scrollNews (scrollArea, scrollUl, speed) {
         var timeId,
         height = scrollUl.children("li").height();
@@ -130,6 +117,7 @@ export default {
     }
   },
   mounted () {
+    this.requestData(this.currentPage);
     this.runScroll();
     //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
   }

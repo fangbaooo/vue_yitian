@@ -31,13 +31,13 @@
                 </div>
               </div>
             </div>
-            <div class="left" v-if="!$store.state.name">
+            <div class="left" v-if="!$store.state.user.name">
               <a href="/login">登录</a>
               <i>|</i>
               <a href="/register">注册</a>
             </div>
             <div class="left" v-else>
-              <span v-text="$store.state.userInfo.nick"></span>
+              <span v-text="$store.state.user.name"></span>
               <i>|</i>
               <a href="javascript:;" @click="logout"> 安全退出</a>
             </div>
@@ -130,46 +130,12 @@ export default {
     //this.getUserInfo();
   },
   methods: {
-    //请求用户的一些信息
-    // getUserInfo() {
-    //   if (this.getCookie('session')) {
-    //     this.isLogin = true;
-
-    //     //发送http请求获取，这里写死作演示
-    //     this.userInfo = {
-    //         nick: 'chenwei',
-    //         ulevel: 20,
-    //         uid: '10000'
-    //           //portrait: 'images/profile.png'
-    //       }
-    //       //实例开发中这里会向服务端请求数据
-    //       //如下(用了vue-resource):
-    //       /*ts.$http.get(url, {
-    //         //参数
-    //         "params":{}
-    //       }).then((response) => {
-    //         //Success
-    //       }, (response) => {
-    //         //Error
-    //       });*/
-    //       //提交mutation到Store
-    //     this.$store.commit('updateUserInfo', this.userInfo);
-    //   } else {
-    //     this.isLogin = false;
-    //   }
-    // },
     //注销
     logout(){
-      //删除cookie并跳到登录页
-      this.isLogouting = true;
-      this.delCookie('session');
-      //演示
-      setTimeout(()=>{
-        this.$store.commit('checkLogin', false);
-        location.href = '/login';
-        //this.$router.push('/login');
-        this.isLogouting = false;
-      }, 1000)
+      //this.$store.dispatch('Logout')
+      this.$store.dispatch('FedLogOut').then(() => {
+        location.href= "/login" // 为了重新实例化vue-router对象 避免bug
+      })
     }
   }
 }

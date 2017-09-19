@@ -57,8 +57,8 @@
 			<div style="width:280px">
 				<div class="s_biaoinfo mt10">
 					<!-- <p>可投金额：￥180,900.00元</p> -->
-					<p v-if="$store.state.isLogin">我的余额：<span class="major">{{user.balance}}</span>元 <a href="/account/home/recharge" class="c_link">充值</a></p>
-					<p>最大可投：<em class="major" v-if="$store.state.isLogin">{{ablePart}}</em><em class="major" v-else>0</em>份 (可投份数)</p>
+					<p v-if="$store.state.user.name">我的余额：<span class="major">{{user.balance}}</span>元 <a href="/account/home/recharge" class="c_link">充值</a></p>
+					<p>最大可投：<em class="major" v-if="$store.state.user.name">{{ablePart}}</em><em class="major" v-else>0</em>份 (可投份数)</p>
 					<p>投资份额：<input type="text" value="1" autocomplete="off" class="s_biaocount" style="padding-right:22px; width:78px" v-model="investCount" @keyup="countPart($event)"> <span class="money_fen">份</span> <a href="javascript:void(0)" class="money_all_invest" @click="allInvest">全投了</a></p>
 	          		<p>付款金额：<span class="money_yuan">¥</span><input type="text" value="0" disabled="disabled" class="s_biaototal" style="padding-left:18px; margin-left: -8px" v-model="investAmount"></p>
 				</div>

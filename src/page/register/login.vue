@@ -116,7 +116,13 @@ export default {
           if (this.rmbUser == true) {
             localStorage.rmbUser = this.phone;
           }
-          this.isLoging = true;
+
+          this.$store.dispatch('Login', {"username": this.phone, "password": this.password}).then(() => {
+            //this.loading = false
+            this.$router.push({ path: '/account' })
+          }).catch(() => {
+            //this.loading = false
+          })
           //请求后端,比如:
           /*this.$http.post( 'example.com/login.php', {
           param: loginParam).then((res) => {
@@ -132,14 +138,14 @@ export default {
           */
            
           //演示用
-          setTimeout(()=>{
-            //登录状态15天后过期
-            let expireDays = 1000 * 60 * 60 * 24 * 15;
-            this.setCookie('session','chenwei', expireDays);
-            this.isLoging = false;
-            //登录成功后
-            this.$router.push('/account');
-          },3000)
+          // setTimeout(()=>{
+          //   //登录状态15天后过期
+          //   let expireDays = 1000 * 60 * 60 * 24 * 15;
+          //   this.setCookie('session','chenwei', expireDays);
+          //   this.isLoging = false;
+          //   //登录成功后
+          //   this.$router.push('/account');
+          // },3000)
         } else {
           this.isPassword = false;
         }

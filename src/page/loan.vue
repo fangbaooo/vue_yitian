@@ -1,5 +1,5 @@
 <template>
-<div class="s_center mb40 clr" v-title data-title="我要借款">
+<div class="s_center mb40 clr">
   <div class="s_bread">
     <a href="/" title="" class="s_breadindex"><i class="icon"></i>首页</a>
     <i class="s_breadarrow">&gt;</i>

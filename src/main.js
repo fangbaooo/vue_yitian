@@ -7,7 +7,7 @@ import App from './App';
 import router from './router';
 import store from './store'
 import directive from './directive';
-import '@/utils/permission' // 权限
+import './utils/permission' // 权限
 
 Vue.config.productionTip = false;
 Vue.use(Vuex); //状态管理
