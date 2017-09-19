@@ -31,7 +31,7 @@
                 </div>
               </div>
             </div>
-            <div class="left" v-if="!$store.state.isLogin">
+            <div class="left" v-if="!$store.state.name">
               <a href="/login">登录</a>
               <i>|</i>
               <a href="/register">注册</a>

@@ -54,7 +54,8 @@
 export default {
   props: {
     list: {
-      type: Array
+      type: Array,
+      default: []
     }
   },
   methods: {

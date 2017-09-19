@@ -6,13 +6,14 @@
     </div>
     <ylc-list :list="listData"></ylc-list>
     <div class="xf_wylc_page xf_cfzx_page s_biaopage">
-      <pagination :page-no="pageNo" :current-index.sync="currentPage" @pagechange="requestData()"></pagination>
+      <pagination :page-no="pageNo" :current-index="currentPage" @pagechange="requestData()"></pagination>
     </div>
   </div>
 </template>
 <script>
 import pagination from "@/components/base/pagination"
 import ylcList from "./ylcList"
+var url = "http://www.easy-mock.com/mock/59bf2ba7e0dc663341ad7387/vue_yitian/ylcList"
 export default {
   components: {
     pagination,
@@ -22,49 +23,42 @@ export default {
     return {
       currentPage: 1,
       pageNo: 1,
-      listData: [
-        {
-          name: '益理财YS2017070011',
-          id: 11,
-          link: '/ylcHome/ylcDetail/11',
-          apr: '8.0',
-          period: '3',
-          totalAmount: '500,000.00',
-          ableAmount: '300,000.00',
-          date: '2017-09-09',
-          percent: '40'
-        },
-        {
-          name: '益理财YS2017070012',
-          id: 12,
-          link: '/ylcHome/ylcDetail/12',
-          apr: '8.0',
-          period: '3',
-          totalAmount: '500,000.00',
-          ableAmount: '300,000.00',
-          date: '2017-09-09',
-          percent: '40'
-        },
-        {
-          name: '益理财YS2017070013',
-          id: 13,
-          link: '/ylcHome/ylcDetail/13',
-          apr: '8.0',
-          period: '3',
-          totalAmount: '500,000.00',
-          ableAmount: '300,000.00',
-          date: '2017-09-09',
-          percent: '40'
-        },
-      ]
+      listData: null
+      // listData: [
+      //   {
+      //     name: '益理财YS2017070011',
+      //     id: 11,
+      //     link: '/ylcHome/ylcDetail/11',
+      //     apr: '8.0',
+      //     period: '3',
+      //     totalAmount: '500,000.00',
+      //     ableAmount: '300,000.00',
+      //     date: '2017-09-09',
+      //     percent: '40'
+      //   }
+      // ]
     }
   },
   methods: {
-    requestData () {
-      // 在这里使用ajax或者fetch将对应页传过去获取数据即可
-      //this.list = list
-      //this.pageNo = dataList.pageNo
+    requestData (pageIndex) {
+      this.$http.get(url, {pageIndex: pageIndex}).then((res) => {
+          let json = res.data;
+          if(json.code === 0){
+            this.listData = json.data;
+            this.pageNo = parseInt(json.data.length/10) + 1
+          } else {
+            alert("数据获取有误!")
+          }
+        }, (res) => {
+          alert(res.msg)
+        });
+    },
+    pagechange (pageIndex) {
+      this.requestData(pageIndex);
     }
+  },
+  mounted () {
+    this.requestData(this.currentPage);
   }
 }
 </script>

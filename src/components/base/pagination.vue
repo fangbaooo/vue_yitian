@@ -1,12 +1,12 @@
 <template>
   <div class="pager">
-    <span class="btn btn-pager" v-show="current != 1" @click="prePage">上一页</span>
+    <button class="btn btn-pager" :disabled="current == 1" @click="prePage">上一页</button>
     <span v-if="pageNo !== 1" class="page-index" :class="1 == current ? 'active':''" @click="goPage(1)">1</span>
     <span v-if="preClipped" class="page-index">...</span>
     <span v-for="index in pages" class="page-index" :class="index == current ? 'active':''" @click="goPage(index)">{{index}}</span>
     <span v-if="backClipped" class="page-index">...</span>
     <span class="page-index" :class="pageNo == current ? 'active':''" @click="goPage(pageNo)">{{pageNo}}</span>
-    <span class="btn btn-pager" v-show="current != pageNo" @click="nextPage">下一页</span>
+    <button type="b" class="btn btn-pager" :disabled="current == pageNo" @click="nextPage">下一页</button>
   </div>
 </template>
 
@@ -113,9 +113,13 @@ export default {
   color: #000000;
   border: 0;
   border-radius: 0px;
+  vertical-align: middle;
 }
 .btn-pager:hover {
   background-color: #ff5256;
+}
+.btn-pager:disabled {
+  background-color: #ededed;
 }
 .page-index {
   display: inline-block;
