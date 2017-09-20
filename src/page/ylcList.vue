@@ -10,7 +10,7 @@
           <tbody>
             <tr height="48">
               <td colspan="6">
-                <a class="p_zhintit" :href="item.link">{{item.name}}</a>
+                <router-link class="p_zhintit" :to="item.link">{{item.name}}</router-link>
                 <span class="p_zhsubtit">发布时间：{{item.date}}</span>
               </td>
             </tr>
@@ -22,10 +22,10 @@
                 <span class="fz24 co333">{{item.period}}</span>个月
               </td>
               <td width="20%">
-                <span class="fz24 co333">{{item.totalAmount}}</span> 元
+                <span class="fz24 co333">{{item.totalAmount | currency}}</span> 元
               </td>
               <td width="20%">
-                <span class="fz24 co333">{{item.ableAmount}}</span> 元
+                <span class="fz24 co333">{{item.ableAmount | currency}}</span> 元
               </td>
               <td width="20%">
                 <span class="s_progress left">
@@ -54,8 +54,7 @@
 export default {
   props: {
     list: {
-      type: Array,
-      default: []
+      type: Array
     }
   },
   methods: {

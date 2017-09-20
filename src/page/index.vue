@@ -27,7 +27,6 @@
 </template>
 <script>
 import ensure from './index/ensure'
-import fetch from "@/utils/fetch"
 import ylcList from './ylcList'
 export default {
   components: {
@@ -78,8 +77,8 @@ export default {
     }
   },
   methods: {
-    requestData (pageIndex) {
-      fetch({
+    getData (pageIndex) {
+      this.$http({
         url: '/ylcList',
         method: 'get',
         params: {
@@ -117,7 +116,7 @@ export default {
     }
   },
   mounted () {
-    this.requestData(this.currentPage);
+    this.getData(this.currentPage);
     this.runScroll();
     //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
   }

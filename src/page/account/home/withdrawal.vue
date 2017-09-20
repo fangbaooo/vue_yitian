@@ -15,7 +15,7 @@
           <th>您的银行卡</th>
           <td>
             <div class="p-0119dd" style="width:275px;">
-              <img src="/public/images/banks/bank_05.png" alt="" class="p-vm">
+              <img src="../../../assets/images/banks/bank_05.png" alt="" class="p-vm">
               <span class="co333 ml20">尾号：8239</span>
             </div>
           </td>

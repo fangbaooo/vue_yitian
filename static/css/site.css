@@ -4612,13 +4612,11 @@ a:hover{color: #ff3329;}
 	float: left;
 	width: 495px;
 	height: 150px;
-	background: url(../images/p-syleft.png) no-repeat;
 }
 .p_syrightcon{
 	float: right;
 	width: 495px;
 	height: 150px;
-	background: url(../images/p-syright.png) no-repeat;
 }
 .p_sylword{
 	float: left;
@@ -5384,9 +5382,10 @@ a.btn:hover,.p_13choz:hover{
 	z-index: 1000;
 	padding: 10px 30px;
 	text-align: center;
-	background: url(../images/opacity6.png) repeat;
+	background-color: rgba(0,0,0,.6);
 	border-radius: 10px;
 	min-width: 200px;
+	margin: -30px 0 0 -100px;
 }
 .alert_con{
 	font-family: "微软雅黑";

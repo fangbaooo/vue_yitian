@@ -6,14 +6,14 @@
     </div>
     <ylc-list :list="listData"></ylc-list>
     <div class="xf_wylc_page xf_cfzx_page s_biaopage">
-      <pagination :page-no="pageNo" :current-index="currentPage" @pagechange="requestData()"></pagination>
+      <pagination :page-no="pageNo" :current-index="currentPage" @pagechange="getData()"></pagination>
     </div>
   </div>
 </template>
 <script>
 import pagination from "@/components/base/pagination"
-import fetch from "@/utils/fetch"
 import ylcList from "./ylcList"
+// import fetch from "@/utils/fetch"
 //var url = "http://www.easy-mock.com/mock/59bf2ba7e0dc663341ad7387/vue_yitian/ylcList"
 export default {
   components: {
@@ -42,8 +42,8 @@ export default {
     }
   },
   methods: {
-    requestData (pageIndex) {
-      fetch({
+    getData (pageIndex) {
+      this.$http({
         url: '/ylcList',
         method: 'get',
         params: {
@@ -72,11 +72,11 @@ export default {
       return data;
     },
     pagechange (pageIndex) {
-      this.requestData(pageIndex);
+      this.getData(pageIndex);
     }
   },
   mounted () {
-    this.requestData(this.currentPage);
+    this.getData(this.currentPage);
   }
 }
 </script>

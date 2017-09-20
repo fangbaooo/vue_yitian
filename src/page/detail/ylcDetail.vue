@@ -9,7 +9,7 @@
     <div class="s_biaodata clr">
 		<div class="left s_biaodatal">
 			<h1 class="s_biaohead">
-				<strong class="s_biaoname">{{biaodi.name}}</strong>
+				<strong class="s_biaoname" v-text="biaodi.name"></strong>
 			</h1>
 			<ul class="s_biaodata-main">
 				<li class="li01">
@@ -25,10 +25,10 @@
 					</p> 投资期限</li>
 				<li class="li03">
 					<p>
-						<strong>{{biaodi.maxInvestAmount}}</strong>&nbsp;元
+						<strong>{{biaodi.maxInvestAmount | currency}}</strong>&nbsp;元
 					</p> 本期额度</li>
 				<li class="li04">
-					<p>可投 <strong>{{biaodi.allAmount - biaodi.hasInvestedAmount}}</strong> 元</p>
+					<p>可投 <strong>{{biaodi.allAmount - biaodi.hasInvestedAmount | currency}}</strong> 元</p>
 					<div class="s_biaoprogress" style="padding-top: 0">
 						<span class="s_progress left">
 							<span class="s_progress-bar" id="loanSchedule" :style="{width:progress+'%'}"></span>
@@ -57,7 +57,7 @@
 			<div style="width:280px">
 				<div class="s_biaoinfo mt10">
 					<!-- <p>可投金额：￥180,900.00元</p> -->
-					<p v-if="$store.state.user.name">我的余额：<span class="major">{{user.balance}}</span>元 <a href="/account/home/recharge" class="c_link">充值</a></p>
+					<p v-if="$store.state.user.name">我的余额：<span class="major">{{user.balance | currency}}</span>元 <a href="/account/home/recharge" class="c_link">充值</a></p>
 					<p>最大可投：<em class="major" v-if="$store.state.user.name">{{ablePart}}</em><em class="major" v-else>0</em>份 (可投份数)</p>
 					<p>投资份额：<input type="text" value="1" autocomplete="off" class="s_biaocount" style="padding-right:22px; width:78px" v-model="investCount" @keyup="countPart($event)"> <span class="money_fen">份</span> <a href="javascript:void(0)" class="money_all_invest" @click="allInvest">全投了</a></p>
 	          		<p>付款金额：<span class="money_yuan">¥</span><input type="text" value="0" disabled="disabled" class="s_biaototal" style="padding-left:18px; margin-left: -8px" v-model="investAmount"></p>
@@ -108,7 +108,7 @@
   </div>
 </template>
 <script>
-import {amountFormat} from "@/assets/js/util"
+import {amountFormat} from "@/utils/index"
 import ylcProductInfo from "./ylcProductInfo"
 import ylcRecord from "./ylcRecord"
 export default {
@@ -124,26 +124,28 @@ export default {
 				type: "投资记录",
 				view: ylcRecord
 			}],
-			user: {
-				balance: '50,600.00'
-			},
-			biaodi: {
-				name: '益理财YS2017070011',
-				apr: '8.00',
-				period: '3',
-				periodUnit: 0, 
-				allAmount: 500000,
-				hasInvestedAmount: 200000,
-				minInvestAmount: 100,
-				maxInvestAmount: 500000,
-				everyAmmount: 100,
-
-				releaseTime: '2017-07-07',
-				repayment: '到期一次性还本付息',
-				investExpireTime: '2017-07-17'
-			},
+			user: {},
+			biaodi: {},
 			investCount: 1,
-			investAmount: 0
+			investAmount: 0,
+			// user: {
+			// 	balance: '50,600.00'
+			// },
+			// biaodi: {
+			// 	name: '益理财YS2017070011',
+			// 	apr: '8.00',
+			// 	period: '3',
+			// 	periodUnit: 0, 
+			// 	allAmount: 500000,
+			// 	hasInvestedAmount: 200000,
+			// 	minInvestAmount: 100,
+			// 	maxInvestAmount: 500000,
+			// 	everyAmmount: 100,
+
+			// 	releaseTime: '2017-07-07',
+			// 	repayment: '到期一次性还本付息',
+			// 	investExpireTime: '2017-07-17'
+			// },
 		}
 	},
 	computed: {
@@ -159,10 +161,12 @@ export default {
 
 	},
 	methods: {
+		// 切换列表
 		toggle(index, view) {
 			this.currentTab = index;
 			this.currentView = view;
 		},
+		// 计算投资金额
 		countPart(e){
 		    let reg = new RegExp('^(\\d\{0,'+10+'\}).*');
 		    let target = e.currentTarget;
@@ -170,10 +174,29 @@ export default {
 		    let val = Number(target.value);
 	    	this.investAmount = val * this.biaodi.minInvestAmount;
 		},
+		// 全投了
 		allInvest () {
 			this.investCount = this.ablePart;
 			this.investAmount = this.investCount * this.biaodi.minInvestAmount;
+		},
+
+		getData (id) {
+			this.$http({
+				url: '/ylcDetail/'+ id,
+				method: 'get',
+			}).then(res => {
+				this.user = res.data.user
+				this.biaodi = res.data.biaodi
+			})
+		},
+		getId () {
+			var id = this.$route.params.id
+			return id
 		}
+	},
+	mounted() {
+		this.id = this.getId();
+		this.getData(this.id);
 	}
 }
 </script>

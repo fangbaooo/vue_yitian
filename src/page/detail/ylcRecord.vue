@@ -11,8 +11,8 @@
 			</tr>
 			<tr height="50" v-for="(item, index) in list">
 				<td align="center">{{index+1}}</td>
-				<td>{{item.phone}}</td>
-				<td>{{item.amount}}元</td>
+				<td>{{item.phone | phone}}</td>
+				<td>{{item.amount | currency}}元</td>
 				<td>{{item.time}}</td>
 				<td class="source_all" v-if="item.type=='app' || item.type=='weixin'">
 					<span @mouseover="showErcode($event, 'app')" @mouseout="hideErcode($event, 'app')" v-if="item.type=='app'">iPhone</span>
@@ -27,55 +27,19 @@
 	</div>
 </template>
 <script>
-import {getPosition} from "@/assets/js/util"
+import {getPosition} from "@/utils/index"
 export default {
 	data () {
 		return {
-			list: [
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'app'
-				},
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'weixin'
-				},
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'weixin'
-				},
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'app'
-				}
-				,
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'web'
-				},
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'app'
-				},
-				{
-					phone: '135******30',
-					amount: '50,000.00',
-					time: '2017-07-07 15:31:26',
-					type: 'web'
-				}
-			],
+			// list: [
+			// 	{
+			// 		phone: '135******30',
+			// 		amount: '50,000.00',
+			// 		time: '2017-07-07 15:31:26',
+			// 		type: 'app'
+			// 	}
+			// ],
+			list: null,
 			s_app: false,
 			s_weixin: false,
 			styleObject: {
@@ -97,10 +61,18 @@ export default {
 		},
 		hideErcode (e, type) {
 			this["s_"+ type] = false
-		}
+		},
+		getData() {
+			this.$http({
+				url: '/ylcDetailRecord',
+				method: 'get'
+			}).then(res => {
+				this.list = res.data;
+			})
+		},
 	},
 	mounted () {
-		
+		this.getData();
 	}
 }
 </script>
