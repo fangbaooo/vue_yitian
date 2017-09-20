@@ -1,6 +1,6 @@
 # vue_yitian
 
-> A Vue.js project
+> 这是一个使用vue改造益田理财的项目
 
 ## Build Setup
 
