@@ -73,7 +73,7 @@
 				预计收益 : <span class="major" id="sumEarning">0.00</span>元
 			</p> -->
 
-			<input type="button" value="立即投资" class="s_biaobtn btn" id="buyButton">
+			<input type="button" value="立即投资" class="s_biaobtn btn" @click="invest">
 			<div class="s_biaoread">
 				<label><input type="checkbox" id="xieyi" checked=""><span>我已阅读并同意</span><a href="/front/invest/protocolDetails?id=11&amp;investId=0&amp;isInit=false" target="_blank" title="" class="major">《益理财服务协议》</a>
 				</label>
@@ -105,13 +105,23 @@
 			<component :is="currentView"></component>
 		</div>
 	</div>
+
+	<invest-sure id="investSureId" @submit="closeInvestSure" :biaodi="investInfo"></invest-sure>
+	<invest-success id="investSuccessId" @submit="closeInvestSuccess"></invest-success>
   </div>
 </template>
 <script>
 import {amountFormat} from "@/utils/index"
+import { getToken } from '@/utils/auth' // 验权
 import ylcProductInfo from "./ylcProductInfo"
 import ylcRecord from "./ylcRecord"
+import investSure from "./dialog/investSure"
+import investSuccess from "./dialog/investSuccess"
 export default {
+	components: {
+		investSure,
+		investSuccess
+	},
 	data () {
 		return {
 			list: {},
@@ -128,6 +138,10 @@ export default {
 			biaodi: {},
 			investCount: 1,
 			investAmount: 0,
+
+			investInfo: {},
+			investSurePop: null,
+			investSuccessPop: null
 			// user: {
 			// 	balance: '50,600.00'
 			// },
@@ -161,6 +175,20 @@ export default {
 
 	},
 	methods: {
+		// 获取页面数据
+		getData (id) {
+			this.$http({
+				url: '/ylcDetail/'+ id,
+				method: 'get',
+			}).then(res => {
+				this.user = res.data.user
+				this.biaodi = res.data.biaodi
+			})
+		},
+		getId () {
+			var id = this.$route.params.id
+			return id
+		},
 		// 切换列表
 		toggle(index, view) {
 			this.currentTab = index;
@@ -179,20 +207,48 @@ export default {
 			this.investCount = this.ablePart;
 			this.investAmount = this.investCount * this.biaodi.minInvestAmount;
 		},
+		invest() {
+			if (!getToken()) {
+				this.$router.push('/login')
+			} else {
+				if (this.investAmount == 0) {
+					alert("请输入投资金额")
+				} else {
+					this.investInfo = {
+						name: this.biaodi.name,
+						apr: this.biaodi.apr,
+						period: this.biaodi.period,
+						periodUnit: this.biaodi.periodUnit,
+						investAmount: this.investAmount,
+					}
 
-		getData (id) {
-			this.$http({
-				url: '/ylcDetail/'+ id,
-				method: 'get',
-			}).then(res => {
-				this.user = res.data.user
-				this.biaodi = res.data.biaodi
-			})
+					let id = document.getElementById("investSureId");
+					this.investSurePop = dialog({
+						title: "投资确认",
+						content: id,
+						width: 600,
+					});
+					this.investSurePop.showModal();
+				}
+			}
 		},
-		getId () {
-			var id = this.$route.params.id
-			return id
-		}
+		closeInvestSure() {
+			this.investSurePop.close().remove();
+			this.InvestSuccess()
+		},
+		InvestSuccess() {
+			let id = document.getElementById("investSuccessId");
+			this.investSuccessPop = dialog({
+				title: "投资成功",
+				content: id,
+				width: 600,
+			});
+			this.investSuccessPop.showModal();
+		},
+		closeInvestSuccess() {
+			console.log(44444)
+			this.investSuccessPop.close().remove();
+		},
 	},
 	mounted() {
 		this.id = this.getId();
