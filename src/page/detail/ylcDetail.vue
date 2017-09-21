@@ -75,7 +75,7 @@
 
 			<input type="button" value="立即投资" class="s_biaobtn btn" @click="invest">
 			<div class="s_biaoread">
-				<label><input type="checkbox" id="xieyi" checked=""><span>我已阅读并同意</span><a href="/front/invest/protocolDetails?id=11&amp;investId=0&amp;isInit=false" target="_blank" title="" class="major">《益理财服务协议》</a>
+				<label><input type="checkbox" id="xieyi" checked=""><span>我已阅读并同意</span><a href="https://www.yitianlicai.com/front/invest/protocolDetails?id=11&amp;investId=0&amp;isInit=false" target="_blank" title="" class="major">《益理财服务协议》</a>
 				</label>
 				<div class="s_dealcont">
 					<i class="arrow arrow01"></i> <i class="arrow"></i>
@@ -191,24 +191,25 @@ export default {
 		},
 		// 切换列表
 		toggle(index, view) {
-			this.currentTab = index;
-			this.currentView = view;
+			this.currentTab = index
+			this.currentView = view
 		},
 		// 计算投资金额
 		countPart(e){
-		    let reg = new RegExp('^(\\d\{0,'+10+'\}).*');
-		    let target = e.currentTarget;
-		    target.value = target.value.replace(/[^\d]/g,'').replace(reg,'$1').replace(/^0\d+/,'');
-		    let val = Number(target.value);
-	    	this.investAmount = val * this.biaodi.minInvestAmount;
+		    let reg = new RegExp('^(\\d\{0,'+10+'\}).*')
+		    let target = e.currentTarget
+		    target.value = target.value.replace(/[^\d]/g,'').replace(reg,'$1').replace(/^0\d+/,'')
+		    let val = Number(target.value)
+	    	this.investAmount = val * this.biaodi.minInvestAmount
 		},
 		// 全投了
 		allInvest () {
-			this.investCount = this.ablePart;
-			this.investAmount = this.investCount * this.biaodi.minInvestAmount;
+			this.investCount = this.ablePart
+			this.investAmount = this.investCount * this.biaodi.minInvestAmount
 		},
 		invest() {
 			if (!getToken()) {
+				sessionStorage.rmbLink = this.$route.path
 				this.$router.push('/login')
 			} else {
 				if (this.investAmount == 0) {
@@ -237,22 +238,21 @@ export default {
 			this.InvestSuccess()
 		},
 		InvestSuccess() {
-			let id = document.getElementById("investSuccessId");
+			let id = document.getElementById("investSuccessId")
 			this.investSuccessPop = dialog({
 				title: "投资成功",
 				content: id,
 				width: 600,
 			});
-			this.investSuccessPop.showModal();
+			this.investSuccessPop.showModal()
 		},
 		closeInvestSuccess() {
-			console.log(44444)
-			this.investSuccessPop.close().remove();
+			this.investSuccessPop.close().remove()
 		},
 	},
 	mounted() {
-		this.id = this.getId();
-		this.getData(this.id);
+		this.id = this.getId()
+		this.getData(this.id)
 	}
 }
 </script>

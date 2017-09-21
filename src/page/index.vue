@@ -22,15 +22,27 @@
         </div>
       </div>
       <div class="mt20"><ylc-list :list="listData"></ylc-list></div>
+      <div class="clr mt20">
+        <div class="fl"><news :title="dynamic.title" :list="dynamic.list" :link="'/aboutUs/dynamic'"></news></div>
+        <div class="fr"><news :title="news.title" :list="news.list" :link="'/aboutUs/news'"></news></div>
+      </div>
     </div>
+
+    <div class="p_syboxshdow"></div>
+    <!-- 合作机构 -->
+    <partner></partner>
   </div>
 </template>
 <script>
-import ensure from './index/ensure'
-import ylcList from './ylcList'
+import ensure from './index/ensure'   // 四大优势
+import partner from './index/partner' // 合作机构
+import news from './index/news'       // 行业资讯
+import ylcList from './ylcList'       // 益理财列表
 export default {
   components: {
     ensure,
+    partner,
+    news,
     ylcList
   },
   data () {
@@ -68,29 +80,49 @@ export default {
       //   '/detail/publish': require("../assets/images/4.png")
       // }
       scrollArea: $("#scrollNews"),//document.getElementById("scrollNews"),
-      scrollUl: "ddddd",//this.scrollArea,//getElementsByTagName('ul')[0],
+      scrollUl: "",//this.scrollArea,//getElementsByTagName('ul')[0],
       timer: null,
 
-      pageIndex: 1,
-      maxRecord: 6,
-      listData: null
+      listData: null,
+
+      dynamic: {
+        title: '平台动态',
+        list: []
+      },
+      news: {
+        title: '行业资讯',
+        list: []
+      },
     }
   },
   methods: {
-    getData (pageIndex) {
+    getData () {
       this.$http({
         url: '/ylcList',
         method: 'get',
-        params: {
-          pageIndex
-        }
       }).then(res => {
-        this.listData = this.limitList(res.data);
+        this.listData = this.limitList(res.data, 6)
       })
     },
-    limitList (data) {
-      if (data.length > this.maxRecord ) {
-        data.splice(this.maxRecord)
+    getDynamicData () {
+      this.$http({
+        url: '/dynamicList',
+        method: 'get',
+      }).then(res => {
+        this.dynamic.list = this.limitList(res.data, 3)
+      })
+    },
+    getNewsData () {
+      this.$http({
+        url: '/newsList',
+        method: 'get',
+      }).then(res => {
+        this.news.list = this.limitList(res.data, 3)
+      })
+    },
+    limitList (data, num) {
+      if (data.length > num ) {
+        data.splice(num)
       }
       return data;
     },
@@ -107,17 +139,19 @@ export default {
               }, 600, function() {
                 scrollUl.css("margin-top", "0").find("li:first").appendTo(scrollUl);
               });
-            }, speed);
+            }, speed)
           }
-        }).trigger("mouseleave");
+        }).trigger("mouseleave")
     },
     runScroll () {
       this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
     }
   },
   mounted () {
-    this.getData(this.currentPage);
-    this.runScroll();
+    this.getData();
+    this.getDynamicData()
+    this.getNewsData()
+    this.runScroll()
     //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
   }
 }

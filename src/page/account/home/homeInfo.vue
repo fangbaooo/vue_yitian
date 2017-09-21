@@ -48,33 +48,35 @@
     <div class="p_zhbalance">
       <div class="fl">
         <span>可用余额</span> <span class="fz12">（元）：</span> <span
-          class="fz18 co333">{{user.balance}}<span class="fz14"></span>
+          class="fz18 co333">{{user.balance | currency}}<span class="fz14"></span>
         </span>
       </div>
       <div class="fr">
-        <a href="javascript:doCheck(1);" class="p_zhrecharge">充值</a> 
-        <a href="javascript:doCheck(2);" class="ml30">提现</a>
+        <a href="/account/home/recharge" class="p_zhrecharge">充值</a> 
+        <a href="/account/home/withdrawal" class="ml30">提现</a>
+        <!-- <router-link to="/account/home/recharge" class="p_zhrecharge">充值</router-link>
+        <router-link to="/account/home/withdrawal" class="ml30">提现</router-link> -->
       </div>
     </div>
     <ul class="p_zhassets clr">
       <li>
         <div class="co333">
-          <span class="fz18">{{sumAmount}}</span>
+          <span class="fz18">{{sumAmount | currency}}</span>
         </div>
         <h6>账户总金额（元）</h6></li>
       <li>
         <div class="co333">
-          <span class="fz18">{{user.freeze}}</span>
+          <span class="fz18">{{user.freeze | currency}}</span>
         </div>
         <h6>冻结金额（元）</h6></li>
       <li>
         <div class="co333">
-          <span class="fz18">{{investSumAmount}}</span>
+          <span class="fz18">{{investSumAmount | currency}}</span>
         </div>
         <h6>待收本金（元）</h6></li>
       <li>
         <div class="co333">
-          <span class="fz18">{{investSumEarnings}}</span>
+          <span class="fz18">{{investSumEarnings | currency}}</span>
         </div>
         <h6>待收收益（元）</h6></li>
     </ul>

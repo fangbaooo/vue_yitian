@@ -15,7 +15,7 @@ import recharge from '@/page/account/home/recharge';
 import withdrawal from '@/page/account/home/withdrawal';
 import dealRecord from '@/page/account/dealRecord/dealRecord';
 
-import bankCard from '@/page/account/bankCard/bankCard';  // 安全中心
+import bankCard from '@/page/account/bankCard/bankCard';  // 我的银行卡
  /* 我的投资 */ 
 import investRecord from '@/page/account/myInvest/investRecord';
 import investBill from '@/page/account/myInvest/investBill';
@@ -82,8 +82,8 @@ const route =  new Router({
         { path: '/aboutUs/aboutCompany', component: aboutCompany, meta: {title: '公司简介'}},
         { path: '/aboutUs/partner', component: partner, meta: {title: '合作伙伴'}},
         { path: '/aboutUs/team', component: team, meta: {title: '公司简介'}},
-        { path: '/aboutUs/notice', component: notice, meta: {title: '团队风采'}},
-        { path: '/aboutUs/dynamic', component: dynamic, meta: {title: '平台动态'}},
+        { path: '/aboutUs/notice', component: news, meta: {title: '团队风采'}},
+        { path: '/aboutUs/dynamic', component: news, meta: {title: '平台动态'}},
         { path: '/aboutUs/news', component: news, meta: {title: '行业资讯'}}, 
         { path: '/aboutUs/recruit', component: recruit, meta: {title: '招聘'}},
         { path: '/aboutUs/contact', component: contact, meta: {title: '联系我们'}},

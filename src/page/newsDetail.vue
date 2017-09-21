@@ -4,7 +4,7 @@
         <div class="s_bread">
             <a href="/" title="" class="s_breadindex"><i class="icon"></i>首页</a>
             <i class="s_breadarrow">&gt;</i>关于我们<i class="s_breadarrow">&gt;</i>
-            <span>{{list.type}} </span>
+            <span>{{type}} </span>
         </div>
 		<div class="p_wenzhmain clr">
 			<h4>{{list.title}}</h4>
@@ -24,9 +24,9 @@
 	</div>
 </template>
 <script>
+import {getUrlParam} from "@/utils/index"
 var dataList = {
 	id: 11,
-	type: '官方公告',
 	title: '关于益田理财最低提现金额调整公告',
 	content: '<p class="MsoNormal">\
 					<span>尊敬的用户：</span>\
@@ -52,11 +52,32 @@ var dataList = {
 export default {
 	data () {
 		return {
-			list: {}
+			list: {},
+			title: '',
+			type: {
+				news: '行业资讯',
+				dynamic: '平台动态',
+				notice: '官方公告',
+			}
 		}
 	},
 	mounted () {
-		this.list = dataList
+		this.getData()
+		//this.list = dataList
+	},
+	methods: {
+		getType () {
+			let type = getUrlParam("type")
+			this.title = this.type[type]
+		},
+		getData() {
+			this.$http({
+				url: '/newsDetail',
+				method: 'get',
+			}).then(res => {
+				this.list = res.data
+			})
+		},
 	}
 }
 </script>

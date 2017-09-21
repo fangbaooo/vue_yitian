@@ -79,22 +79,22 @@ export default {
     },
     // 去掉充值和提现的样式
     removeRechargeNav () {
-      if(this.$route.path.indexOf("home/recharge") < 0){
+      if (this.$route.path.indexOf("home/recharge") < 0){
         document.getElementById("recharge").className = '';
       }
-      if(this.$route.path.indexOf("home/withdrawal") < 0){
+      if (this.$route.path.indexOf("home/withdrawal") < 0){
         document.getElementById("withdrawal").className = '';
       }
     },
     // 判断当前是否充值和提现页面
     setRouter () {
-      if(this.$route.path.indexOf("home/recharge") > 0){
+      if (this.$route.path.indexOf("home/recharge") > 0){
         this.setBreadcrumbs("充值");
         document.getElementById("recharge").className = 'clicked';
       } else {
         document.getElementById("recharge").className = '';
       }
-      if(this.$route.path.indexOf("home/withdrawal") > 0){
+      if (this.$route.path.indexOf("home/withdrawal") > 0){
         this.setBreadcrumbs("提现");
         document.getElementById("withdrawal").className = 'clicked';
       } else {
@@ -117,64 +117,5 @@ export default {
       }
     }
   }
-
 }
-  // function doCheck(obj) {
-  //   if (obj == 4) {
-  //       window.location.href='@{front.account.basicInformation.modifyMobile()}';
-  //       return;
-  //     }
-  //   var isSmrzPass = #{jsAction @front.account.FundsManage.isSmrzPass()/}
-  //   $.post(isSmrzPass({}), function(data) {
-  //     if (data == null || data.result == null || data.result == undefined) {
-  //          window.location.href='@{front.account.LoginAndRegisterAction.login()}';
-  //     }
-  //     else{
-  //       var arr = eval(data);
-  //       if (arr.result == 3) {
-  //         if (obj === 1) {
-  //           window.location.href='@{front.account.FundsManage.recharge()}';
-  //         }
-  //         if (obj === 2) {
-  //           var payPwdIsNull = #{jsAction @front.account.FundsManage.payPwdIsNull()/};
-  //           $.post(payPwdIsNull({}),function(data){
-  //             var arr=eval(data);
-  //             var paypwdisnull = arr.paypwdisnull;
-  //             if(paypwdisnull == 1) {
-  //               //未设置交易密码则弹窗提示设置交易密
-  //               UI.showConfirm("为了您的资金安全，提现前请设置交易密码", "设置", toSetPayPwd, "返回");
-  //             }else {
-  //               //window.location.href='@{front.account.FundsManage.withdrawal()}';
-                
-  //               var bankIsNull = #{jsAction @front.account.FundsManage.bankIsNull()/};
-  //               $.post(bankIsNull({}),function(data){
-  //                 var arr=eval(data);
-  //                 var bankisnull = arr.bankisnull;
-  //                 if (bankisnull == 1) {
-  //                   //未绑卡则弹窗提示是否前往绑卡
-  //                   UI.showConfirm("为了您的资金安全，提现前请绑定本人银行卡", "绑卡", toAddBank, "返回");
-  //                 } else if (bankisnull == 2){
-  //                   window.location.href='@{front.account.FundsManage.withdrawal()}';
-  //                 }else if (bankisnull == 3){
-  //                   window.location.href='@{front.account.FundsManage.withdrawalKq()}';
-  //                 }
-  //               });
-  //             }
-  //           });
-            
-  //         }
-  //         if (obj === 3) {
-  //           window.location.href='@{front.account.FundsManage.userBankRecord()}';
-  //         }
-  //         if (obj === 4) {
-  //           window.location.href='@{front.account.basicInformation.modifyMobile()}';
-  //         }
-  //       } else {
-  //         //dialogCenter("#smrzDiv");
-  //         UI.showConfirm("为了您的账户安全，请先实名认证", "确定", toSmrz);
-  //       }
-  //     }
-  //   });
-  // }
-
 </script>

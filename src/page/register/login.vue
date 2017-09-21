@@ -16,7 +16,7 @@
       <dl class="p_zclist h40 clr">
         <dt><span class="p_zcred">*</span> 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
         <dd><input style="display:none" type="password"><!--添加隐藏的input 解决chrome自动填充数据的问题 -->
-          <input type="password" class="p_zcinput" autocomplete="off" @keyup="passwordFlag = true;isPassword = true" v-model="password" @keypress="detectCapsLock($event)" @keyup.enter="login"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
+          <input type="password" class="p_zcinput" autocomplete="off" @keyup="passwordFlag = true;isPassword = true" v-model="password" @keypress="detectCapsLock($event)" @keyup.enter="login" placeholder="密码:123456"><div class="capital" style="display:none;">大写锁定已打开</div></dd>
       </dl>
       <dl class="p_zclist h30 clr">
         <dt>&nbsp;</dt>
@@ -69,7 +69,7 @@
       <img src="../../assets/images/ad/ad02.jpg" alt="" width="328">
     </div>
   </div>
-  <Loading v-if="isLoging" marginTop="-30%"></Loading>
+  <Loading v-if="isLoging" :text="'正在登录...'"></Loading>
 </div>
 </template>
 <script>
@@ -113,15 +113,23 @@ export default {
         return false;
       } else {
         if (this.password === this.realPw) {
+          this.isLoging = true;
           if (this.rmbUser == true) {
-            localStorage.rmbUser = this.phone;
+            sessionStorage.rmbUser = this.phone;
           }
 
           this.$store.dispatch('Login', {"username": this.phone, "password": this.password}).then(() => {
             //this.loading = false
-            this.$router.push({ path: '/account' })
+            // 判断是否有来源链接
+            if (sessionStorage.rmbLink) {
+              this.$router.push(sessionStorage.rmbLink)
+              sessionStorage.removeItem("rmbLink");
+            } else {
+              this.$router.push('/account')
+            }
+            
           }).catch(() => {
-            //this.loading = false
+
           })
           //请求后端,比如:
           /*this.$http.post( 'example.com/login.php', {
@@ -136,16 +144,7 @@ export default {
               //Error
           });
           */
-           
-          //演示用
-          // setTimeout(()=>{
-          //   //登录状态15天后过期
-          //   let expireDays = 1000 * 60 * 60 * 24 * 15;
-          //   this.setCookie('session','chenwei', expireDays);
-          //   this.isLoging = false;
-          //   //登录成功后
-          //   this.$router.push('/account');
-          // },3000)
+          this.isLoging = false;
         } else {
           this.isPassword = false;
         }
@@ -153,9 +152,9 @@ export default {
     },
     // 记住用户名
     setUser () {
-      if(localStorage.rmbUser) {
+      if(sessionStorage.rmbUser) {
         this.rmbUser = true;
-        this.phone = localStorage.rmbUser
+        this.phone = sessionStorage.rmbUser
       }
     },
     detectCapsLock (event) {
@@ -176,6 +175,4 @@ export default {
   }
 }
 </script>
-<style scoped>
 
-</style>
