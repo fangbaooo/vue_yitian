@@ -1,5 +1,5 @@
 <template>
-<div id="toast">
+<div id="loading">
     <div class="mask-transparent"></div>
     <div class="toast">
         <i class="load icon-toast"></i>

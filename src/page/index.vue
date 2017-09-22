@@ -4,7 +4,7 @@
       <div class="s_center clr" id="scrollNews">
         <div class="p_syggtitle"><i class="icon"></i>最新公告：</div>
         <ul class="p_syggscrul">
-          <li class="clr" v-for="item in products"><router-link :to="{path: item.path }" class="text_hide">{{item.name}}</router-link><span>{{item.date}}</span></li>
+          <li class="clr" v-for="item in notice"><router-link :to="item.link" class="text_hide">{{item.text}}</router-link><span>{{item.date}}</span></li>
         </ul>
         <router-link to="/aboutUs/notice" class="p_syggmore">查看更多</router-link>
       </div>
@@ -93,6 +93,7 @@ export default {
         title: '行业资讯',
         list: []
       },
+      notice: []
     }
   },
   methods: {
@@ -118,6 +119,17 @@ export default {
         method: 'get',
       }).then(res => {
         this.news.list = this.limitList(res.data, 3)
+      })
+    },
+    getNoticeData () {
+      this.$http({
+        url: '/noticeList',
+        method: 'get',
+      }).then(res => {
+        this.notice = this.limitList(res.data, 5)
+        this.$nextTick(() => {
+          this.runScroll();
+        });
       })
     },
     limitList (data, num) {
@@ -148,10 +160,11 @@ export default {
     }
   },
   mounted () {
-    this.getData();
+    this.getData()
     this.getDynamicData()
     this.getNewsData()
-    this.runScroll()
+    this.getNoticeData()
+
     //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
   }
 }

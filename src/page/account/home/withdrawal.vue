@@ -103,17 +103,24 @@
       </table>
       <div class="p-tl"><input @click="withDrawSubmit" class="p_zcbtn btn" value="立即提现" type="button" style="text-align:center"></div>
     </div>
+    <toast v-if="isOK" :type="type" :text="toastText"></toast>
   </div>
 </template>
 <script>
+import toast from '@/components/base/toast.vue'
 export default {
+  components: {
+    toast
+  },
   data () {
     return {
       withdrawalMoney: '',
-      payPassword: ''
+      payPassword: '',
+      // toast
+      isOK: false,
+      type: '',
+      toastText: ''
     }
-  },
-  mounted () {
   },
   methods: {
     checkMoney(e) {
@@ -130,9 +137,20 @@ export default {
       } else if(this.payPassword == ''){
         alert("充输入交易密码");
       } else {
-
+        this.showToast('warning', '您的提现申请已提交', function () {
+          location.reload()
+        })
       }
     },
+    showToast(type, text, fn) {
+      this.type = type
+      this.toastText = text
+      this.isOK = true
+      setTimeout(()=>{
+        this.isOK = false
+        fn && fn()
+      }, 4000)
+    }
   }
 }
 </script>

@@ -182,13 +182,16 @@
       </table>
     </div>
   </div>
+  <toast v-if="isOK" :type="type" :text="toastText"></toast>
 </div>
 </template>
 <script>
 import selector  from '@/components/base/selector'
+import toast from '@/components/base/toast.vue'
 export default {
   components: {
-    selector
+    selector,
+    toast
   },
   data () {
     return {
@@ -225,7 +228,11 @@ export default {
           label: '车辆抵押贷',
           value: 3
         }
-      ]
+      ],
+      // toast
+      isOK: false,
+      type: '',
+      toastText: ''
     }
   },
   computed: {
@@ -263,7 +270,8 @@ export default {
         this.deadlineFlag = true;
         return false;
       } else {
-        alert("ok")
+        this.showToast('success', '操作成功')
+        //this.showToast('error', '操作失败')
         // this.$http.post('api/login')
         //   .then((res) => {
 
@@ -279,21 +287,16 @@ export default {
         this.isSelect = true;
       }
       this.isSelectFlag = true;
-      console.log(data)
+    },
+    showToast(type, text, fn) {
+      this.type = type
+      this.toastText = text
+      this.isOK = true
+      setTimeout(()=>{
+        this.isOK = false
+        fn && fn()
+      }, 4000)
     }
-  },
-  //directives: {
-    // focus: {
-    //   inserted: function (el) {
-    //     // 聚焦元素
-    //     el.focus()
-    //   }
-    // },
-    // money: {
-    //   update: function(el, value) {
-    //     el.value = el.value.replace(/[^\d\.]/g, '').replace(/^\.+/, '').replace(/^(\d{1,18}(\.\d{0,2})?).*/, '$1').replace(/^0\d+/, '');
-    //   }
-    // }
-  //}
+  }
 }
 </script>

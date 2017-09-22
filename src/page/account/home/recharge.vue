@@ -113,25 +113,32 @@
           </dd>
         </dl>
       </div>
-      
-</form>
 
       <div class="c_red my_backcard_tips mt60">
-            <p>温馨提示：</p>
-            <p>1) 快捷支付为益田理财采用连连银通电子支付有限公司的便捷账户充值产品，不需网银U-KEY，一键充值；</p>
-            <p>2) 禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用；</p>
-            <p>3) 有问题请联系客服：400-0060-206。</p>
-          </div>
+        <p>温馨提示：</p>
+        <p>1) 快捷支付为益田理财采用连连银通电子支付有限公司的便捷账户充值产品，不需网银U-KEY，一键充值；</p>
+        <p>2) 禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用；</p>
+        <p>3) 有问题请联系客服：400-0060-206。</p>
+      </div>
     </div>
+    <toast v-if="isOK" :type="type" :text="toastText"></toast>
   </div>
 </template>
 <script>
+import toast from '@/components/base/toast.vue'
 export default {
+  components: {
+    toast
+  },
   data () {
     return {
       isPayRZ: true,      // 是否为认证支付
       rechargeMoney: '',
-      bankNum: 0
+      bankNum: 0,
+      // toast
+      isOK: false,
+      type: '',
+      toastText: ''
     }
   },
   mounted () {
@@ -148,11 +155,23 @@ export default {
       if (this.rechargeMoney == '') {
         alert("充输入充值金额");
       } else {
+        this.showToast('success', '充值成功', function () {
+          location.reload()
+        })
         //this.$http.post()
       }
     },
     selectBank(num) {
       this.bankNum = num;
+    },
+    showToast(type, text, fn) {
+      this.type = type
+      this.toastText = text
+      this.isOK = true
+      setTimeout(()=>{
+        this.isOK = false
+        fn && fn()
+      }, 4000)
     }
   }
 }
