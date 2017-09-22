@@ -22,7 +22,7 @@
           </div>
           <div class="right s_topright">
             <div class="s_appdown left">
-              <a href="@{front.home.HomeAction.appdl()}"><i class="icon"></i>手机客户端</a>
+              <router-link to="/appdl"><i class="icon"></i>手机客户端</router-link>
               <div class="s_ewmpop">
                 <div class="top_arrow"></div>
                 <div class="fl">

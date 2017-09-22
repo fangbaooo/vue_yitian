@@ -117,9 +117,7 @@ export default {
           if (this.rmbUser == true) {
             sessionStorage.rmbUser = this.phone;
           }
-
           this.$store.dispatch('Login', {"username": this.phone, "password": this.password}).then(() => {
-            //this.loading = false
             // 判断是否有来源链接
             if (sessionStorage.rmbLink) {
               this.$router.push(sessionStorage.rmbLink)
@@ -127,24 +125,10 @@ export default {
             } else {
               this.$router.push('/account')
             }
-            
+            this.isLoging = false;
           }).catch(() => {
-
+            this.isLoging = false;
           })
-          //请求后端,比如:
-          /*this.$http.post( 'example.com/login.php', {
-          param: loginParam).then((res) => {
-            if(res.data.code == 1){
-              let expireDays = 1000 * 60 * 60 * 24 * 15;
-              this.setCookie('session', res.data.session, expireDays);
-              //登录成功后
-              this.$router.push('/account'); 
-            }
-          }, (res) => {
-              //Error
-          });
-          */
-          this.isLoging = false;
         } else {
           this.isPassword = false;
         }

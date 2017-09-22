@@ -21,7 +21,7 @@
                 </ul>
             </div>
             <keep-alive>
-                <router-view></router-view>
+                <router-view :key="key"></router-view>
             </keep-alive>
         </div>
     </div>         
@@ -42,6 +42,11 @@ export default {
         { type: 'recruit', name: '招贤纳士'},
         { type: 'contact', name: '联系我们'},
       ]
+    }
+  },
+  computed: {
+    key() {
+      return this.$route.name !== undefined? this.$route.name + +new Date(): this.$route + +new Date()
     }
   },
   mounted () {

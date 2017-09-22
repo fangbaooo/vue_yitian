@@ -17,11 +17,11 @@ export default {
 
 <style>
 /* loading */
-.toast { position: fixed; z-index: 5000; width: 8.6em; min-height: 8.6em; top: 180px; left: 50%; margin-left: -4.3em; background: rgba(40, 40, 40, 0.75); text-align: center; border-radius: 5px; color: #FFFFFF; }
+.toast { position: fixed; z-index: 5000; width: 8.6em; min-height: 8.6em; top: 50%; left: 50%; margin:-4.3em 0 0 -4.3em; background: rgba(40, 40, 40, 0.75); text-align: center; border-radius: 5px; color: #FFFFFF; }
 .icon-toast { margin: 22px 0 0; display: block; }
 .icon-toast.weui-icon-success-no-circle:before { color: #FFFFFF; font-size: 55px; }
 .icon-toast.load{ margin: 30px 0 0; width: 43px; height: 43px; vertical-align: baseline; }
-.toast-content { margin: 10px 0 15px; font-size: 14px; }
+.toast-content { margin: 0 0 15px; font-size: 14px; }
 .icon-toast.f-icon-success-no-circle:before{ font-size: 55px; color: #fff}
 
 .mask-shadow { position: fixed; z-index: 1000; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); }

@@ -7,6 +7,7 @@ import loan from '@/page/loan';
 import safeguard from '@/page/safeguard';
 import login from '@/page/register/login';
 import register from '@/page/register/register';
+import appdl from '@/page/appdl/appdl';  // 手机客户端
 
 import account from '@/page/account/account';  // 个人中心
 /* 我的账户 */ 
@@ -15,7 +16,6 @@ import recharge from '@/page/account/home/recharge';
 import withdrawal from '@/page/account/home/withdrawal';
 import dealRecord from '@/page/account/dealRecord/dealRecord';
 
-import bankCard from '@/page/account/bankCard/bankCard';  // 我的银行卡
  /* 我的投资 */ 
 import investRecord from '@/page/account/myInvest/investRecord';
 import investBill from '@/page/account/myInvest/investBill';
@@ -25,6 +25,7 @@ import cashRecord from '@/page/account/reward/cashRecord';
 import rewardRecord from '@/page/account/reward/rewardRecord';  
 
 import safeCenter from '@/page/account/safeCenter/safeCenter';  // 安全中心
+import bankCard from '@/page/account/bankCard/bankCard';  // 我的银行卡
 
  /* 我的推广 */ 
 import spreadLink from '@/page/account/spread/spreadLink';
@@ -55,7 +56,8 @@ const route =  new Router({
     { path: '/noviceGuide', component: noviceGuide, meta: {title: '新手指南'}}, 
     { path: '/safeguard', component: safeguard, meta: {title: '安全保障'}},    
     { path: '/login', component: login, meta: {title: '登录'}},            
-    { path: '/register', component: register, meta: {title: '注册'}},        
+    { path: '/register', component: register, meta: {title: '注册'}},     
+    { path: '/appdl', component: appdl, meta: {title: '手机客户端'}},     
     { path: '/account',  component: account, redirect: '/account/home',// 个人中心
       children: [
         { path: '/account/home', component: home, meta: {title: '账户总览'}},
@@ -89,7 +91,7 @@ const route =  new Router({
         { path: '/aboutUs/contact', component: contact, meta: {title: '联系我们'}},
       ]
     },
-    { path: '/newsDetail/:id', name:'newsDetail', component: newsDetail, meta: {title: '新闻详情页'}},
+    { path: '/newsDetail', name:'newsDetail', component: newsDetail, meta: {title: '新闻详情页'}},
     { path: '/ylcHome/ylcDetail/:id', name:'ylcDetail', component: ylcDetail, meta: {title: '益理财投资详情页'}},
     {
       path: '*',

@@ -1,11 +1,13 @@
 <template>
 	<div class="s_center mb40 clr">
 		<!-- bread -->
-        <div class="s_bread">
-            <a href="/" title="" class="s_breadindex"><i class="icon"></i>首页</a>
-            <i class="s_breadarrow">&gt;</i>关于我们<i class="s_breadarrow">&gt;</i>
-            <span>{{type}} </span>
-        </div>
+    <div class="s_bread">
+        <router-link to="/" class="s_breadindex"><i class="icon"></i>首页</router-link>
+        <i class="s_breadarrow">&gt;</i>
+        <router-link to="/aboutUs"><i class="icon"></i>关于我们</router-link>
+        <i class="s_breadarrow">&gt;</i>
+        <span>{{title}}</span>
+    </div>
 		<div class="p_wenzhmain clr">
 			<h4>{{list.title}}</h4>
 			<div class="p_wzhword">
@@ -63,6 +65,7 @@ export default {
 	},
 	mounted () {
 		this.getData()
+		this.getType()
 		//this.list = dataList
 	},
 	methods: {

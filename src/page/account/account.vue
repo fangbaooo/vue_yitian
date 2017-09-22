@@ -1,10 +1,10 @@
 <template>
   <div class="s_center clr pb40">
     <div class="s_bread">
-      <a href="/" class="s_breadindex"><i class="icon"></i>首页</a>
-      <i class="s_breadarrow">&gt;</i> 
-      <a href="/account"><span>我的账户</span></a>
-      <i class="s_breadarrow">&gt;</i> 
+      <router-link to="/" class="s_breadindex"><i class="icon"></i>首页</router-link>
+      <i class="s_breadarrow">&gt;</i>
+      <router-link to="/account"><i class="icon"></i>我的账户</router-link>
+      <i class="s_breadarrow">&gt;</i>
       <span>{{breadcrumbs}}</span>
     </div>
     <div class="clr">

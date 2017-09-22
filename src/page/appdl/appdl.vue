@@ -33,21 +33,22 @@
 		</div>
 	</div>
 </template>
+
 <style>
-.dl_top{ height: 550px; background: #4896da url("../../assets/images/appDownload/dl_top.jpg") center top;}
+.dl_top{ height: 550px; background: #4896da url("../../assets/images/appDownload/dl_top.jpg") center top}
 .dl_top_con{ padding: 298px 0 0 505px}
 .app_ma{ float: left; background-color: #fff; width: 144px; height: 144px; padding: 2px;}
 .dl_btn{ float: left; width: 200px; margin-left: 20px;}
 .dl_btn a{ display: block; height: 60px; padding-left: 16px; margin-bottom: 20px; border: 2px solid #fff; line-height: 60px; color: #fff; font-size: 18px; border-radius: 2px}
 .dl_btn a:hover{ border-color: #ea5404; background-color: #ea5404;}
-.dl_btn i{ float: left; width: 36px; height: 36px; margin: 12px 5px 12px 0;background: url("../../assets/images/appDownload/dl_app_s.png");}
+.dl_btn i{ float: left; width: 36px; height: 36px; margin: 12px 5px 12px 0;background: url("../../assets/images/appDownload/dl_app_s.png")}
 .dl_btn i.icon_android{background-position: right top;}
 
 .dl_center{ background-color: #f4f4f7;}
 .dl_con { padding-top: 70px;}
 .dl_con li{ float: left; width: 330px; text-align: center; line-height: 24px;}
 .dl_con i{ display: block; width: 106px; height: 106px; margin: 0 auto; margin-bottom: 5px;}
-.dl_con i.dl_func_icon{background: url("../../assets/images/appDownload/dl_icon.jpg");}
+.dl_con i.dl_func_icon{background: url("../../assets/images/appDownload/dl_icon.jpg")}
 .dl_con i.dl_func_icon2{ background-position: -106px 0;}
 .dl_con i.dl_func_icon3{ background-position: -212px 0;}
 .dl_con p{ line-height: 24px;}
@@ -60,6 +61,7 @@
 .dl_bottom_con .dl_btn{ float: left; width: 342px; margin-left: 34px;}
 .dl_bottom_con .dl_btn a{ display: block; height: 106px; padding-left: 22px; margin-bottom: 34px; border: 2px solid #fff; line-height: 106px; color: #fff; font-size: 30px; border-radius: 2px}
 .dl_bottom_con .dl_btn a:hover{ border-color: #ea5404; background-color: #ea5404;}
-.dl_bottom_con .dl_btn i{ float: left; width: 60px; height: 60px; margin: 23px 12px 23px 0;background: url("../../assets/images/appDownload/dl_app.png"); }
+.dl_bottom_con .dl_btn i{ float: left; width: 60px; height: 60px; margin: 23px 12px 23px 0;background: url("../../assets/images/appDownload/dl_app.png")}
 .dl_bottom_con .dl_btn i.icon_android{background-position: right top;}
 </style>
+  
