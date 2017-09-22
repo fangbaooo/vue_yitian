@@ -18,7 +18,7 @@
 					<a :href="list.prevConLink" v-if="list.prevConText !==''">上一篇：{{list.prevConText}}</a>
 				</div>
 				<div class="xf_cfzx_view_bottom_paga_r">
-					<a :href="list.nextConLink" v-if="list.nextConText !==''">上一篇：{{list.nextConText}}</a>
+					<a :href="list.nextConLink" v-if="list.nextConText !==''">下一篇：{{list.nextConText}}</a>
 				</div>
 			</div>
 		</div>
