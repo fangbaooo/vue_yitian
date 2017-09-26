@@ -4,7 +4,7 @@ const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router);
 
 const route =  new Router({
-  //mode: "history",
+  mode: "history",
   routes: [
     { path: '/', component: _import('index'), meta: {title: '益田理财'}},
     { path: '/ylcHome', component: _import('ylcHome'), meta: {title: '益理财'}},          // component: (reslove) => require([ylcHome], reslove)
