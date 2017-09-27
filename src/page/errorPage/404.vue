@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <title></title>
+    <link rel="stylesheet" href="./static/css/public.css" />
+    <link rel="stylesheet" href="./static/css/site.css" />
+    <link rel="stylesheet" href="./static/css/ui-dialog.css" />
+    <script src="./static/js/jquery-2.1.0.min.js"></script>
+    <script src="./static/js/plugins/artDialog/dialog-plus-min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
