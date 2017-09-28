@@ -4,7 +4,7 @@
       <div class="fl" style="width:500px">
         <h6 class="p_zhello">欢迎您，<span v-if="user.realname_status==3">{{user.realityName}}</span> <span v-if="user._sex == 1">先生</span><span v-else>女士</span> </h6>
         <div class="p_zhsafety">
-          <a href="@{front.account.basicInformation.modifyMobile()}" title="绑定手机" class="clicked">
+          <!-- <a href="@{front.account.basicInformation.modifyMobile()}" title="绑定手机" class="clicked">
             <i class="icon ico1"></i>
           </a> 
           <a href="@{front.account.basicInformation.safeCenter()}" title="实名认证" :class="{clicked: user.realname_status==3}">
@@ -12,20 +12,28 @@
           </a> 
           <a href="@{front.account.FundsManage.userBankRecord()}" title="绑定银行卡" :class="bank == null? 'p_zhsafyhk' : 'clicked'">
             <i class="icon ico3"></i>
-          </a> 
+          </a>  -->
+          <router-link to="/account/safeCenter" title="绑定手机" class="clicked">
+            <i class="icon ico1"></i>
+          </router-link>
+          <router-link to="/account/safeCenter" title="实名认证" :class="{clicked: user.realname_status==3}">
+            <i class="icon ico2"></i>
+          </router-link>
+          <router-link to="/account/bankCard" title="绑定银行卡" :class="bank == null? 'p_zhsafyhk' : 'clicked'">
+            <i class="icon ico3"></i>
+          </router-link>
           <div>
-          <span class="fl ml15">安全等级：</span>
-          <span class="p_zhsfdengji clicked"></span>
-          <span class="p_zhsfdengji" :class="{clicked: user.realname_status==3}"></span>
-          <span class="p_zhsfdengji" :class="{clicked: bank!=null}"></span>
-          <span class="fl cozhuse ml10">
-            <span v-if="user.realname_status==3 && bank!=null">高</span>
-            <span v-else-if="user.realname_status==3">中</span>
-            <span v-else>低</span>
-          </span>
-
-          <a href="javascript:upLevel()" class="p_zhpromote" v-if="user.realname_status!=3 || bank==null">[提升]</a>
-          
+            <span class="fl ml15">安全等级：</span>
+            <span class="p_zhsfdengji clicked"></span>
+            <span class="p_zhsfdengji" :class="{clicked: user.realname_status==3}"></span>
+            <span class="p_zhsfdengji" :class="{clicked: bank!=null}"></span>
+            <span class="fl cozhuse ml10">
+              <span v-if="user.realname_status==3 && bank!=null">高</span>
+              <span v-else-if="user.realname_status==3">中</span>
+              <span v-else>低</span>
+            </span>
+            <router-link to="/account/safeCenter" class="p_zhpromote" v-if="user.realname_status!=3 || bank==null">[提升]</router-link>
+            <!-- <a href="javascript:upLevel()" class="p_zhpromote" v-if="user.realname_status!=3 || bank==null">[提升]</a> -->
           </div>
         </div>
       </div>
@@ -52,8 +60,8 @@
         </span>
       </div>
       <div class="fr">
-        <a href="/account/home/recharge" class="p_zhrecharge">充值</a> 
-        <a href="/account/home/withdrawal" class="ml30">提现</a>
+        <router-link to="/account/home/recharge" class="p_zhrecharge">充值</router-link> 
+        <router-link to="/account/home/withdrawal" class="ml30">提现</router-link> 
         <!-- <router-link to="/account/home/recharge" class="p_zhrecharge">充值</router-link>
         <router-link to="/account/home/withdrawal" class="ml30">提现</router-link> -->
       </div>

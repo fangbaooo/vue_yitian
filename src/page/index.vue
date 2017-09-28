@@ -47,32 +47,6 @@ export default {
   },
   data () {
     return {
-      products: [
-        {
-          name: '关于IOS系统充值恢复的通知',
-          date: '2017-05-16',
-          path: 'newDetails?id=571',
-          active: false
-        },
-        {
-          name: '关于IOS系统充值维护的通知',
-          date: '2017-05-11',
-          path: 'newDetails?id=566',
-          active: false
-        },
-        {
-          name: '关于“邂逅春天礼”活动获奖名单公布',
-          date: '2017-05-08',
-          path: 'newDetails?id=561',
-          active: false
-        },
-        {
-          name: '关于益田理财2017年劳动节放假公告',
-          date: '2017-04-25',
-          path: 'newDetails?id=542',
-          active: false
-        }
-      ],
       // imgMap: {
       //   '/detail/count': require("../assets/images/1.png"),
       //   '/detail/forecast': require("../assets/images/2.png"),

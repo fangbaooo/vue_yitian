@@ -2,8 +2,10 @@
     <div class="s_center mb40 clr">
         <!-- bread -->
         <div class="s_bread">
-            <a href="/" title="" class="s_breadindex"><i class="icon"></i>首页</a>
-            <i class="s_breadarrow">&gt;</i>关于我们<i class="s_breadarrow">&gt;</i>
+            <router-link to="/" class="s_breadindex"><i class="icon"></i>首页</router-link>
+            <i class="s_breadarrow">&gt;</i>
+            <router-link to="/aboutUs"><i class="icon"></i>关于我们</router-link>
+            <i class="s_breadarrow">&gt;</i>
             <span>{{breadcrumbs}}</span>
         </div>
         <div class="p_abusmain clr">

@@ -3,7 +3,7 @@
     <div class="p_zhinvelist mt0">
       <h4 class="p_zhtitle">
         <span class="fl">提现</span>
-        <a href="/account/home/dealRecord" class="fr"><span class="p-vm">提现记录</span></a>
+        <router-link to="/account/home/dealRecord" class="fr"><span class="p-vm">提现记录</span></router-link>
       </h4>
       <table class="p_tixtable">
         <tbody>
