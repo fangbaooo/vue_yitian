@@ -31,9 +31,12 @@
             </div>
           </div>
           <div class="left" v-if="!$store.state.user.name">
-            <a href="/login">登录</a>
+            <router-link to="/login">登录</router-link>
             <i>|</i>
-            <a href="/register">注册</a>
+            <router-link to="/register">注册</router-link>
+            <!-- <a href="/login">登录</a>
+            <i>|</i>
+            <a href="/register">注册</a> -->
           </div>
           <div class="left" v-else>
             <span v-text="$store.state.user.name"></span>
