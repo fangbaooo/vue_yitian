@@ -3,7 +3,7 @@
     <div class="p_scronews">
       <div class="s_center clr" id="scrollNews">
         <div class="p_syggtitle"><i class="icon"></i>最新公告：</div>
-        <ul class="p_syggscrul">
+        <ul class="p_syggscrul " :style="{ 'top' : top }" :class="{ 'active': activeClass}">
           <li class="clr" v-for="item in notice"><router-link :to="item.link" class="text_hide">{{item.text}}</router-link><span>{{item.date}}</span></li>
         </ul>
         <router-link to="/aboutUs/notice" class="p_syggmore">查看更多</router-link>
@@ -56,6 +56,8 @@ export default {
       scrollArea: $("#scrollNews"),//document.getElementById("scrollNews"),
       scrollUl: "",//this.scrollArea,//getElementsByTagName('ul')[0],
       timer: null,
+      activeIndex: 0,
+      activeClass: true,
 
       listData: null,
 
@@ -112,25 +114,41 @@ export default {
       }
       return data;
     },
-    scrollNews (scrollArea, scrollUl, speed) {
-        var timeId,
-        height = scrollUl.children("li").height();
-        scrollArea.hover(function() {
-          clearInterval(timeId);
-        }, function() {
-          if (scrollUl.children("li").length > 1) {
-            timeId = setInterval(function() {
-              scrollUl.animate({
-                "margin-top": -height + "px"
-              }, 600, function() {
-                scrollUl.css("margin-top", "0").find("li:first").appendTo(scrollUl);
-              });
-            }, speed)
-          }
-        }).trigger("mouseleave")
-    },
+    // scrollNews (scrollArea, scrollUl, speed) {
+    //     var timeId,
+    //     height = scrollUl.children("li").height();
+    //     scrollArea.hover(function() {
+    //       clearInterval(timeId);
+    //     }, function() {
+    //       if (scrollUl.children("li").length > 1) {
+    //         timeId = setInterval(function() {
+    //           scrollUl.animate({
+    //             "margin-top": -height + "px"
+    //           }, 600, function() {
+    //             scrollUl.css("margin-top", "0").find("li:first").appendTo(scrollUl);
+    //           });
+    //         }, speed)
+    //       }
+    //     }).trigger("mouseleave")
+    // },
     runScroll () {
-      this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+      this.notice.push(this.notice[0])
+      //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+      setInterval(() => {
+        if(this.activeIndex < this.notice.length -1) {
+        } else {
+          this.activeClass = false
+          this.activeIndex = 0;
+          setTimeout(()=>{
+            this.activeClass = true
+          })
+        }
+      }, 3000);
+    }
+  },
+  computed: {
+    top() {
+      return -this.activeIndex * 24 + 'px';
     }
   },
   mounted () {
@@ -143,3 +161,9 @@ export default {
   }
 }
 </script>
+<style>
+.active{
+  position: relative;
+  transition: top 0.5s;
+}
+</style>
