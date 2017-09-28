@@ -3,7 +3,7 @@
     <div class="p_zhinvelist mt0">
       <h4 class="p_zhtitle">
         <span class="fl">充值</span>
-        <a href="/account/home/dealRecord" class="fr"><span class="p-vm">充值记录</span></a>
+        <router-link to="/account/home/dealRecord" class="fr"><span class="p-vm">充值记录</span></router-link>
       </h4>
       <!-- <ul class="p_czxxkul tab-menu clr">
         <li @click="showRzDiv();" id="rzli">认证支付</li>

@@ -140,33 +140,31 @@ export default {
   },
   methods: {
     getList (id, title) {
-      this.showCon = -1;
-      this.listData = this.list[id];
-      this.listTitle = title;
-    },
-    getUrlParam (name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-      var url = window.location.search.substr(1).match(reg);
-      if (url != null) {
-        return decodeURI(url[2]);
-      }
-      return null;
+      this.showCon = -1
+      this.listData = this.list[id]
+      this.listTitle = title
     },
     getName (id) {
       var sidebar = this.sidebar
       for (var i = 0; i < sidebar.length; i++) {
-        if (sidebar[i].id === id) {
+        if (sidebar[i].id == id) {
           this.getList(id, sidebar[i].name)
         }
-      };
+      }
     },
     toggleDes (index) {
-      this.showCon = this.showCon === index ? -1 : index;
+      this.showCon = this.showCon === index ? -1 : index
+    },
+    getAll () {
+      var id = this.$route.query.typeId
+      this.getName(id)
     }
   },
+  watch: {
+    "$route.query": "getAll"
+  },
   mounted () {
-    var id = this.getUrlParam("typeId");
-    this.getName(id);
+    this.getAll()
   }
 }
 </script>

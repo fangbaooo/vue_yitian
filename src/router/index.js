@@ -49,7 +49,7 @@ const route =  new Router({
     },
     { path: '/newsDetail', name:'newsDetail', component: _import('newsDetail'), meta: {title: '新闻详情页'}},
     { path: '/ylcHome/ylcDetail/:id', name:'ylcDetail', component: _import('detail/ylcDetail'), meta: {title: '益理财投资详情页'}},
-    { path: '/404', component: _import('errorPage/404'), hidden: true },
+    { path: '/404', component: _import('errorPage/404'), meta: {title: '404'} },
     { path: '*', redirect: '/404', hidden: true }
   ]
 });

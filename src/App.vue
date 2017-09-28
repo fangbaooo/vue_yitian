@@ -5,7 +5,7 @@
     
     <div id="content">
       <keep-alive>
-        <router-view :key="key"></router-view>
+        <router-view></router-view>
       </keep-alive>
     </div>
 
