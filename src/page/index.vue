@@ -1,5 +1,6 @@
 <template>
   <div>
+    <slide :slides="slides" :inv="invTime"></slide>
     <div class="p_scronews">
       <div class="s_center clr" id="scrollNews">
         <div class="p_syggtitle"><i class="icon"></i>最新公告：</div>
@@ -34,12 +35,14 @@
   </div>
 </template>
 <script>
+import slide from '@/components/slide'       // slide广告
 import ensure from './index/ensure'   // 四大优势
 import partner from './index/partner' // 合作机构
 import news from './index/news'       // 行业资讯
 import ylcList from './ylcList'       // 益理财列表
 export default {
   components: {
+    slide,
     ensure,
     partner,
     news,
@@ -47,12 +50,31 @@ export default {
   },
   data () {
     return {
-      // imgMap: {
-      //   '/detail/count': require("../assets/images/1.png"),
-      //   '/detail/forecast': require("../assets/images/2.png"),
-      //   '/detail/analysis': require("../assets/images/3.png"),
-      //   '/detail/publish': require("../assets/images/4.png")
-      // }
+      // slide
+      invTime: 4000,
+      slides: [
+        {
+          src: require('../assets/images/slide/pic1.jpg'),
+          title: 'xxx1',
+          href: 'detail/analysis'
+        },
+        {
+          src: require('../assets/images/slide/pic2.jpg'),
+          title: 'xxx2',
+          href: 'detail/count'
+        },
+        {
+          src: require('../assets/images/slide/pic3.jpg'),
+          title: 'xxx3',
+          href: 'http://xxx.xxx.com'
+        },
+        {
+          src: require('../assets/images/slide/pic4.jpg'),
+          title: 'xxx4',
+          href: 'detail/forecast'
+        }
+      ],
+
       scrollArea: $("#scrollNews"),//document.getElementById("scrollNews"),
       scrollUl: "",//this.scrollArea,//getElementsByTagName('ul')[0],
       timer: null,
@@ -132,16 +154,17 @@ export default {
     //     }).trigger("mouseleave")
     // },
     runScroll () {
-      this.notice.push(this.notice[0])
       //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
+      this.notice.push(this.notice[0])
       setInterval(() => {
         if(this.activeIndex < this.notice.length -1) {
+          this.activeIndex++
         } else {
           this.activeClass = false
           this.activeIndex = 0;
           setTimeout(()=>{
             this.activeClass = true
-          })
+          },300)
         }
       }, 3000);
     }
@@ -156,7 +179,6 @@ export default {
     this.getDynamicData()
     this.getNewsData()
     this.getNoticeData()
-
     //this.scrollNews($("#scrollNews"), $("#scrollNews").find("ul"), 3000)
   }
 }
