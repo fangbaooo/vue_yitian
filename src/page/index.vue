@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slide :slides="slides" :inv="invTime"></slide>
+    <slide></slide>
     <div class="p_scronews">
       <div class="s_center clr" id="scrollNews">
         <div class="p_syggtitle"><i class="icon"></i>最新公告：</div>
@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import slide from '@/components/slide'       // slide广告
+import slide from './index/slide'     // slide广告
 import ensure from './index/ensure'   // 四大优势
 import partner from './index/partner' // 合作机构
 import news from './index/news'       // 行业资讯
