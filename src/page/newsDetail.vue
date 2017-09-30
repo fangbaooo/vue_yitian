@@ -15,10 +15,10 @@
 			</div>
 			<div class="xf_cfzx_view_bottom_paga">
 				<div class="xf_cfzx_view_bottom_paga_l">
-					<a :href="list.prevConLink" v-if="list.prevConText !==''">上一篇：{{list.prevConText}}</a>
+					<router-link :to="list.prevConLink" v-if="list.prevConText !==''">上一篇：{{list.prevConText}}</router-link>
 				</div>
 				<div class="xf_cfzx_view_bottom_paga_r">
-					<a :href="list.nextConLink" v-if="list.nextConText !==''">下一篇：{{list.nextConText}}</a>
+					<router-link :to="list.nextConLink" v-if="list.nextConText !==''">下一篇：{{list.nextConText}}</router-link>
 				</div>
 			</div>
 		</div>
@@ -70,7 +70,8 @@ export default {
 	},
 	methods: {
 		getType () {
-			let type = getUrlParam("type")
+			let type = this.$route.query.type// getUrlParam("type")
+			console.log(type)
 			this.title = this.type[type]
 		},
 		getData() {
