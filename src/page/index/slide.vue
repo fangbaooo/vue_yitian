@@ -10,8 +10,8 @@
       </div>
     </div> -->
     <rd-swipe :swipe="swipe">
-      <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs">
-      </div>
+      <a class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs" href='https://www.yitianlicai.com/'>
+      </a>
     </rd-swipe>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     return {
       swipe: {
         activeIndex: 0,
-        autoplay: 4000
+        autoplay: 5000
       },
       contacts: [{
         text: 'Page 1'
@@ -30,14 +30,11 @@ export default {
         text: 'Page 2'
       }, {
         text: 'Page 3'
-      }, {
-        text: 'Page 4'
       }],
       imgs: [
         'https://www.yitianlicai.com/images?uuid=03da6cfa-c55b-4fed-b9a8-86714a6812aa',
-        'http://covteam.u.qiniudn.com/test19.jpg',
-        'http://covteam.u.qiniudn.com/test20.jpg',
-        'http://covteam.u.qiniudn.com/test21.jpg'
+        'https://www.yitianlicai.com/images?uuid=1280de94-82aa-41bf-82e2-e1a60b9bca87',
+        'https://www.yitianlicai.com/supervisor/newsImg?uuid=5d7060f1-925b-44b5-9d2b-6e88ca40c9a2'
       ]
     }
   },
