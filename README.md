@@ -1,6 +1,6 @@
 # vue_yitian
 
-> 这是一个使用vue改造益田理财的项目
+> 这是一个使用vue改造理财的项目
 [线上地址: https://fangbaooo.github.io/vue_yitian/](https://fangbaooo.github.io/vue_yitian/)
 
 **解决的问题：**

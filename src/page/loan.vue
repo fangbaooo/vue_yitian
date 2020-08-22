@@ -59,21 +59,21 @@
       <form action="" class="mt15">
         <div class="clr loan-label">
           <span class="loan-label-text">姓名/企业名称</span>
-          <input type="text" id="name" v-model="name" @keyup="nameFlag = true">
+          <input class="loan-input" type="text" id="name" v-model="name" @keyup="nameFlag = true">
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="name == '' && nameFlag"><i class="icon"></i>请输入姓名/企业名称</span>
         </div>
         <div class="clr loan-label">
           <span class="loan-label-text">身份证/营业执照号</span>
-          <input type="text" id="identification" v-model="identification" @keyup="identificationFlag = true">
+          <input class="loan-input" type="text" id="identification" v-model="identification" @keyup="identificationFlag = true">
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="identification == '' && identificationFlag"><i class="icon"></i>请输入身份证/营业执照号</span>
         </div>
         <div class="clr loan-label">
           <span class="loan-label-text">联系方式</span>
-          <input type="text" id="phone" v-model="phone" @keyup="phoneFlag = true" maxlength="11">
+          <input class="loan-input" type="text" id="phone" v-model="phone" @keyup="phoneFlag = true" maxlength="11">
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="phone == '' && phoneFlag"><i class="icon"></i>请输入联系方式</span>
@@ -81,7 +81,7 @@
         </div>
         <div class="clr loan-label">
           <span class="loan-label-text">借贷类型</span>
-          <selector :options="options" @on-change="changeType"></selector>
+          <selector :options="options" :value="currentValue" @on-change="changeType"></selector>
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="!isSelect && isSelectFlag"><i class="icon"></i>请选择借贷类型</span>
@@ -89,14 +89,14 @@
         
         <div class="clr loan-label">
           <span class="loan-label-text">借款金额</span>
-          <input type="text" id="money" @keyup="moneyFlag = true" v-model="money" v-money="money">
+          <input class="loan-input" type="text" id="money" @keyup="moneyFlag = true" v-model="money" v-money="money">
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="money == '' && moneyFlag"><i class="icon"></i>请输入借款金额</span>
         </div>
         <div class="clr loan-label">
           <span class="loan-label-text">借款期限</span>
-          <input type="text" id="deadline" v-model="deadline" @keyup="deadlineFlag = true">
+          <input class="loan-input" type="text" id="deadline" v-model="deadline" @keyup="deadlineFlag = true">
         </div>
         <div class="loan-error">
           <span class="p_zcerror" v-if="deadline == '' && deadlineFlag"><i class="icon"></i>请输入借款期限</span>
@@ -209,10 +209,6 @@ export default {
       isSelectFlag: false,
       options: [
         {
-          label: '请选择',
-          value: -1
-        },
-        {
           label: '工商贷',
           value: 0
         },
@@ -229,6 +225,7 @@ export default {
           value: 3
         }
       ],
+      currentValue: "3",
       // toast
       isOK: false,
       type: '',
